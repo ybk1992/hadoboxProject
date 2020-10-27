@@ -60,38 +60,38 @@ public class DoController extends HttpServlet {
 		case "/list.do":
 			command = new ListCommand();
 			command.execute(request, response);
-			viewPage = "register/list.jsp";
+			viewPage = "book/list.jsp";
 			break;
 			
 		case "/write.do":
-			viewPage = "register/write.jsp";
+			viewPage = "book/write.jsp";
 			break;
 			
 		case "/writeOk.do":
 			command = new WriteCommand();
 			command.execute(request, response);
-			viewPage = "register/writeOk.jsp";
+			viewPage = "book/writeOk.jsp";
 			break;
 		case "/view.do":
 			command = new ViewCommand();
 			command.execute(request, response);
-			viewPage = "register/view.jsp";
+			viewPage = "book/view.jsp";
 			break;
 		case "/update.do":
 			command = new SelectCommand();
 			command.execute(request, response);
-			viewPage = "register/update.jsp";
+			viewPage = "book/update.jsp";
 			break;
 		case "/updateOk.do":
 			command = new UpdateCommand();
 			command.execute(request, response);
-			viewPage = "register/updateOk.jsp";
+			viewPage = "book/updateOk.jsp";
 			break;
 			
 		case "/deleteOk.do":
 			command = new DeleteCommand();
 			command.execute(request, response);
-			viewPage = "register/deleteOk.jsp";
+			viewPage = "book/deleteOk.jsp";
 			break;
 			
 		// 웹에디터용 파일 업로드 처리
