@@ -4,21 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>거래페이지</title>
+<title>판매 글 페이지</title>
 </head>
 <body>
 	<header></header>
-    <nav>
-        <section>
-        </section>
-    </nav>
-    <aside></aside>
-    <article>
-        <nav></nav>
-        <section></section>
-        <section></section>
-    </article>
-    <nav></nav>
+    
     <footer></footer>
 </body>
 </html>
