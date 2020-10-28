@@ -228,7 +228,7 @@
         <div class="container">
 
             <p class="m-0 text-center text-white">
-                <img src="../image/logo.png" alt="logo" id="footer_logo">
+                <img src="../image/logo-white.png" alt="logo-white" id="footer_logo">
                 Copyright &copy; 2020. (주)해도북스 컴퍼니. All right reserved.</p>
         </div>
         <!-- /.container -->
