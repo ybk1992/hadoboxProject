@@ -13,3 +13,42 @@ body {
   height: 100px;
 }
 
+#content {
+  margin-top: 20px;
+}
+
+#search {
+  margin-bottom: 20px;
+}
+.search {
+  margin-right: 5px;
+}
+
+.selectbox {
+  border: none;
+}
+
+.subcate {
+  border: none;
+  color: dimgray;
+}
+
+
+@media (min-width: 320px) and (max-width: 768px){
+  .vw {
+    font-size: 30px;
+  }
+  .search {
+    width: 260px;
+  }
+  .selectbox {
+    width: 140px;
+  }
+  
+}
+
+@media (min-width: 990px){
+  .search {
+    width: 600px;
+  }
+}
