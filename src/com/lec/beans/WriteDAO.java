@@ -25,6 +25,7 @@ public class WriteDAO {
 			Class.forName(D.DRIVER);
 			conn = DriverManager.getConnection(D.URL, D.USERID, D.USERPW);
 			System.out.println("WriteDAO생성, 데이터베이스 연결!!");
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

@@ -12,6 +12,14 @@ public class D {
 	public static final String USERPW = "hd04b";
 	
 	// 게시글 관련 쿼리문
+	public static final String SQL_COUNT_ALL = "SELECT COUNT(*) FROM test_write"; 
+
+	// 쿼리: '몇번째(fromRow)' 부터 '몇개(pageRows)' 의 글 select
+	public static final String SQL_SELECT_FROM_ROW = "SELECT * FROM " +
+			"(SELECT ROWNUM AS RNUM, T.* FROM " +
+			"	(SELECT * FROM test_write ORDER BY wr_uid DESC) T) " +
+			"WHERE RNUM >= ? AND RNUM < ?"
+			;
 	public static final String SQL_WRITE_INSERT = 
 			"INSERT INTO test_write"
 			+ "(wr_uid, wr_subject, wr_content, wr_name, wr_regdate) "
