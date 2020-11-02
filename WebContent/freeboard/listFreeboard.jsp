@@ -3,6 +3,7 @@
 <%@ page import = "java.sql.*" %>  <%-- JDBC 관련 클래스 import --%>
 <%@ page import = "java.text.SimpleDateFormat" %>
 <%@ page import="com.lec.beans.*" %>
+<%@ page import="common.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:useBean id="dao" class="com.lec.beans.WriteDAO"/>  <%-- DAO bean 생성 --%>
@@ -36,26 +37,11 @@
 	int cnt = 0;  // executeUpdate(), DML 결과
 	
 	
-	// Connection 에 필요한 값 세팅
-	final String DRIVER = "oracle.jdbc.driver.OracleDriver";   // JDBC드라이버 클래스
-	final String URL = "jdbc:oracle:thin:@localhost:1521:XE";  // DB 접속 URL
-	final String USERID = "scott08a";   // DB접속 계정 정소
-	final String USERPW = "tiger08a";   
+  
 %>
 
 <%!
-	// 쿼리문 준비
-	
-	// 페이징
-	// 쿼리: 글 목록 전체 개수 
-	final String SQL_COUNT_ALL = "SELECT COUNT(*) FROM test_write"; 
 
-	// 쿼리: '몇번째(fromRow)' 부터 '몇개(pageRows)' 의 글 select
-	final String SQL_SELECT_FROM_ROW = "SELECT * FROM " +
-			"(SELECT ROWNUM AS RNUM, T.* FROM " +
-			"	(SELECT * FROM test_write ORDER BY wr_uid DESC) T) " +
-			"WHERE RNUM >= ? AND RNUM < ?"
-			;
 	
 	// 페이징 관련 세팅 값들
 	// cnt <- 글 목록 전체 개수
@@ -66,10 +52,10 @@
 
 <%
 	try{
-		Class.forName(DRIVER);
-		conn = DriverManager.getConnection(URL, USERID, USERPW);
+		Class.forName(D.DRIVER);
+		conn = DriverManager.getConnection(D.URL, D.USERID, D.USERPW);
 		
-		pstmt = conn.prepareStatement(SQL_COUNT_ALL);		
+		pstmt = conn.prepareStatement(D.SQL_COUNT_ALL);		
 		rs = pstmt.executeQuery();
 		
 		if(rs.next())
@@ -82,7 +68,7 @@
 				
 		int fromRow = (curPage - 1) * pageRows + 1;   // 몇번째  row 부터?
 				
-		pstmt = conn.prepareStatement(SQL_SELECT_FROM_ROW);
+		pstmt = conn.prepareStatement(D.SQL_SELECT_FROM_ROW);
 		pstmt.setInt(1, fromRow);   // 몇번째 row 부터  몇개 (pageRows)
 		pstmt.setInt(2, fromRow + pageRows);   
 		rs = pstmt.executeQuery();
