@@ -11,8 +11,8 @@
 	</page_setting>
 	<category_index>0</category_index>
 	<zoom>1.0</zoom>
-	<x>55</x>
-	<y>55</y>
+	<x>0</x>
+	<y>0</y>
 	<default_color>
 		<r>255</r>
 		<g>255</g>
@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2020-10-29 15:46:57</creation_date>
-			<updated_date>2020-10-30 11:14:05</updated_date>
+			<updated_date>2020-10-30 13:37:18</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -564,8 +564,8 @@
 			<args></args>
 			<char_semantics>false</char_semantics>
 			<description></description>
-			<logical_name>mem_num</logical_name>
-			<physical_name>mem_num</physical_name>
+			<logical_name>MEM_NUM</logical_name>
+			<physical_name>MEM_NUM</physical_name>
 			<type>decimal</type>
 		</word>
 		<word>
@@ -915,7 +915,7 @@
 					<referenced_complex_unique_key>null</referenced_complex_unique_key>
 				</relation>
 			</connections>
-			<physical_name>book_answer</physical_name>
+			<physical_name>BOOK_ANSWER</physical_name>
 			<logical_name>판매글 댓글</logical_name>
 			<description></description>
 			<constraint></constraint>
@@ -1134,7 +1134,7 @@
 					<referenced_complex_unique_key>null</referenced_complex_unique_key>
 				</relation>
 			</connections>
-			<physical_name>free_answer</physical_name>
+			<physical_name>FREE_ANSWER</physical_name>
 			<logical_name>자유게시판 댓글</logical_name>
 			<description></description>
 			<constraint></constraint>
@@ -1399,8 +1399,8 @@
 					<relation>2</relation>
 					<description>회원아이디</description>
 					<unique_key_name></unique_key_name>
-					<logical_name>free_id</logical_name>
-					<physical_name>free_id</physical_name>
+					<logical_name>FREE_ID</logical_name>
+					<physical_name>FREE_ID</physical_name>
 					<type>decimal</type>
 					<constraint></constraint>
 					<default_value></default_value>
@@ -2011,7 +2011,7 @@
 							<g>0</g>
 							<b>0</b>
 						</color>
-					<child_cardinality>0..n</child_cardinality>
+					<child_cardinality>1..n</child_cardinality>
 					<parent_cardinality>1</parent_cardinality>
 					<reference_for_pk>false</reference_for_pk>
 					<name></name>
@@ -2067,8 +2067,8 @@
 					<relation>4</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
-					<logical_name>book_sellid</logical_name>
-					<physical_name>book_sellid</physical_name>
+					<logical_name>BOOK_SELLID</logical_name>
+					<physical_name>BOOK_SELLID</physical_name>
 					<type>varchar(n)</type>
 					<constraint></constraint>
 					<default_value></default_value>

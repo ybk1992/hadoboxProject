@@ -8,8 +8,8 @@ package common;
 public class D {
 	public static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
 	public static final String URL = "jdbc:oracle:thin:@localhost:1521:XE";
-	public static final String USERID = "scott08a";
-	public static final String USERPW = "tiger08a";
+	public static final String USERID = "hd04a";
+	public static final String USERPW = "hd04b";
 	
 	// 게시글 관련 쿼리문
 	public static final String SQL_WRITE_INSERT = 
@@ -33,6 +33,34 @@ public class D {
 	public static final String SQL_WRITE_UPDATE =
 			"UPDATE test_write SET wr_subject = ?, wr_content = ? WHERE wr_uid = ?";
 	
+	//insert 책 등록 <-- 글번호, 판매자, 책이름, 책가격, 작성일, 내용, 책주소, 카테고리, 판매여부, 이미지경로
+	public static final String SQL_BOOK_INSERT = 
+			"INSERT INTO BOOKLIST (BOOK_NUM, BOOK_SELLID, BOOK_NAME, BOOK_PRICE, BOOK_REGDATE, " + 
+			"BOOK_CONTENT, BOOK_URI, BOOK_CATE, BOOK_STATUS, BOOK_IMAGE)" + 
+			" VALUES (?, ?, ?, ?, SYSDATE, ?, ?, ?, ?, ?)";
+	//select 전체 글
+	public static final String SQL_BOOK_SELECT = 
+			"SELECT * FROM  HD04A ORDER BY BOOK_NUM DESC";
+	//select book_num 선택 글 읽기
+	public static final String SQL_BOOK_SELECT_BY_NUM = 
+			"SELECT * FROM HD04A WHERE BOOK_NUM=?";
+	//update 글 수정 / 책이름, 책가격, 작성일, 내용, 책주소, 카테고리, 판매여부, 이미지경로
+	public static final String SQL_BOOK_UPDATE = 
+			"UPDATE HD04A SET BOOK_NAME = ?, BOOK_PRICE = ?, BOOK_REGDATE = ?, BOOK_CONTENT = ?, " + 
+			"BOOK_URI = ?, BOOK_CATE = ?, BOOK_STATUS = ?, BOOK_IMAGE = ?";
+	//delete 글 삭제
+	public static final String SQL_BOOK_DELETE = 
+			"DELETE FROM HD04A WHERE BOOK_NUM = ?";
+	
+	
 } // end D
+
+
+
+
+
+
+
+
 
 

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%! int listCnt_all = 9; %>
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -28,11 +29,12 @@
   <!-- CSS -->
   <link href="../CSS/list_page.css" rel="stylesheet">
 
+  
 </head>
 
 <body>
 
-  <!-- Navigation -->
+  <!-- 페이지 상단 navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="#">해도북스</a>
@@ -80,40 +82,12 @@
       <!-- /.col-lg-3 -->
 
       <div class="col-lg-9">
-        <!-- 이벤트 베너
-				<div class="my-4">
-					<ol class="carousel-indicators">
-						<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-						<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-						<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-					</ol>
-
-					<div class="carousel-inner" role="listbox">
-						<div class="carousel-item active"> 
-							<img class="d-block img-fluid" src="http://placehold.it/900x350" alt="First slide">
-						</div>
-						<div class="carousel-item">
-							<img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Second slide">
-						</div>
-						<div class="carousel-item">
-							<img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Third slide">
-						</div>
-					</div>
-					<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-						<span class="sr-only">Previous</span>
-					</a>
-					<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-						<span class="carousel-control-next-icon" aria-hidden="true"></span>
-						<span class="sr-only">Next</span>
-					</a>
-				</div>
-			-->
+        
         <nav class="navbar navbar-expand-sm bg-white navbar-light" id="search">
           <!-- Links -->
           <ul class="navbar-nav">
-            <!-- Dropdown -->
-            <li class="nav-item">
+            <!-- selectbox -->
+            <li class="nav-item cate">
               <select class="form-control selectbox">
                 <option selected>카테고리</option>
                 <option value="">카테1</option>
@@ -131,18 +105,19 @@
         <div class="row">
 <% for(int i = 0; i <= listCnt_all; i++){ %>
           <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+            <div class="card h-100 bookbox">
+            <!--  -->
+              <a href="book_Read.jsp" class="book_img"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="#">중고책 제목</a>
+                  <a href="book_Read.jsp">중고책 제목</a>
                 </h4>
                 <h5>9,900원</h5>
                 <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet
                   numquam aspernatur!</p>
               </div>
               <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                <small class="text-muted"></small>
               </div>
             </div>
           </div>
@@ -171,7 +146,9 @@
     </div>
     <!-- /.container -->
   </footer>
-
+<!-- 
+<a href="https://imgur.com/1TFsO95"><img src="https://i.imgur.com/1TFsO95.png" title="source: imgur.com" /></a>
+ -->
 
 
 </body>

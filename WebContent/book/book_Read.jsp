@@ -7,7 +7,7 @@
 <title>판매 글 페이지</title>
 </head>
 <body>
-	<header></header>
+	<header>판매글 내용</header>
     
     <footer></footer>
 </body>
