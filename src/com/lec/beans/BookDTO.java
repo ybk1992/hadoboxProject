@@ -11,7 +11,7 @@ public class BookDTO {
 	private String book_uri;	// 글주소
 	private int book_cate;		// 책카테고리
 	private String book_image;	// 이미지경로
-	private int book_status;	// 판매여부
+	private String book_status;	// 판매여부
 	
 	public BookDTO() {
 		super();
@@ -21,7 +21,7 @@ public class BookDTO {
 	
 
 	public BookDTO(int book_num, String book_sellid, String book_name, int book_price, String book_regdate,
-			String book_content, int book_viewcnt, String book_uri, int book_cate, String book_image, int book_status) {
+			String book_content, int book_viewcnt, String book_uri, int book_cate, String book_image, String book_status) {
 		super();
 		this.book_num = book_num;
 		this.book_sellid = book_sellid;
@@ -34,7 +34,7 @@ public class BookDTO {
 		this.book_cate = book_cate;
 		this.book_image = book_image;
 		this.book_status = book_status;
-		System.out.printf("BookDTO(%d, %s, %s, %d, %s, %s, %d, %s, %d, %s, %d) 객체 생성", 
+		System.out.printf("BookDTO(%d, %s, %s, %d, %s, %s, %d, %s, %d, %s, %s) 객체 생성", 
 				book_num, book_sellid, book_name, book_price, book_cate, book_status);
 	}
 
@@ -120,11 +120,11 @@ public class BookDTO {
 		this.book_image = book_image;
 	}
 
-	public int getBook_status() {
+	public String getBook_status() {
 		return book_status;
 	}
 
-	public void setBook_status(int book_status) {
+	public void setBook_status(String book_status) {
 		this.book_status = book_status;
 	}
 

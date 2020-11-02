@@ -40,8 +40,48 @@ public class BookDAO {
 	} // end close()
 	
 	// insertBook 책 등록 <-- 작성자, 책이름, 책가격, 책내용, 책이미지, 책카테고리, 판매여부, 글 주소(?)
+	public int insert(String sellid, String name, int price, String regdate, 
+			String content, int book_viewcnt, String book_uri, int book_cate, 
+			String book_status, String book_image ) throws SQLException {
+		int cnt = 0;
+		try {
+			pstmt = conn.prepareStatement(D.SQL_BOOK_INSERT);
+			pstmt.setString(1, sellid);
+			pstmt.setString(2, name);
+			pstmt.setInt(3, price);
+			pstmt.setString(4, regdate);
+			pstmt.setString(5, content);
+			pstmt.setInt(6, book_viewcnt);
+			pstmt.setString(7, book_uri);
+			pstmt.setInt(8, book_cate);
+			pstmt.setString(9, book_status);
+			pstmt.setString(10, book_image);
+			cnt = pstmt.executeUpdate();
+		} finally {
+			close();
+		}
+		return cnt;
+	} // end insert();
 	
-	// insertBook <-- DTO
+	
+	// 새글작성 <-- DTO
+		public int insert(BookDTO dto) throws SQLException{
+			String sellid = dto.getBook_sellid();
+			String name = dto.getBook_name();
+			int price = dto.getBook_price();
+			String regdate = dto.getBook_regdate();
+			String content = dto.getBook_content();
+			int viewcnt = dto.getBook_viewcnt();
+			String uri = dto.getBook_uri();
+			int cate = dto.getBook_cate();
+			String status = dto.getBook_status();
+			String image = dto.getBook_image();
+			
+			int cnt = this.insert(sellid, name, price, regdate,
+					content, viewcnt, uri, cate, status, image);
+			return cnt;		
+		}
+	
 	
 	// createArray <-- ResultSet --> DTO 배열로 리턴
 	
