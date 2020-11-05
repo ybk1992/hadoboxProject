@@ -107,7 +107,7 @@
             </form> 
           </ul>
         </nav>
-        <div class="row">
+        <div class="row" id="listDiv">
         
 		<c:choose>	
 			<c:when test="${empty book_List || fn:length(book_List) == 0 }"> 
@@ -118,10 +118,9 @@
 				
 				  <div class="col-lg-4 col-md-6 mb-4">
 		            <div class="card h-100 bookbox">
-		            
-		            <!-- "http://placehold.it/700x400" -->
-		            
-		              <a href="book_Read.do?book_num=${dto.book_num }" class="book_img"><img class="card-img-top" src="${dto.book_image }" alt=""></a>
+		              <a href="book_Read.do?book_num=${dto.book_num }" class="book_img">
+		              	<img class="card-img-top" src="${dto.book_image }" alt="" height="300px">
+		              </a>
 		              <div class="card-body">
 		                <h4 class="card-title">
 		                  <a href="book_Read.do?book_num=${dto.book_num }">${dto.book_title }</a>
@@ -178,7 +177,31 @@
 <!-- 
 <a href="https://imgur.com/1TFsO95"><img src="https://i.imgur.com/1TFsO95.png" title="source: imgur.com" /></a>
  -->
-<script src="JS/selcetbox_category.js"></script>
+<script>
+
+  //Javascript
+  var count = 0;
+  //스크롤 바닥 감지
+  $(window).scroll(function () {
+    let $window = $(this);
+    let scrollTop = $window.scrollTop();
+    let windowHeight = $window.height();
+    let documentHeight = $(document).height();
+    console.log("documentHeight:" + documentHeight + " | scrollTop:" + scrollTop + " | windowHeight: " + windowHeight);
+    
+    if (scrollTop + windowHeight + 10 > documentHeight) {
+      //실행할 로직 (콘텐츠 추가)
+      count += 3;
+      var addContent =
+        '<div class="col-lg-4 col-md-6 mb-4"><div class="card h-100 bookbox"><a href="#" class="book_img"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a><div class="card-body"><h4 class="card-title"><a href="#">중고책 제목 ' + count + '</a></h4><h5>9,900원</h5><p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ametnumquam aspernatur!</p></div><div class="card-footer"><small class="text-muted"></small></div></div></div><div class="col-lg-4 col-md-6 mb-4"><div class="card h-100 bookbox"><a href="#" class="book_img"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a><div class="card-body"><h4 class="card-title"><a href="#">중고책 제목 ' + (count + 1) + '</a></h4><h5>9,900원</h5><p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ametnumquam aspernatur!</p></div><div class="card-footer"><small class="text-muted"></small></div></div></div><div class="col-lg-4 col-md-6 mb-4"><div class="card h-100 bookbox"><a href="#" class="book_img"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a><div class="card-body"><h4 class="card-title"><a href="#">중고책 제목 ' + (count + 2) + '</a></h4><h5>9,900원</h5><p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ametnumquam aspernatur!</p></div><div class="card-footer"><small class="text-muted"></small></div></div></div>';
+      
+      //article에 추가되는 콘텐츠를 append
+      $('div#listDiv').append(addContent);
+    }
+  });
+
+  </script>
 </body>
 
 </html>
+

@@ -123,6 +123,20 @@ public class BookDAO {
 		
 	} // end createArray()
 	
+	//selectAllCategory
+	public BookDTO [] selectAllCategory() throws SQLException {
+		BookDTO [] arr = null;
+		
+		try {
+			pstmt = conn.prepareStatement(D.SQL_BOOK_CATEGORY_SELECT);
+			rs = pstmt.executeQuery();
+			arr = createArray(rs);
+		} finally {
+			close();
+		}
+		return arr;
+	} // end selectAllCategory()
+	
 	// selectAllBook <-- 전체 읽기
 	public BookDTO [] selectAllBook() throws SQLException {
 		BookDTO [] arr = null;
@@ -136,7 +150,7 @@ public class BookDAO {
 		}
 		 
 		return arr;
-	} // end select();
+	} // end select()
 	
 	
 	

@@ -68,7 +68,7 @@ UNION ALL SELECT 905, 'IT', '기타' FROM DUAL;
 
 --insert 책 등록 <-- 글번호, 판매자, 책이름, 책가격, 작성일, 내용, 조회수, 책주소, 카테고리, 판매여부, 이미지경로
 INSERT INTO BOOKLIST 
-VALUES (BOOKLIST_SEQ.NEXTVAL, 'apple123', '귀멸의 칼날', 5000, 
+VALUES (BOOKLIST_SEQ.NEXTVAL, 'apple123', '귀멸의 칼날2', 3000, 
 SYSDATE, '직거래 원합니다', 0, '글제목1', 101, '0', 'https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F1523954%3Ftimestamp%3D20200418132612');
 
 INSERT INTO BOOKLIST 
@@ -83,6 +83,7 @@ INSERT INTO BOOKLIST
 VALUES (BOOKLIST_SEQ.NEXTVAL, 'banana123', '스타트업', 10000, 
 SYSDATE, '책팔아요구르트', 0, '글제목14', 201, '0', 'd.png');
 
+TRUNCATE TABLE BOOKLIST;
 
 
 --select 전체 글

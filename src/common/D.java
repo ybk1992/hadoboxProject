@@ -65,7 +65,9 @@ public class D {
 			"BOOK_CONTENT, BOOK_VIEWCNT, BOOK_TITLE, BOOK_CATE, BOOK_STATUS, BOOK_IMAGE)" + 
 			" VALUES (BOOKLIST_SEQ.NEXTVAL, ?, ?, ?, SYSDATE, ?, ?, ?, ?, ?, ?)";
 	
-	
+	// 모든 카테고리 불러오기
+	public static final String SQL_BOOK_CATEGORY_SELECT = 
+			"SELECT * FROM CATEGORY";
 	//select category 특정 num 카테고리 정보
 	public static final String SQL_BOOK_CATEGORY_SELECT_BY_NUM = 
 			"SELECT * FROM CATEGORY WHERE CATE_NUM=?";
