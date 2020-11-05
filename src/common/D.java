@@ -10,6 +10,24 @@ public class D {
 	public static final String URL = "jdbc:oracle:thin:@localhost:1521:XE";
 	public static final String USERID = "hd04a";
 	public static final String USERPW = "hd04b";
+
+	// 회원 관련 쿼리문
+	//회원가입
+	public static final String SQL_MEMBERS_INSERT = 
+			"INSERT INTO MEMBERS"
+			+ "(mem_num, mem_userid, mem_email, mem_password, mem_username, mem_phone, mem_zipcode, mem_address1, mem_address2, mem_register_datetime, mem_status, mem_image)"
+			+ "VALUES"
+			+ "(MEMBERS_SEQ.nextval, ?, ?, ?, ?, ?, ?, ?, ?, SYSDATE, 1, ?)";
+
+	//select 로그인
+	public static final String SQL_MEMBERS_SELECT_BY_MEM_USERID =
+			"SELECT mem_userid, mem_password, mem_status FROM MEMBERS WHERE mem_userid= ?";
+	
+	//select 아이디 중복 체크
+	public static final String SQL_MEMBERS_SELECT_BY_MEM_USERID_CHK =
+			"SELECT * FROM MEMBERS WHERE mem_userid= ?";
+	
+
 	
 	// 게시글 관련 쿼리문
 	public static final String SQL_COUNT_ALL = "SELECT COUNT(*) FROM test_write"; 

@@ -1,5 +1,4 @@
 package com.controller;
-
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -9,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.command.member.IdCheckCommand;
+import com.command.member.JoinCommand;
+import com.command.member.LoginCommand;
 import com.command.write.Command;
 import com.command.write.DeleteCommand;
 import com.command.write.FileUploadCommand;
@@ -57,6 +59,32 @@ public class DoController extends HttpServlet {
 		// 컨트롤러는 커맨드에 따라 로직 수행
 		// 결과를 보낼 view 를 결정
 		switch(com) {
+		case "/main/join.do":
+			viewPage = "join.jsp";
+			break;
+			
+		case "/main/joinOk.do":
+			command = new JoinCommand();
+			command.execute(request, response);
+			viewPage = "joinOk.jsp";
+			break;
+			
+		case "/main/login.do":
+			viewPage = "login.jsp";
+			break;
+			
+		case "/main/loginOk.do":
+			command = new LoginCommand();
+			command.execute(request, response);
+			viewPage = "loginOk.jsp";
+			break;
+			
+		case "/main/idOk.do":
+			command = new IdCheckCommand();
+			command.execute(request, response);
+			viewPage = "idOk.jsp";
+			break;
+			
 		case "/list.do":
 			command = new ListCommand();
 			command.execute(request, response);
@@ -111,33 +139,4 @@ public class DoController extends HttpServlet {
 	
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
