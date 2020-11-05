@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.command.book.BookListCommand;
+import com.command.book.BookViewCommand;
+import com.command.write.BookWriteCommand;
 import com.command.write.Command;
 import com.command.write.DeleteCommand;
 import com.command.write.FileUploadCommand;
@@ -52,6 +55,8 @@ public class DoController extends HttpServlet {
 		
 		// 컨트롤러는 다음의 두가지를 결정해야 한다
 		Command command = null;  // 어떠한 로직을 수행할지 결정
+		
+		
 		String viewPage =  null;  //  어떠한 페이지(뷰)를 보여줄지 결정
 		
 		// 컨트롤러는 커맨드에 따라 로직 수행
@@ -68,12 +73,12 @@ public class DoController extends HttpServlet {
 			break;
 			
 		case "/writeOk.do":
-			command = new WriteCommand();
+			command = new BookWriteCommand();
 			command.execute(request, response);
 			viewPage = "book/writeOk.jsp";
 			break;
 		case "/view.do":
-			command = new ViewCommand();
+			command = new BookViewCommand();
 			command.execute(request, response);
 			viewPage = "book/view.jsp";
 			break;
@@ -98,7 +103,14 @@ public class DoController extends HttpServlet {
 		case "/fileUpload.do":
 			new FileUploadCommand().execute(request, response);
 			break;
+
+		case "/book_List.do":
+			command = new BookListCommand();
+			command.execute(request, response);
+			viewPage = "book/book_List.jsp";
+			break;
 		}	
+		
 		
 		// 위에서 결정된 view 에 forward 해줌
 		if(viewPage != null) {

@@ -19,38 +19,38 @@ table, th, td {
 
 </head>
 <body>
-		<hr>
-		<h2>리스트</h2>
-		<table>
-			<tr>
-				<th>번호</th>
-				<th>제목</th>
-				<th>작성자</th>
-				<th>조회수</th>
-				<th>등록일</th>
-			</tr>
+	<hr>
+	<h2>리스트</h2>
+	<table>
+		<tr>
+			<th>번호</th>
+			<th>제목</th>
+			<th>작성자</th>
+			<th>조회수</th>
+			<th>등록일</th>
+		</tr>
 
+	
+	<c:choose>
+		<c:when test="${empty list || fn:length(list) == 0 }">
+		</c:when>
+
+		<c:otherwise>
+			<c:forEach var="dto" items="${list }">  <%-- request.getAttribute("list") --%>
+				<tr>
+					<td>${dto.uid }</td>
+					<td><a href="view.do?uid=${dto.uid }">${dto.subject }</a></td>
+					<td>${dto.name }</td>
+					<td>${dto.viewCnt }</td>
+					<td>${dto.regDate }</td>				
+				</tr>
+			</c:forEach>
+		</c:otherwise>
+	</c:choose>
 		
-		<c:choose>
-			<c:when test="${empty list || fn:length(list) == 0 }">
-			</c:when>
-
-			<c:otherwise>
-				<c:forEach var="dto" items="${list }">  <%-- request.getAttribute("list") --%>
-					<tr>
-						<td>${dto.uid }</td>
-						<td><a href="view.do?uid=${dto.uid }">${dto.subject }</a></td>
-						<td>${dto.name }</td>
-						<td>${dto.viewCnt }</td>
-						<td>${dto.regDate }</td>				
-					</tr>
-				</c:forEach>
-			</c:otherwise>
-		</c:choose>
-			
-		</table>
-		<br>
-		<button onclick="location.href = 'write.do'">신규등록</button>
+	</table>
+	<br>
+	<button onclick="location.href = 'write.do'">신규등록</button>
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </body>

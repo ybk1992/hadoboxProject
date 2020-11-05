@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%! int listCnt_all = 9; %>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -27,7 +28,7 @@
 
 
   <!-- CSS -->
-  <link href="../CSS/list_page.css" rel="stylesheet">
+  <link href="CSS/list_page.css" rel="stylesheet">
 
   
 </head>
@@ -70,7 +71,7 @@
 
       <div class="col-lg-3">
         <!-- 로고 및 카테고리 -->
-        <img src="../image/logo.png" alt="logo" id="logo">
+        <img src="image/logo.png" alt="logo" id="logo">
         <h1 class="my-4 vw">메인 카테고리</h1>
         <div class="list-group">
           <a href="#" class="list-group-item subcate">세부 카테고리</a>
@@ -103,25 +104,47 @@
           </ul>
         </nav>
         <div class="row">
-<% for(int i = 0; i <= listCnt_all; i++){ %>
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100 bookbox">
-            <!--  -->
-              <a href="book_Read.jsp" class="book_img"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="book_Read.jsp">중고책 제목</a>
-                </h4>
-                <h5>9,900원</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet
-                  numquam aspernatur!</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted"></small>
-              </div>
-            </div>
-          </div>
-<% } %>
+        
+		<c:choose>	
+			<c:when test="${empty book_List || fn:length(book_List) == 0 }"> 
+			</c:when>
+	
+			<c:otherwise> 
+				<c:forEach var="dto" items="${book_List }"> 
+				
+				  <div class="col-lg-4 col-md-6 mb-4">
+		            <div class="card h-100 bookbox">
+		            
+		              <a href="book_Read.jsp" class="book_img"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+		              <div class="card-body">
+		                <h4 class="card-title">
+		                  <a href="book_Read.jsp">${dto.book_name }</a>
+		                </h4>
+		                <h5>${dto.book_price }</h5>
+		                <p class="card-text">${dto.book_content }</p>
+		              </div>
+		              
+		              <div class="card-footer">
+		              
+		              	<c:set var="status" value="" />
+						
+						<c:choose>
+						    <c:when test="${dto.book_status eq '0'}">
+						        <c:set var="status" value="판매완료"/>
+						    </c:when>
+						    <c:when test="${dto.book_status eq '1'}">
+						        <c:set var="status" value="판매중"/>
+						    </c:when>
+						</c:choose>
+						
+		                <small class="text-muted">${status}</small>
+		              </div>
+		            </div>
+		          </div>
+		          
+				</c:forEach>
+			</c:otherwise>
+		</c:choose>
           
 
         </div>
@@ -141,7 +164,7 @@
     <div class="container">
 
       <p class="m-0 text-center text-white">
-        <img src="../image/logo-white.png" alt="logo" id="footer_logo">
+        <img src="image/logo-white.png" alt="logo" id="footer_logo">
         Copyright &copy; 2020. (주)해도북스 컴퍼니. All right reserved.</p>
     </div>
     <!-- /.container -->

@@ -36,9 +36,9 @@ function chkDelete(uid){
 <body>	
 	<h2>항목 보기</h2>
 		<br>
-		uid : ${list[0].uid }<br>
-		작성자 : ${list[0].name }<br>
-		제목: ${list[0].subject }<br>
+		글번호 : ${list[0].book_num }<br>
+		작성자 : ${list[0].book_sellid }<br>
+		제목: ${list[0].book_name }<br>
 		등록일: ${list[0].regDate }<br>
 		조회수: ${list[0].viewCnt }<br>
 		내용: <br>
