@@ -44,21 +44,37 @@ public class D {
 	//insert 책 등록 <-- 글번호, 판매자, 책이름, 책가격, 작성일, 내용, 조회수, 책주소, 카테고리, 판매여부, 이미지경로
 	public static final String SQL_BOOK_INSERT = 
 			"INSERT INTO BOOKLIST (BOOK_NUM, BOOK_SELLID, BOOK_NAME, BOOK_PRICE, BOOK_REGDATE, " + 
-			"BOOK_CONTENT, BOOK_VIEWCNT BOOK_URI, BOOK_CATE, BOOK_STATUS, BOOK_IMAGE)" + 
-			" VALUES (HD04A_SEQ.NEXTVAL, ?, ?, ?, SYSDATE, ?, ?, ?, ?, ?)";
+			"BOOK_CONTENT, BOOK_VIEWCNT, BOOK_URI, BOOK_CATE, BOOK_STATUS, BOOK_IMAGE)" + 
+			" VALUES (BOOKLIST_SEQ.NEXTVAL, ?, ?, ?, SYSDATE, ?, ?, ?, ?, ?, ?)";
+	
+	
+	//select category 특정 num 카테고리 정보
+	public static final String SQL_BOOK_CATEGORY_SELECT_BY_NUM = 
+			"SELECT * FROM CATEGORY WHERE CATE_NUM=?";
+	
 	//select 전체 글
 	public static final String SQL_BOOK_SELECT = 
-			"SELECT * FROM  HD04A ORDER BY BOOK_NUM DESC";
-	//select book_num 선택 글 읽기
+			"SELECT C.CATE_NAME, C.CATE_PRE, B.* " + 
+					"FROM CATEGORY C, BOOKLIST B " + 
+					"WHERE C.CATE_NUM = B.BOOK_CATE";
+	
+	//update book_viewcnt 선택 글 읽기+조회수 증가
+	public static final String SQL_BOOK_INC_VIEWCNT = 
+			"UPDATE BOOKLIST SET BOOK_VIEWCNT = BOOK_VIEWCNT + 1 WHERE BOOK_NUM = ?";
+	
+	//select book_num 특정 글 가져오기
 	public static final String SQL_BOOK_SELECT_BY_NUM = 
-			"SELECT * FROM HD04A WHERE BOOK_NUM=?";
+			"SELECT C.CATE_NAME, C.CATE_PRE, B.* " + 
+					"FROM CATEGORY C, BOOKLIST B " + 
+					"WHERE C.CATE_NUM = B.BOOK_CATE AND BOOK_NUM=?";
+	
 	//update 글 수정 / 책이름, 책가격, 작성일, 내용, 책주소, 카테고리, 판매여부, 이미지경로
 	public static final String SQL_BOOK_UPDATE = 
-			"UPDATE HD04A SET BOOK_NAME = ?, BOOK_PRICE = ?, BOOK_REGDATE = ?, BOOK_CONTENT = ?, " + 
+			"UPDATE BOOKLIST SET BOOK_NAME = ?, BOOK_PRICE = ?, BOOK_REGDATE = ?, BOOK_CONTENT = ?, " + 
 			"BOOK_URI = ?, BOOK_CATE = ?, BOOK_STATUS = ?, BOOK_IMAGE = ?";
 	//delete 글 삭제
 	public static final String SQL_BOOK_DELETE = 
-			"DELETE FROM HD04A WHERE BOOK_NUM = ?";
+			"DELETE FROM BOOKLIST WHERE BOOK_NUM = ?";
 	
 	
 } // end D

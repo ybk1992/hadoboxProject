@@ -10,8 +10,13 @@ public class BookDTO {
 	private int book_viewcnt;	// 조회수
 	private String book_uri;	// 글주소
 	private int book_cate;		// 책카테고리
+	
+	private String book_cate_name; //카테고리 명
+	private String book_cate_pre; //세부 카테고리 명
+	
 	private String book_image;	// 이미지경로
 	private String book_status;	// 판매여부
+	
 	
 	public BookDTO() {
 		super();
@@ -19,9 +24,9 @@ public class BookDTO {
 	}
 	
 	
-
+	
 	public BookDTO(int book_num, String book_sellid, String book_name, int book_price, String book_regdate,
-			String book_content, int book_viewcnt, String book_uri, int book_cate, String book_image, String book_status) {
+			String book_content, int book_viewcnt, String book_uri, int book_cate, String book_cate_name, String book_cate_pre, String book_image, String book_status) {
 		super();
 		this.book_num = book_num;
 		this.book_sellid = book_sellid;
@@ -32,10 +37,13 @@ public class BookDTO {
 		this.book_viewcnt = book_viewcnt;
 		this.book_uri = book_uri;
 		this.book_cate = book_cate;
+		this.book_cate_name = book_cate_name;
+		this.book_cate_pre = book_cate_pre;
 		this.book_image = book_image;
 		this.book_status = book_status;
-		System.out.printf("BookDTO(%d, %s, %s, %d, %s, %s, %d, %s, %d, %s, %s) 객체 생성", 
-				book_num, book_sellid, book_name, book_price, book_cate, book_status);
+		System.out.printf("BookDTO(%d, %s, %s, %d, %s, %s, %d, %s, %d, %s, %s, %s, %s) 객체 생성", 
+				book_num, book_sellid, book_name, book_price, book_regdate, 
+				book_content, book_viewcnt, book_uri, book_cate, book_cate_name, book_cate_pre, book_image, book_status);
 	}
 
 
@@ -111,6 +119,14 @@ public class BookDTO {
 	public void setBook_cate(int book_cate) {
 		this.book_cate = book_cate;
 	}
+	
+	public String getBook_cate_name() {
+		return book_cate_name;
+	}
+	
+	public String getBook_cate_pre() {
+		return book_cate_pre;
+	}
 
 	public String getBook_image() {
 		return book_image;
@@ -132,8 +148,8 @@ public class BookDTO {
 	@Override
 	public String toString() {
 		return String.format("BookDTO] %d : %s : %s : %d : %s : %s : %d : %s : %d : %s : %d", 
-				book_num, book_sellid, book_name, book_price, book_regdate, book_content,
-				book_viewcnt, book_uri, book_cate, book_image, book_status);
+				book_num, book_sellid, book_name, book_price, book_regdate, 
+				book_content, book_viewcnt, book_uri, book_cate, book_image, book_status);
 	}
 	
 	
