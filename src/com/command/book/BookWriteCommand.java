@@ -15,25 +15,20 @@ public class BookWriteCommand implements Command {
 		int cnt = 0;
 		BookDAO dao = new BookDAO();
 		
-		// 입력한 값(parameter) 받아오기
-		String sellid = request.getParameter("book_sellid");
-		String name = request.getParameter("book_name");
-		int price = Integer.parseInt(request.getParameter("book_price"));
-		String content = request.getParameter("book_content");
-		int viewcnt = Integer.parseInt(request.getParameter(""));
-		String uri = request.getParameter("book_uri");
-		int cate = Integer.parseInt(request.getParameter("book_cate"));
-		String status = request.getParameter("book_status");
-		String image = request.getParameter("book_image");
-		
-		
-		
+		String sellid = request.getParameter("sellid");
+		String name = request.getParameter("name");
+		int price = Integer.parseInt(request.getParameter("price"));
+		String content = request.getParameter("content");
+		//String uri = request.getParameter("uri");
+		int gory = Integer.parseInt(request.getParameter("gory"));
+		String image = request.getParameter("image");
+		System.out.println(gory);
 		// 유효성 체크
-		if(sellid != null && name != null && price != 0 && content != null && 
-				viewcnt != 0 && uri != null && cate != 0 && status != null && image != null) {
+		if(sellid != null && name != null && content != null && image != null &&
+				 sellid.trim().length() > 0 && name.trim().length() > 0 && content.trim().length() > 0 && 
+				 image.trim().length() > 0) {
 			try {
-				cnt = dao.insert(sellid, name, price, content, viewcnt, 
-						uri, cate, status, image);
+				cnt = dao.insert(sellid, name, price, content, 0, "미정", gory, "0", image);
 			} catch(SQLException e) {
 				e.printStackTrace();
 			}

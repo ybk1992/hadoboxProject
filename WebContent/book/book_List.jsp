@@ -119,13 +119,15 @@
 				  <div class="col-lg-4 col-md-6 mb-4">
 		            <div class="card h-100 bookbox">
 		            
-		              <a href="book_Read.do?book_num=${dto.book_num }" class="book_img"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+		            <!-- "http://placehold.it/700x400" -->
+		            
+		              <a href="book_Read.do?book_num=${dto.book_num }" class="book_img"><img class="card-img-top" src="${dto.book_image }" alt=""></a>
 		              <div class="card-body">
 		                <h4 class="card-title">
-		                  <a href="book_Read.do?book_num=${dto.book_num }">${dto.book_name }</a>
+		                  <a href="book_Read.do?book_num=${dto.book_num }">${dto.book_title }</a>
 		                </h4>
 		                <h5>${dto.book_price }</h5>
-		                <p class="card-text">${dto.book_content }</p>
+		                <p class="card-text">${dto.book_name }</p>
 		              </div>
 		              
 		              <div class="card-footer">
@@ -176,7 +178,7 @@
 <!-- 
 <a href="https://imgur.com/1TFsO95"><img src="https://i.imgur.com/1TFsO95.png" title="source: imgur.com" /></a>
  -->
-
+<script src="JS/selcetbox_category.js"></script>
 </body>
 
 </html>

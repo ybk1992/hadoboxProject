@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.command.book.BookListCommand;
 
 import com.command.book.BookViewCommand;
-
+import com.command.book.BookWriteCommand;
 import com.command.write.Command;
 import com.command.write.DeleteCommand;
 import com.command.write.FileUploadCommand;
@@ -74,7 +74,7 @@ public class DoController extends HttpServlet {
 			break;
 			
 		case "/writeOk.do":
-			command = new WriteCommand();
+			command = new BookWriteCommand();
 			command.execute(request, response);
 			viewPage = "book/writeOk.jsp";
 			break;

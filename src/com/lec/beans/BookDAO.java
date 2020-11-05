@@ -70,7 +70,7 @@ public class BookDAO {
 			int price = dto.getBook_price();
 			String content = dto.getBook_content();
 			int viewcnt = dto.getBook_viewcnt();
-			String uri = dto.getBook_uri();
+			String uri = dto.getBook_title();
 			int cate = dto.getBook_cate();
 			String status = dto.getBook_status();
 			String image = dto.getBook_image();
@@ -93,7 +93,7 @@ public class BookDAO {
 			int price = rs.getInt("book_price");
 			String content = rs.getString("book_content");
 			int viewcnt = rs.getInt("book_viewcnt");
-			String uri = rs.getString("book_uri");
+			String uri = rs.getString("book_title");
 			int cate = rs.getInt("book_cate");
 			String cate_name = rs.getString("cate_name");
 			String cate_pre = rs.getString("cate_pre");
