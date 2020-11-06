@@ -8,7 +8,7 @@ public class BookDTO {
 	private String book_regdate;// 작성한날짜
 	private String book_content;// 글내용
 	private int book_viewcnt;	// 조회수
-	private String book_uri;	// 글주소
+	private String book_title;	// 글제목
 	private int book_cate;		// 책카테고리
 	
 	private String book_cate_name; //카테고리 명
@@ -26,7 +26,7 @@ public class BookDTO {
 	
 	
 	public BookDTO(int book_num, String book_sellid, String book_name, int book_price, String book_regdate,
-			String book_content, int book_viewcnt, String book_uri, int book_cate, String book_cate_name, String book_cate_pre, String book_image, String book_status) {
+			String book_content, int book_viewcnt, String book_title, int book_cate, String book_cate_name, String book_cate_pre, String book_image, String book_status) {
 		super();
 		this.book_num = book_num;
 		this.book_sellid = book_sellid;
@@ -35,7 +35,7 @@ public class BookDTO {
 		this.book_regdate = book_regdate;
 		this.book_content = book_content;
 		this.book_viewcnt = book_viewcnt;
-		this.book_uri = book_uri;
+		this.book_title = book_title;
 		this.book_cate = book_cate;
 		this.book_cate_name = book_cate_name;
 		this.book_cate_pre = book_cate_pre;
@@ -43,7 +43,7 @@ public class BookDTO {
 		this.book_status = book_status;
 		System.out.printf("BookDTO(%d, %s, %s, %d, %s, %s, %d, %s, %d, %s, %s, %s, %s) 객체 생성", 
 				book_num, book_sellid, book_name, book_price, book_regdate, 
-				book_content, book_viewcnt, book_uri, book_cate, book_cate_name, book_cate_pre, book_image, book_status);
+				book_content, book_viewcnt, book_title, book_cate, book_cate_name, book_cate_pre, book_image, book_status);
 	}
 
 
@@ -104,12 +104,12 @@ public class BookDTO {
 		this.book_viewcnt = book_viewcnt;
 	}
 
-	public String getBook_uri() {
-		return book_uri;
+	public String getBook_title() {
+		return book_title;
 	}
 
-	public void setBook_uri(String book_uri) {
-		this.book_uri = book_uri;
+	public void setBook_title(String book_title) {
+		this.book_title = book_title;
 	}
 
 	public int getBook_cate() {
@@ -149,7 +149,7 @@ public class BookDTO {
 	public String toString() {
 		return String.format("BookDTO] %d : %s : %s : %d : %s : %s : %d : %s : %d : %s : %d", 
 				book_num, book_sellid, book_name, book_price, book_regdate, 
-				book_content, book_viewcnt, book_uri, book_cate, book_image, book_status);
+				book_content, book_viewcnt, book_title, book_cate, book_image, book_status);
 	}
 	
 	

@@ -9,20 +9,22 @@ import com.command.write.Command;
 import com.lec.beans.BookDAO;
 import com.lec.beans.BookDTO;
 
-public class BookViewCommand implements Command{
+public class BookCateCommand implements Command  {
+	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		BookDAO dao = new BookDAO();
+		BookDAO dao = new BookDAO();  // DAO 객체 생성
 		BookDTO [] arr = null;
 		
-		int num = Integer.parseInt(request.getParameter("book_num").trim());
-		
 		try {
-			arr = dao.readByBookNum(num);   // 읽기 + 조회수 증가	
+			arr = dao.selectAllCategory();  // 트랜잭션 수행
+			
+			// "book_List" 란  name 으로 request 에 arr 을 저장
+			// request 가 컨트롤러에 전달될것이다.
 			request.setAttribute("book_List", arr);
-		} catch(SQLException e) {
+			
+		} catch (SQLException e) {
 			e.printStackTrace();
-		}		
-
+		}
 	}
 }

@@ -1,5 +1,4 @@
 package com.controller;
-
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -11,7 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.command.book.BookListCommand;
 import com.command.book.BookViewCommand;
-import com.command.write.BookWriteCommand;
+import com.command.book.BookWriteCommand;
+
+import com.command.member.IdCheckCommand;
+import com.command.member.JoinCommand;
+import com.command.member.LoginCommand;
+
 import com.command.write.Command;
 import com.command.write.DeleteCommand;
 import com.command.write.FileUploadCommand;
@@ -62,6 +66,32 @@ public class DoController extends HttpServlet {
 		// 컨트롤러는 커맨드에 따라 로직 수행
 		// 결과를 보낼 view 를 결정
 		switch(com) {
+		case "/join.do":
+			viewPage = "main/join.jsp";
+			break;
+			
+		case "/joinOk.do":
+			command = new JoinCommand();
+			command.execute(request, response);
+			viewPage = "main/joinOk.jsp";
+			break;
+			
+		case "/login.do":
+			viewPage = "main/login.jsp";
+			break;
+			
+		case "/loginOk.do":
+			command = new LoginCommand();
+			command.execute(request, response);
+			viewPage = "main/loginOk.jsp";
+			break;
+			
+		case "/idOk.do":
+			command = new IdCheckCommand();
+			command.execute(request, response);
+			viewPage = "main/idOk.jsp";
+			break;
+			
 		case "/list.do":
 			command = new ListCommand();
 			command.execute(request, response);
@@ -109,6 +139,13 @@ public class DoController extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "book/book_List.jsp";
 			break;
+
+		case "/book_Read.do":
+			command = new BookViewCommand();
+			command.execute(request, response);
+			viewPage = "book/book_Read.jsp";
+			break;
+			
 		}	
 		
 		
@@ -123,33 +160,4 @@ public class DoController extends HttpServlet {
 	
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

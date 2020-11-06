@@ -70,7 +70,7 @@ public class BookDAO {
 			int price = dto.getBook_price();
 			String content = dto.getBook_content();
 			int viewcnt = dto.getBook_viewcnt();
-			String uri = dto.getBook_uri();
+			String uri = dto.getBook_title();
 			int cate = dto.getBook_cate();
 			String status = dto.getBook_status();
 			String image = dto.getBook_image();
@@ -93,7 +93,7 @@ public class BookDAO {
 			int price = rs.getInt("book_price");
 			String content = rs.getString("book_content");
 			int viewcnt = rs.getInt("book_viewcnt");
-			String uri = rs.getString("book_uri");
+			String uri = rs.getString("book_title");
 			int cate = rs.getInt("book_cate");
 			String cate_name = rs.getString("cate_name");
 			String cate_pre = rs.getString("cate_pre");
@@ -123,6 +123,20 @@ public class BookDAO {
 		
 	} // end createArray()
 	
+	//selectAllCategory
+	public BookDTO [] selectAllCategory() throws SQLException {
+		BookDTO [] arr = null;
+		
+		try {
+			pstmt = conn.prepareStatement(D.SQL_BOOK_CATEGORY_SELECT);
+			rs = pstmt.executeQuery();
+			arr = createArray(rs);
+		} finally {
+			close();
+		}
+		return arr;
+	} // end selectAllCategory()
+	
 	// selectAllBook <-- 전체 읽기
 	public BookDTO [] selectAllBook() throws SQLException {
 		BookDTO [] arr = null;
@@ -136,24 +150,51 @@ public class BookDAO {
 		}
 		 
 		return arr;
-	} // end select();
+	} // end select()
 	
 	
-	// selectByBookNum <-- 판매글 읽기
-	public BookDTO[] selectByBookNum(int num) throws SQLException {
+	
+	// 특정 uid 의 글만 SELECT
+		public BookDTO[] selectByBookNum(int num) throws SQLException {
+			BookDTO [] arr = null;
+			
+			try {
+				pstmt = conn.prepareStatement(D.SQL_BOOK_SELECT_BY_NUM);
+				pstmt.setInt(1, num);
+				rs = pstmt.executeQuery();
+				arr = createArray(rs);
+			} finally {
+				close();
+			} // end try
+			
+			return arr;
+		} // end selectByUid()	
+	
+	// selectByBookNum <-- 판매글 읽기 + 조회수 증가
+	public BookDTO[] readByBookNum(int num) throws SQLException {
+		
 		BookDTO [] arr = null;
 		
 		try {
+			conn.setAutoCommit(false);
+			pstmt = conn.prepareStatement(D.SQL_BOOK_INC_VIEWCNT);
+			pstmt.setInt(1, num);
+			pstmt.executeUpdate();
+			pstmt.close();
 			pstmt = conn.prepareStatement(D.SQL_BOOK_SELECT_BY_NUM);
 			pstmt.setInt(1, num);
 			rs = pstmt.executeQuery();
 			arr = createArray(rs);
+			conn.commit();
+		} catch(SQLException e) {
+			conn.rollback();  // 예외 발생하면 rollback
+			throw e;		  // 예외를 다시 throw
 		} finally {
 			close();
 		} // end try
 		
 		return arr;
-	} // end selectByUid()
+	} // end readByBookNum()
 	
 	
 	// updateBook 등록 글 수정 <-- 책이름, 책가격, 책내용, 책이미지, 책카테고리, 판매여부
@@ -198,8 +239,6 @@ public class BookDAO {
 	
 	
 }
-
-
 
 
 
