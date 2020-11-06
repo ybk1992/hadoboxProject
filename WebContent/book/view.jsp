@@ -36,21 +36,22 @@ function chkDelete(uid){
 <body>	
 	<h2>항목 보기</h2>
 		<br>
-		uid : ${list[0].uid }<br>
-		작성자 : ${list[0].name }<br>
-		제목: ${list[0].subject }<br>
+		글번호 : ${list[0].book_num }<br>
+		작성자 : ${list[0].book_sellid }<br>
+		제목: ${list[0].book_name }<br>
 		등록일: ${list[0].regDate }<br>
 		조회수: ${list[0].viewCnt }<br>
 		내용: <br>
 		<hr>
 		<div>
+		<img src='${list[0].image }'/>
 		${list[0].content }
 		</div>
 		<hr>
 		<br>
-		<button onclick="location.href='update.do?uid=${list[0].uid }'">수정하기</button>
-		<button onclick="location.href='list.do'">목록보기</button>
-		<button onclick="chkDelete(${list[0].uid })">삭제하기</button>
+		<button onclick="location.href='update.do?uid=${list[0].book_num}'">수정하기</button>
+		<button onclick="location.href='book_List.do'">목록보기</button>
+		<button onclick="chkDelete(${list[0].book_num })">삭제하기</button>
 		<button onclick="location.href='write.do'">신규등록</button>
 </body>
 </html>

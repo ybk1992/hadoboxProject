@@ -11,19 +11,40 @@
 </head>
 
 <script>
+<<<<<<< HEAD
 // content 용량 문제
 var image;
+=======
+var image, id;
+>>>>>>> branch 'master' of https://github.com/ybk1992/hadoboxProject.git
 var chk = false, cate = "0", gory = "0";
+<<<<<<< HEAD
 var id = (String)session.getAttribute("id");
+=======
+
+//var id = (String)session.getAttribute("id");
+>>>>>>> branch 'master' of https://github.com/ybk1992/hadoboxProject.git
 //form validation 
+<<<<<<< HEAD
 // 글 제목, 책 정보, 책 판매 가격, 카테고리 필수
+=======
+// 글 제목, 책 정보, 책 판매 가격, 카테고리 필수
+>>>>>>> branch 'master' of https://github.com/ybk1992/hadoboxProject.git
 function chkSubmit(){
 	frm = document.forms['frm'];
+<<<<<<< HEAD
 	
+=======
+	
+>>>>>>> branch 'master' of https://github.com/ybk1992/hadoboxProject.git
 	var name = frm["subject"].value.trim();
 	var price = frm["price"].value.trim();
 	var content = CKEDITOR.instances.editor1.getData();
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> branch 'master' of https://github.com/ybk1992/hadoboxProject.git
 	if(chk == false){
 		alert("책 정보는 반드시 입력해야 합니다.");
 		frm["search"].focus();
@@ -32,7 +53,11 @@ function chkSubmit(){
 	
 	if(subject == ""){
 		alert("글 제목은 반드시 작성해야 합니다");
+<<<<<<< HEAD
 		frm["sunject"].focus();
+=======
+		frm["subject"].focus();
+>>>>>>> branch 'master' of https://github.com/ybk1992/hadoboxProject.git
 		return false;
 	}
 	
@@ -58,13 +83,21 @@ function chkSubmit(){
 		'name': name,
 		'price': price,
 		'content': content,
+<<<<<<< HEAD
 		'cate': gory,
 		'image': image});
+=======
+		'image': image});
+>>>>>>> branch 'master' of https://github.com/ybk1992/hadoboxProject.git
 	
 	return true;	
 		
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/ybk1992/hadoboxProject.git
 //submit 할때 parameter 값 능동적 주입
 function submitPost(params){
 	var form = document.forms['frm'];
@@ -115,6 +148,11 @@ function onlyNumberFunc(t){
 	   var v = this.value;
 	   this.value = v.replace(regexp,'');
 	}
+}
+
+function imageShow(){
+	var win = window.open("", "PopupWin", "width=260,height=320");
+	win.document.write("<img style='width:250px;height:300px;' src='"+image+"'/>");
 }
 
 
@@ -228,7 +266,7 @@ $(function(){
 			headers: {Authorization: "KakaoAK c6ccb05ef2ebd8a9d0a74ff173cc61f5"}
 		})
 			.done(function (msg){
-				CKEDITOR.instances.editor1.setData("<img src='"+msg.documents[0].thumbnail+"'/><br>도서 제목: <strong>"+msg.documents[0].title+"</strong>"+
+				CKEDITOR.instances.editor1.setData("도서 제목: <strong>"+msg.documents[0].title+"</strong><br>"+
 						"도서 소개 : <strong>"+msg.documents[0].contents+"</strong><br>"+
 						"도서 상세 URL : <strong>"+msg.documents[0].url+"</strong><br>"+
 						"국제 표준 도서번호 : <strong>"+msg.documents[0].isbn+"</strong><br>"+
@@ -240,6 +278,7 @@ $(function(){
 						"도서 판매가 : <strong>"+msg.documents[0].sale_price+"</strong><br>"+
 						"도서 판매 상태 정보 : <strong>"+msg.documents[0].status+"</strong><br>");
 				image = msg.documents[0].thumbnail;
+				$("#imgbut").show();
 			});
 	})
 	
@@ -250,6 +289,16 @@ $(function(){
 			$('#price').val(val);
 		}
 	});
+<<<<<<< HEAD
+=======
+	
+	$(document).ready(function(){
+	      $("#imgbut").hide();
+
+	})
+
+
+>>>>>>> branch 'master' of https://github.com/ybk1992/hadoboxProject.git
 })
 
 </script>
@@ -279,15 +328,20 @@ $(function(){
 <input type="text" name="search" placeholder="책 제목을 입력하고 검색해주세요."/><button type="button" onclick="bookSearch()">검색</button>
 <select name="book" id="book">
 	<option>책 검색 결과</option>
-</select><br>
+</select>
+<button type="button" id="imgbut" onclick="imageShow()">책 이미지 보기</button><br>
 판매가:
+<<<<<<< HEAD
 <input type="text" id="price" name="price" placeholder="판매가격을 입력해주세요." style = "text-align:right"/>원<br>
+=======
+<input type="text" id="price" name="price2" placeholder="판매가격을 입력해주세요." style = "text-align:right"/>원<br>
+>>>>>>> branch 'master' of https://github.com/ybk1992/hadoboxProject.git
 내용:<br>
 <textarea name="content" id="editor1"></textarea>
 <script>
 	CKEDITOR.replace('editor1', {
 		allowedContent: true,   // HTML 태그 자동삭제 방지 설정
-		width: '800px',      // 최초 너비, 높이 지정 가능
+		width: '1000px',      // 최초 너비, 높이 지정 가능
 		height: '400px',
 		filebrowserUploadUrl : '${pageContext.request.contextPath}/fileUpload.do'
 	});

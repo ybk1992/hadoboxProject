@@ -110,7 +110,7 @@
 			    </c:when>
 			</c:choose>
 
-			<td>${status}</td>			
+			<td>${status}</td>
 		</tr>
 
 	</table>

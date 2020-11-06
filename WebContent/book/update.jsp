@@ -48,7 +48,7 @@ function chkSubmit(){
 <script>
 	CKEDITOR.replace('editor1', {
 		allowedContent: true,   // HTML 태그 자동삭제 방지 설정
-		width: '800px',      // 최초 너비, 높이 지정 가능
+		width: '1000px',      // 최초 너비, 높이 지정 가능
 		height: '400px',
 		filebrowserUploadUrl : '${pageContext.request.contextPath}/fileUpload.do'
 	});
@@ -57,7 +57,7 @@ function chkSubmit(){
 <input type="submit" value="수정"/>
 </form>
 <button onclick="history.back();">이전으로</button>
-<button onclick="location.href='list.do'">목록보기</button>
+<button onclick="location.href='book_List.do'">목록보기</button>
 <br>
 </body>
 </html>

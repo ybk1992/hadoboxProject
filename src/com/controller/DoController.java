@@ -108,7 +108,7 @@ public class DoController extends HttpServlet {
 			viewPage = "book/writeOk.jsp";
 			break;
 		case "/view.do":
-			command = new ViewCommand();
+			command = new BookViewCommand();
 			command.execute(request, response);
 			viewPage = "book/view.jsp";
 			break;
@@ -145,8 +145,6 @@ public class DoController extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "book/book_Read.jsp";
 			break;
-			
-		
 			
 		}	
 		

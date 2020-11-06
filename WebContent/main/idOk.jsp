@@ -14,9 +14,11 @@
 <% if(cnt == 1){
 	str="NO";
 	 out.print(str);
-	
-	
-} else { 
+		
+} else if(cnt == -1) { 
+	str="NOEMPTY";
+	 out.print(str);
+}else { 
 	str="YES";
 	 out.print(str);
 	

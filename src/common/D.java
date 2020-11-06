@@ -68,6 +68,7 @@ public class D {
 	// 모든 카테고리 불러오기
 	public static final String SQL_BOOK_CATEGORY_SELECT = 
 			"SELECT * FROM CATEGORY";
+
 	//select category 특정 num 카테고리 정보
 	public static final String SQL_BOOK_CATEGORY_SELECT_BY_NUM = 
 			"SELECT * FROM CATEGORY WHERE CATE_NUM=?";
@@ -77,7 +78,7 @@ public class D {
 			"SELECT C.CATE_NAME, C.CATE_PRE, B.* " + 
 					"FROM CATEGORY C, BOOKLIST B " + 
 					"WHERE C.CATE_NUM = B.BOOK_CATE";
-	
+
 	//update book_viewcnt 선택 글 읽기+조회수 증가
 	public static final String SQL_BOOK_INC_VIEWCNT = 
 			"UPDATE BOOKLIST SET BOOK_VIEWCNT = BOOK_VIEWCNT + 1 WHERE BOOK_NUM = ?";

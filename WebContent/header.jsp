@@ -1,29 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-
-<head>
-  <title>해도북스 중고책 거래 사이트</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</head>
-<body>
-
-<%--공통--------------------------------------------------------------------------%>
+    pageEncoding="UTF-8"    isELIgnored="false"
+    %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}" />
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
     <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
         <ul class="navbar-nav mr-auto" style="font-size:20px;">
             <li class="nav-item active">
-                <a class="nav-link" href="main.jsp" >메인</a>
+                <a class="nav-link" href="${contextPath}/main.do" >메인</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">중고책장터</a>
+                <a class="nav-link" href="${contextPath}/book_List.do">중고책장터</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">자유게시판</a>
@@ -32,22 +20,36 @@
     </div>
     
     <div class="mx-auto order-0">
-        <a class="navbar-brand mx-auto" href="#"><img src="hdlogo.png" alt="Logo" style="width:40px;"> HD BOOK [중고 책 거래 사이트]  </a>
+        <a class="navbar-brand mx-auto">HD BOOK [중고 책 거래 사이트]  </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+            <span class="navbar-toggler-icon"></span>
+        </button>
     </div>
     
     <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="login.jsp">로그인</a>
+        <ul class="navbar-nav ml-auto" style="font-size:20px;">
+        		   <c:choose>
+		     <c:when test="${memLogin==true}">
+		    <li class="nav-item">
+                <a class="nav-link">${mem_userid}님 환영합니다^^</a>
+            </li>
+		    <li class="nav-item">
+                <a class="nav-link" href="${contextPath}/logout.do">로그아웃</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="join.jsp">회원가입</a>
+                <a class="nav-link" href="${contextPath}/myPage.do">마이페이지</a>
             </li>
+
+			 </c:when>
+			 <c:otherwise>
+            <li class="nav-item">
+                <a class="nav-link" href="${contextPath}/login.do">로그인</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="${contextPath}/join.do">회원가입</a>
+            </li>
+			 </c:otherwise>
+			</c:choose>
         </ul>
     </div>
 </nav>
-
-
-</body>
-
-</html>

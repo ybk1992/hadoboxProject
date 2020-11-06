@@ -24,15 +24,23 @@ public class IdCheckCommand implements Command {
 		// 유효성 체크
 		if(inputid != null && inputid.trim().length() > 0) {
 			try {
-				cnt = dao.chkId(inputid);
-				
+				cnt = dao.chkId(inputid);	
 				
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-		} // end if
+		}
+		if(inputid.contains(" ")||inputid.trim().length() == 0) {
+			try {
+				cnt = -1;
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
-		
+		//cnt 가 0일때만 YES
+
 		request.setAttribute("result", cnt);
 		
 
