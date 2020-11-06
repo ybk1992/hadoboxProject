@@ -31,6 +31,7 @@ public class LoginCommand implements Command {
 
 				//세션에 아이디 저장하기
 				session.setAttribute("mem_userid", mem_userid);
+				session.setAttribute("memLogin", true);
 				
 			} catch (Exception e) {
 				e.printStackTrace();			}

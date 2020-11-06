@@ -40,47 +40,16 @@ function chkSubmit(){
 
 </script>
 <body>
-<%--공통--------------------------------------------------------------------------%>
 <div class="text-center" style="margin-bottom:0">
   <h1>해도북스</h1>
   <p>Resize this responsive page to see the effect!</p> 
 </div>
+<jsp:include page="../header.jsp"></jsp:include>
 
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
-    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-        <ul class="navbar-nav mr-auto" style="font-size:20px;">
-            <li class="nav-item active">
-                <a class="nav-link" href="main.jsp" >메인</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">중고책장터</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">자유게시판</a>
-            </li>
-        </ul>
-    </div>
-    
-    <div class="mx-auto order-0">
-        <a class="navbar-brand mx-auto" href="#"><img src="bbb.jpg" alt="Logo" style="width:40px;"> HD BOOK [중고 책 거래 사이트]  </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-    
-    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="login.jsp">로그인</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="join.jsp">회원가입</a>
-            </li>
-        </ul>
-    </div>
-</nav>
-<%--공통--------------------------------------------------------------------------%>
+
+
+
 <br><br><br><br>
   <h2>LOGIN</h2>     
 <form name="frm" action="loginOk.do" method="post" onsubmit="return chkSubmit()">
