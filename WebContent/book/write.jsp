@@ -11,45 +11,28 @@
 </head>
 
 <script>
-<<<<<<< HEAD
 // content 용량 문제
-var image, id, price;
+var image;
 var chk = false, cate = "0", gory = "0";
-//var id = (String)session.getAttribute("id");
+var id = (String)session.getAttribute("id");
 //form validation 
 // 글 제목, 책 정보, 책 판매 가격, 카테고리 필수
-=======
-// form validation 
-// '작성자(name)' 와 '제목(subject)' 는 필수
-//var chk = false;
->>>>>>> branch 'master' of https://github.com/ybk1992/hadoboxProject.git
 function chkSubmit(){
 	frm = document.forms['frm'];
 	
-<<<<<<< HEAD
 	var name = frm["subject"].value.trim();
+	var price = frm["price"].value.trim();
 	var content = CKEDITOR.instances.editor1.getData();
-=======
-	var subject = frm["subject"].value.trim();
->>>>>>> branch 'master' of https://github.com/ybk1992/hadoboxProject.git
 	
-<<<<<<< HEAD
 	if(chk == false){
 		alert("책 정보는 반드시 입력해야 합니다.");
 		frm["search"].focus();
 		return false;
 	}
-=======
-//	if(chk == false){
-//		alert("책 정보는 반드시 입력해야 합니다.");
-//		frm["search"].focus();
-//		return false;
-//	}
->>>>>>> branch 'master' of https://github.com/ybk1992/hadoboxProject.git
 	
-	if(name == ""){
+	if(subject == ""){
 		alert("글 제목은 반드시 작성해야 합니다");
-		frm["subject"].focus();
+		frm["sunject"].focus();
 		return false;
 	}
 	
@@ -70,18 +53,18 @@ function chkSubmit(){
 		document.frm.gory.focus();
 		return false;
 	}
-	
-	submitPost({'sellid': "melon123",
+
+	submitPost({'sellid': id,
 		'name': name,
-		'price': "1000",
+		'price': price,
 		'content': content,
-		'image': "0"});
+		'cate': gory,
+		'image': image});
 	
 	return true;	
 		
 }
 
-<<<<<<< HEAD
 //submit 할때 parameter 값 능동적 주입
 function submitPost(params){
 	var form = document.forms['frm'];
@@ -262,52 +245,11 @@ $(function(){
 	
 	$('#price').on('blur', function(){
 		var val = $('#price').val();
-		price = val;
 		if(!isEmpty(val)){
 			val = currencyFormatter(val);
 			$('#price').val(val);
 		}
 	});
-=======
-function bookSearch(){
-	$.ajax({
-		method: "GET",
-		url: "https://dapi.kakao.com/v3/search/book?target=title",
-		data: { query: $("input[name=search]").val() },
-		headers: {Authorization: "KakaoAK c6ccb05ef2ebd8a9d0a74ff173cc61f5"}
-	})
-		.done(function (msg){
-			console.log(msg.documents.length);
-			$("select#book").empty();
-			for(var i=0; i<msg.documents.length; i++){
-				$("select#book").append("<option>"+msg.documents[i].title+"</option>");
-			}
-		});
-}
-
-$(function(){
-	$('#book').change(function(){
-		$.ajax({
-			method: "GET",
-			url: "https://dapi.kakao.com/v3/search/book?target=title",
-			data: { query: $('#book option:selected').text() },
-			headers: {Authorization: "KakaoAK c6ccb05ef2ebd8a9d0a74ff173cc61f5"}
-		})
-			.done(function (msg){
-				CKEDITOR.instances.editor1.setData("<img src='"+msg.documents[0].thumbnail+"'/><br><strong>"+msg.documents[0].title+"</strong>"+
-						"<strong>"+msg.documents[0].contents+"</strong><br>"+
-						"<strong>"+msg.documents[0].url+"</strong><br>"+
-						"<strong>"+msg.documents[0].isbn+"</strong><br>"+
-						"<strong>"+msg.documents[0].datetime+"</strong><br>"+
-						"<strong>"+msg.documents[0].authors[0]+"</strong><br>"+
-						"<strong>"+msg.documents[0].publisher+"</strong><br>"+
-						"<strong>"+msg.documents[0].translators[0]+"</strong><br>"+
-						"<strong>"+msg.documents[0].price+"</strong><br>"+
-						"<strong>"+msg.documents[0].sale_price+"</strong><br>"+
-						"<strong>"+msg.documents[0].status+"</strong><br>");
-			});
-	})
->>>>>>> branch 'master' of https://github.com/ybk1992/hadoboxProject.git
 })
 
 </script>
@@ -316,7 +258,6 @@ $(function(){
 <h2>책 판매글 작성</h2>
 <%-- 글 내용이 많을수 있기 때문에 POST 방식 사용 --%>
 <form name="frm" action="writeOk.do" method="post" onsubmit="return chkSubmit()">
-<<<<<<< HEAD
 <select name="cate" id="cate">
 	<option value="0">상위 카테고리</option>
 	<option value="1">교육</option>
@@ -341,15 +282,6 @@ $(function(){
 </select><br>
 판매가:
 <input type="text" id="price" name="price" placeholder="판매가격을 입력해주세요." style = "text-align:right"/>원<br>
-=======
-글 제목:
-<input type="text" name="subject"/><br>
-책 제목:
-<input type="text" name="search"/><button type="button" onclick="bookSearch()">검색</button><br>
-<select name="book" id="book">
-	<option>책 검색 결과</option>
-</select><br>
->>>>>>> branch 'master' of https://github.com/ybk1992/hadoboxProject.git
 내용:<br>
 <textarea name="content" id="editor1"></textarea>
 <script>
@@ -359,7 +291,6 @@ $(function(){
 		height: '400px',
 		filebrowserUploadUrl : '${pageContext.request.contextPath}/fileUpload.do'
 	});
-	CKEDITOR.instances.editor1.setData()
 </script>
 <br><br>
 <input type="submit" value="등록"/>

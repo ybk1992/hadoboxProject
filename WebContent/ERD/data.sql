@@ -63,62 +63,67 @@ UNION ALL SELECT 903, 'IT', '웹디자인' FROM DUAL
 UNION ALL SELECT 904, 'IT', '오피스' FROM DUAL
 UNION ALL SELECT 905, 'IT', '기타' FROM DUAL;
 
-
-
-
 --insert 책 등록 <-- 글번호, 판매자, 책이름, 책가격, 작성일, 내용, 조회수, 책주소, 카테고리, 판매여부, 이미지경로
-INSERT INTO BOOKLIST 
-VALUES (BOOKLIST_SEQ.NEXTVAL, 'apple123', '귀멸의 칼날2', 3000, 
-SYSDATE, '직거래 원합니다', 0, '글제목1', 101, '0', 'https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F1523954%3Ftimestamp%3D20200418132612');
 
-INSERT INTO BOOKLIST 
-VALUES (BOOKLIST_SEQ.NEXTVAL, 'melon123', '진격의 거인', 3000, 
-SYSDATE, '택포 직거래시 에누리가능', 0, '글제목12', 101, '1', 'b.png');
 
-INSERT INTO BOOKLIST 
-VALUES (BOOKLIST_SEQ.NEXTVAL, 'lemon123', '데스노트', 4000, 
-SYSDATE, '나루토랑 교환가능합니다', 0, '글제목13', 102, '1', 'c.png');
 
-INSERT INTO BOOKLIST 
-VALUES (BOOKLIST_SEQ.NEXTVAL, 'banana123', '스타트업', 10000, 
-SYSDATE, '책팔아요구르트', 0, '글제목14', 201, '0', 'd.png');
+INSERT INTO BOOKLIST VALUES (BOOKLIST_SEQ.NEXTVAL, 'apple123', '귀멸의 칼날', 3000, SYSDATE, '직거래 원합니다1', 0, '글제목1', 301, '1', 'https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F1523954%3Ftimestamp%3D20200418132612');
+INSERT INTO BOOKLIST VALUES (BOOKLIST_SEQ.NEXTVAL, 'apple123', '점멸의 칼날', 3000, SYSDATE, '직거래 원합니다2', 0, '글제목2', 302, '1', 'https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F1523954%3Ftimestamp%3D20200418132612');
+INSERT INTO BOOKLIST VALUES (BOOKLIST_SEQ.NEXTVAL, 'apple123', '입멸의 칼날', 3000, SYSDATE, '직거래 원합니다3', 0, '글제목3', 303, '1', 'https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F1523954%3Ftimestamp%3D20200418132612');
+INSERT INTO BOOKLIST VALUES (BOOKLIST_SEQ.NEXTVAL, 'apple123', '눈멸의 칼날', 3000, SYSDATE, '직거래 원합니다4', 0, '글제목4', 304, '1', 'https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F1523954%3Ftimestamp%3D20200418132612');
+INSERT INTO BOOKLIST VALUES (BOOKLIST_SEQ.NEXTVAL, 'apple123', '코멸의 칼날', 3000, SYSDATE, '직거래 원합니다5', 0, '글제목5', 305, '0', 'https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F1523954%3Ftimestamp%3D20200418132612');
+INSERT INTO BOOKLIST VALUES (BOOKLIST_SEQ.NEXTVAL, 'apple123', '목멸의 칼날', 3000, SYSDATE, '직거래 원합니다6', 0, '글제목6', 306, '1', 'https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F1523954%3Ftimestamp%3D20200418132612');
+INSERT INTO BOOKLIST VALUES (BOOKLIST_SEQ.NEXTVAL, 'apple123', '소멸의 칼날', 3000, SYSDATE, '직거래 원합니다7', 0, '글제목7', 304, '1', 'https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F1523954%3Ftimestamp%3D20200418132612');
+INSERT INTO BOOKLIST VALUES (BOOKLIST_SEQ.NEXTVAL, 'apple123', '닭멸의 칼날', 3000, SYSDATE, '직거래 원합니다8', 0, '글제목8', 303, '1', 'https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F1523954%3Ftimestamp%3D20200418132612');
+INSERT INTO BOOKLIST VALUES (BOOKLIST_SEQ.NEXTVAL, 'apple123', '박멸의 칼날', 3000, SYSDATE, '직거래 원합니다9', 0, '글제목9', 302, '0', 'https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F1523954%3Ftimestamp%3D20200418132612');
+INSERT INTO BOOKLIST VALUES (BOOKLIST_SEQ.NEXTVAL, 'apple123', '모멸의 칼날', 3000, SYSDATE, '직거래 원합니다10', 0, '글제목10', 301, '0', 'https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F1523954%3Ftimestamp%3D20200418132612');
+INSERT INTO BOOKLIST VALUES (BOOKLIST_SEQ.NEXTVAL, 'apple123', '점멸의 칼날', 3000, SYSDATE, '직거래 원합니다11', 0, '글제목11', 302, '1', 'https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F1523954%3Ftimestamp%3D20200418132612');
+INSERT INTO BOOKLIST VALUES (BOOKLIST_SEQ.NEXTVAL, 'apple123', '입멸의 칼날', 3000, SYSDATE, '직거래 원합니다12', 0, '글제목12', 303, '1', 'https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F1523954%3Ftimestamp%3D20200418132612');
+INSERT INTO BOOKLIST VALUES (BOOKLIST_SEQ.NEXTVAL, 'apple123', '눈멸의 칼날', 3000, SYSDATE, '직거래 원합니다13', 0, '글제목13', 304, '1', 'https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F1523954%3Ftimestamp%3D20200418132612');
+INSERT INTO BOOKLIST VALUES (BOOKLIST_SEQ.NEXTVAL, 'apple123', '코멸의 칼날', 3000, SYSDATE, '직거래 원합니다14', 0, '글제목14', 305, '0', 'https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F1523954%3Ftimestamp%3D20200418132612');
+INSERT INTO BOOKLIST VALUES (BOOKLIST_SEQ.NEXTVAL, 'apple123', '목멸의 칼날', 3000, SYSDATE, '직거래 원합니다15', 0, '글제목15', 306, '1', 'https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F1523954%3Ftimestamp%3D20200418132612');
+INSERT INTO BOOKLIST VALUES (BOOKLIST_SEQ.NEXTVAL, 'apple123', '소멸의 칼날', 3000, SYSDATE, '직거래 원합니다16', 0, '글제목16', 304, '1', 'https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F1523954%3Ftimestamp%3D20200418132612');
+INSERT INTO BOOKLIST VALUES (BOOKLIST_SEQ.NEXTVAL, 'apple123', '닭멸의 칼날', 3000, SYSDATE, '직거래 원합니다17', 0, '글제목17', 303, '1', 'https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F1523954%3Ftimestamp%3D20200418132612');
+INSERT INTO BOOKLIST VALUES (BOOKLIST_SEQ.NEXTVAL, 'apple123', '박멸의 칼날', 3000, SYSDATE, '직거래 원합니다18', 0, '글제목18', 302, '0', 'https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F1523954%3Ftimestamp%3D20200418132612');
+INSERT INTO BOOKLIST VALUES (BOOKLIST_SEQ.NEXTVAL, 'apple123', '모멸의 칼날', 3000, SYSDATE, '직거래 원합니다19', 0, '글제목19', 301, '0', 'https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F1523954%3Ftimestamp%3D20200418132612');
+INSERT INTO BOOKLIST VALUES (BOOKLIST_SEQ.NEXTVAL, 'apple123', '모멸의 칼날', 3000, SYSDATE, '직거래 원합니다20', 0, '글제목20', 301, '0', 'https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F1523954%3Ftimestamp%3D20200418132612');
 
-TRUNCATE TABLE BOOKLIST;
+
 
 
 --select 전체 글
-SELECT * FROM CATEGORY;
+--SELECT * FROM CATEGORY;
 SELECT * FROM BOOKLIST;
-SELECT * FROM MEMBERS;
+--SELECT * FROM MEMBERS;
 --select book_num 선택 글 읽기
-SELECT * FROM BOOKLIST WHERE BOOK_NUM=1;
+--SELECT * FROM BOOKLIST WHERE BOOK_NUM=1;
 
-SELECT C.CATE_NAME, C.CATE_PRE, B.*
-FROM CATEGORY C, BOOKLIST B 
-WHERE C.CATE_NUM = B.BOOK_CATE AND BOOK_NUM=2;
+--SELECT C.CATE_NAME, C.CATE_PRE, B.*
+--FROM CATEGORY C, BOOKLIST B 
+--WHERE C.CATE_NUM = B.BOOK_CATE AND BOOK_NUM=2;
+--
+----CATEGORY
+--SELECT * FROM CATEGORY ORDER BY CATE_NUM DESC;
+--SELECT * FROM CATEGORY WHERE CATE_NUM=201;
+---- 카테 조인
+--SELECT C.CATE_NAME, C.CATE_PRE, B.*
+--FROM CATEGORY C, BOOKLIST B 
+--WHERE C.CATE_NUM = B.BOOK_CATE;
 
---CATEGORY
-SELECT * FROM CATEGORY ORDER BY CATE_NUM DESC;
-SELECT * FROM CATEGORY WHERE CATE_NUM=201;
--- 카테 조인
-SELECT C.CATE_NAME, C.CATE_PRE, B.*
-FROM CATEGORY C, BOOKLIST B 
-WHERE C.CATE_NUM = B.BOOK_CATE;
 
 
-
-SELECT * FROM CATEGORY C, BOOKLIST B
-WHERE C.CATE_NUM = B.BOOK_NUM AND B.BOOK_CATE = 101 AND B.BOOK_NUM = 1;
+--SELECT * FROM CATEGORY C, BOOKLIST B
+--WHERE C.CATE_NUM = B.BOOK_NUM AND B.BOOK_CATE = 101 AND B.BOOK_NUM = 1;
 
 --중복확인
-SELECT * FROM MEMBERS where MEM_USERID ='melon123';
+--SELECT * FROM MEMBERS where MEM_USERID ='melon123';
 
 --update 글 수정 / 책이름, 책가격, 작성일, 내용, 책주소, 카테고리, 판매여부, 이미지경로
-UPDATE HD04A SET BOOK_NAME = ?, BOOK_PRICE = ?, BOOK_REGDATE = ?, BOOK_CONTENT = ?,
-BOOK_URI = ?, BOOK_CATE = ?, BOOK_STATUS = ?, BOOK_IMAGE = ?;
+--UPDATE HD04A SET BOOK_NAME = ?, BOOK_PRICE = ?, BOOK_REGDATE = ?, BOOK_CONTENT = ?,
+--BOOK_URI = ?, BOOK_CATE = ?, BOOK_STATUS = ?, BOOK_IMAGE = ?;
 		
 --delete 글 삭제
-DELETE FROM HD04A WHERE BOOK_NUM = ?;
+--DELETE FROM HD04A WHERE BOOK_NUM = ?;
 
-UPDATE BOOKLIST SET BOOK_VIEWCNT = BOOK_VIEWCNT + 1 WHERE BOOK_NUM = 1;
+--UPDATE BOOKLIST SET BOOK_VIEWCNT = BOOK_VIEWCNT + 1 WHERE BOOK_NUM = 1;
 	

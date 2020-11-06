@@ -1,0 +1,49 @@
+@charset "UTF-8";
+
+@import url(font.css);
+
+
+#footer_logo {
+  width: 210px;
+  height: 100px;
+}
+
+
+#content { margin-top: 100px; }
+
+.row {
+     margin-bottom: 20px;
+   }
+[class|="col"] {
+  background: white;
+  border: 1px solid #eaeaed;
+  text-align: center;
+  color: black;
+}
+
+
+.info{
+	height: 800px;
+}
+
+.title{
+	font-size: 2.5em;
+}
+.cate{
+	font-size: 1.1em;
+}
+.price{
+	font-size: 1.8em;
+}
+.content{
+	font-size: 1.1em;
+}
+
+
+
+/* 액션 */
+
+a:hover {
+	text-decoration: none;
+}
+

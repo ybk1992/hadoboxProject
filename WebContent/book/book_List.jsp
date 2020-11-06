@@ -3,7 +3,12 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<%
+	// 세션생성
+	String key = "mem_id";
+	String value = "apple123";
+	session.setAttribute(key, value);
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -75,6 +80,7 @@
         <h1 class="my-4 vw">메인 카테고리</h1>
         <div class="list-group ">
           <a href="#" class="list-group-item subcate" id="0">세부 카테고리</a>
+          <p>${book_List[0].book_name }</p>
         </div>
 
       </div>
@@ -114,7 +120,7 @@
 			</c:when>
 	
 			<c:otherwise> 
-				<c:forEach var="dto" items="${book_List }"> 
+				<c:forEach var="dto" items="${book_List }" end="5"> 
 				
 				  <div class="col-lg-4 col-md-6 mb-4">
 		            <div class="card h-100 bookbox">
@@ -178,30 +184,39 @@
 <a href="https://imgur.com/1TFsO95"><img src="https://i.imgur.com/1TFsO95.png" title="source: imgur.com" /></a>
  -->
 <script>
-
-  //Javascript
-  var count = 0;
+  let arr = new Array();
   //스크롤 바닥 감지
-  $(window).scroll(function () {
-    let $window = $(this);
-    let scrollTop = $window.scrollTop();
-    let windowHeight = $window.height();
-    let documentHeight = $(document).height();
-    console.log("documentHeight:" + documentHeight + " | scrollTop:" + scrollTop + " | windowHeight: " + windowHeight);
+  var i = 0;
+  var scrollLock = true;
+  //무한 스크롤을 위한 판매글 데이터 arr에 push
+ <c:forEach items="${book_List }" var="dt"  begin="6" end="${fn:length(book_List)}">
+ 	arr.push({ num: "${dt.book_num}"
+		, image: "${dt.book_image}"
+    	, title: "${dt.book_title}"
+   		, price: "${dt.book_price}"
+		, name: "${dt.book_name}"
+		, status: "${dt.book_status}"});
+ </c:forEach>
+ 
+ $(window).scroll(function (e) {
+	 let $window = $(this);
+	 let scrollTop = $window.scrollTop();
+     let windowHeight = $window.height();
+     let documentHeight = $(document).height();
     
-    if (scrollTop + windowHeight + 10 > documentHeight) {
-      //실행할 로직 (콘텐츠 추가)
-      count += 3;
-      var addContent =
-        '<div class="col-lg-4 col-md-6 mb-4"><div class="card h-100 bookbox"><a href="#" class="book_img"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a><div class="card-body"><h4 class="card-title"><a href="#">중고책 제목 ' + count + '</a></h4><h5>9,900원</h5><p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ametnumquam aspernatur!</p></div><div class="card-footer"><small class="text-muted"></small></div></div></div><div class="col-lg-4 col-md-6 mb-4"><div class="card h-100 bookbox"><a href="#" class="book_img"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a><div class="card-body"><h4 class="card-title"><a href="#">중고책 제목 ' + (count + 1) + '</a></h4><h5>9,900원</h5><p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ametnumquam aspernatur!</p></div><div class="card-footer"><small class="text-muted"></small></div></div></div><div class="col-lg-4 col-md-6 mb-4"><div class="card h-100 bookbox"><a href="#" class="book_img"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a><div class="card-body"><h4 class="card-title"><a href="#">중고책 제목 ' + (count + 2) + '</a></h4><h5>9,900원</h5><p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ametnumquam aspernatur!</p></div><div class="card-footer"><small class="text-muted"></small></div></div></div>';
-      
-      //article에 추가되는 콘텐츠를 append
-      $('div#listDiv').append(addContent);
-    }
-  });
-
+   	 if (i < arr.length && scrollTop + windowHeight + 30 > documentHeight) {  //무한스크롤
+     	//실행할 로직 (판매글 추가)
+	    var addContent = '<div class="col-lg-4 col-md-6 mb-4"><div class="card h-100 bookbox"><a href="book_Read.do?book_num='+arr[i].num+'" class="book_img"><img class="card-img-top" src='+arr[i].image+' alt="" height="300px"></a><div class="card-body"><h4 class="card-title"><a href="book_Read.do?book_num='+arr[i].num+'">'+arr[i].title+'</a></h4><h5>'+arr[i].price+'원</h5><p class="card-text">'+arr[i].name+'</p></div><div class="card-footer"><small class="text-muted"></small></div></div></div>';
+	      //listDiv에 추가되는 콘텐츠를 append
+		$('div#listDiv').append(addContent);
+		i++;
+   	 }
+ });
+  
   </script>
-</body>
+
+
 
 </html>
+
 
