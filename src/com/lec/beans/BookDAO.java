@@ -41,7 +41,7 @@ public class BookDAO {
 	
 	// insertBook 책 등록 <-- 작성자, 책이름, 책가격, 책내용, 책이미지, 책카테고리, 판매여부, 글 주소(?)
 	public int insert(String sellid, String name, int price, 
-			String content, int viewcnt, String uri, int cate, 
+			String content, int viewcnt, String title, int cate, 
 			String status, String image ) throws SQLException {
 		int cnt = 0;
 		try {
@@ -51,7 +51,7 @@ public class BookDAO {
 			pstmt.setInt(3, price);
 			pstmt.setString(4, content);
 			pstmt.setInt(5, viewcnt);
-			pstmt.setString(6, uri);
+			pstmt.setString(6, title);
 			pstmt.setInt(7, cate);
 			pstmt.setString(8, status);
 			pstmt.setString(9, image);
@@ -70,13 +70,13 @@ public class BookDAO {
 			int price = dto.getBook_price();
 			String content = dto.getBook_content();
 			int viewcnt = dto.getBook_viewcnt();
-			String uri = dto.getBook_title();
+			String title = dto.getBook_title();
 			int cate = dto.getBook_cate();
 			String status = dto.getBook_status();
 			String image = dto.getBook_image();
 			
 			int cnt = this.insert(sellid, name, price, content, 
-					viewcnt, uri, cate, status, image);
+					viewcnt, title, cate, status, image);
 			return cnt;		
 		}
 	
@@ -93,7 +93,7 @@ public class BookDAO {
 			int price = rs.getInt("book_price");
 			String content = rs.getString("book_content");
 			int viewcnt = rs.getInt("book_viewcnt");
-			String uri = rs.getString("book_title");
+			String title = rs.getString("book_title");
 			int cate = rs.getInt("book_cate");
 			String cate_name = rs.getString("cate_name");
 			String cate_pre = rs.getString("cate_pre");
@@ -111,7 +111,7 @@ public class BookDAO {
 		
 			
 			BookDTO dto = new BookDTO(num, sellid, name, price, regdate, content, 
-					viewcnt, uri, cate, cate_name, cate_pre, image, status);
+					viewcnt, title, cate, cate_name, cate_pre, image, status);
 			dto.setBook_regdate(regdate);
 			list.add(dto);
 		} // end while

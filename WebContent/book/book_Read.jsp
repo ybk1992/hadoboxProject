@@ -3,7 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-
+<%
+	String LoginID = (String)session.getAttribute("mem_id");
+%>
 
 <c:choose>
 	<c:when test="${empty book_List || fn:length(book_List) == 0 }">
@@ -20,7 +22,6 @@
 <head>
 <meta charset="UTF-8">
 <title>판매 글 페이지</title>
-
 <!-- Bootstrap 4 -->
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
@@ -32,11 +33,46 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
   </script>
+
+  <!-- CSS -->
+  <link href="CSS/read_page.css" rel="stylesheet">
+
 </head>
 <body>
+ <!-- 페이지 상단 navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">해도북스</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">메인으로
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">중고책팔기</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">자유 게시판</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><%=LoginID%>님 환영합니다.</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
 	<table border="1">
 		<tr>
 			<th>번호</th>
+			<th>제목</th>
 			<th>작성자</th>
 			<th>이름</th>
 			<th>가격</th>
@@ -51,6 +87,7 @@
 		</tr>
 		<tr>
 			<td>${book_List[0].book_num }</td>
+			<td>${book_List[0].book_title }</td>
 			<td>${book_List[0].book_sellid }</td>
 			<td>${book_List[0].book_name }</td>
 			<td>${book_List[0].book_price }</td>
@@ -73,11 +110,60 @@
 			    </c:when>
 			</c:choose>
 
-			<td>${status}</td>			
+			<td>${status}</td>
 		</tr>
 
 	</table>
 	
+	
+<div class="container" id="content">
+    <div class="row">
+        <div class="col-md-5">
+        	<img src="${book_List[0].book_image }" alt="">
+        </div>
+        
+        <div class="col-md-6 info">
+        	<div class="row title">
+        		<p>${book_List[0].book_title }</p>
+        	</div>
+        	<div class="row cate">
+        		<p>${book_List[0].book_cate_name } > ${book_List[0].book_cate_pre }</p>
+        	</div>
+        	<div class="row price">
+        		<p>${book_List[0].book_price } 원</p>
+        	</div>
+        	<div class="row content">
+        		<p>${book_List[0].book_content }</p>
+        	</div>
+        		
+        </div>
+    </div>
+    <div class="row seller">
+        <div class="col-md-11">
+        	<p>판매자		${book_List[0].book_sellid }</p>
+        </div>
+    </div>
+    <div class="row doComment">
+        <div class="col-md-9"></div>
+        <div class="col-md-2"></div>
+    </div>
+    <div class="row viewComment">
+        <div class="col-md-2"></div>
+        <div class="col-md-9"></div>
+    </div>
+</div>
+  
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+
+      <p class="m-0 text-center text-white">
+        <img src="image/logo-white.png" alt="logo" id="footer_logo">
+        Copyright &copy; 2020. (주)해도북스 컴퍼니. All right reserved.</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+  
 </body>
 </html>
 
