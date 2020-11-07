@@ -112,6 +112,38 @@ public class MemberDTO {
 		this.mem_image = mem_image;
 	}
 
+	public String getMem_zipcode() {
+		return mem_zipcode;
+	}
+
+	public void setMem_zipcode(String mem_zipcode) {
+		this.mem_zipcode = mem_zipcode;
+	}
+
+	public String getMem_address1() {
+		return mem_address1;
+	}
+
+	public void setMem_address1(String mem_address1) {
+		this.mem_address1 = mem_address1;
+	}
+
+	public String getMem_address2() {
+		return mem_address2;
+	}
+
+	public void setMem_address2(String mem_address2) {
+		this.mem_address2 = mem_address2;
+	}
+
+	public Date getMem_register_datetime() {
+		return mem_register_datetime;
+	}
+
+	public void setMem_register_datetime(Date mem_register_datetime) {
+		this.mem_register_datetime = mem_register_datetime;
+	}
+
 	@Override
 	public String toString() {
 		return "MemberDTO [mem_num=" + mem_num + ", mem_userid=" + mem_userid + ", mem_email=" + mem_email

@@ -23,9 +23,13 @@ public class D {
 	public static final String SQL_MEMBERS_SELECT_BY_MEM_USERID =
 			"SELECT mem_userid, mem_password, mem_status FROM MEMBERS WHERE mem_userid= ?";
 	
-	//select 아이디 중복 체크
+	//select 아이디 중복 체크 //회원정보 수정
 	public static final String SQL_MEMBERS_SELECT_BY_MEM_USERID_CHK =
 			"SELECT * FROM MEMBERS WHERE mem_userid= ?";
+
+	//회원 정보 수정
+	public static final String SQL_MEMBERS_UPDATE =
+			"UPDATE MEMBERS SET mem_password = ?, mem_phone = ?, mem_email = ?, mem_zipcode = ?, mem_address1 = ?, mem_address2 = ?, mem_image = ? WHERE mem_userid = ?";
 	
 
 	

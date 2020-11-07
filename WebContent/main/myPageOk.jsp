@@ -7,35 +7,17 @@
 
 <% if(cnt == 0){ %>
 	<script>
-		alert("등록실패 !!!");
+		alert("수정실패 !!!");
 		history.back();
 	</script>
 <% } else { %>
 	<script>
-		alert("회원가입 성공! 환영합니다");
-		location.href = "main.jsp";
+		alert("수정 성공!");
+		history.back();
 	</script>
 <% } %>
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
     
