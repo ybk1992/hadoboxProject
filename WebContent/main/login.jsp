@@ -60,6 +60,8 @@ function chkSubmit(){
 
 <input type="submit" value="등록"/>
 </form>
-  
+
+<jsp:include page="../footer.jsp"></jsp:include>
+
 </body>
 </html>
