@@ -41,9 +41,6 @@ public class BookDTO {
 		this.book_cate_pre = book_cate_pre;
 		this.book_image = book_image;
 		this.book_status = book_status;
-		System.out.printf("BookDTO(%d, %s, %s, %d, %s, %s, %d, %s, %d, %s, %s, %s, %s) 객체 생성", 
-				book_num, book_sellid, book_name, book_price, book_regdate, 
-				book_content, book_viewcnt, book_title, book_cate, book_cate_name, book_cate_pre, book_image, book_status);
 	}
 
 

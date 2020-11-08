@@ -54,7 +54,7 @@
 			</c:when>
 	
 			<c:otherwise> 
-				<c:forEach var="dto" items="${book_List }" end="4">
+				<c:forEach var="dto" items="${book_List }" end="3">
 			      <div class="col-lg-3 col-md-6 mb-4">
 			        <div class="card h-100">
 			          <img class="card-img-top" src="${dto.book_image }" alt="" height="300px">
