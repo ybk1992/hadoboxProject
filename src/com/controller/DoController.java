@@ -66,6 +66,15 @@ public class DoController extends HttpServlet {
 		// 컨트롤러는 커맨드에 따라 로직 수행
 		// 결과를 보낼 view 를 결정
 		switch(com) {
+		case "/logout.do":
+	         viewPage = "main/logout.jsp";
+	         break;
+	   	case "/main.do":
+	   		 command = new BookListCommand();
+	   		 command.execute(request, response);
+	         viewPage = "main/main.jsp";
+	         break;
+
 		case "/join.do":
 			viewPage = "main/join.jsp";
 			break;
@@ -139,6 +148,7 @@ public class DoController extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "book/book_List.jsp";
 			break;
+			
 
 		case "/book_Read.do":
 			command = new BookViewCommand();

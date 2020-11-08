@@ -80,7 +80,24 @@ public class BookDAO {
 			return cnt;		
 		}
 	
-	
+	public BookDTO [] createArrCate(ResultSet rs) throws SQLException {
+		BookDTO [] arr = null;  // DTO 배열로 리턴
+		ArrayList<BookDTO> list = new ArrayList<BookDTO>();
+		
+		while(rs.next()) {
+			int num = rs.getInt("cate_num");
+			String name = rs.getString("cate_name");
+			String pre = rs.getString("cate_pre");
+			BookDTO dto = new BookDTO(num, name, pre);
+			list.add(dto);
+		}
+		
+		arr = new BookDTO[list.size()];  // 리스트에 담긴 DTO 의 개수만큼의 배열 생성 
+		list.toArray(arr);  // 리스트 -> 배열
+		return arr;
+		
+	}
+		
 	// createArray <-- ResultSet --> DTO 배열로 리턴
 	public BookDTO [] createArray(ResultSet rs) throws SQLException {
 		BookDTO [] arr = null;  // DTO 배열로 리턴
@@ -130,12 +147,28 @@ public class BookDAO {
 		try {
 			pstmt = conn.prepareStatement(D.SQL_BOOK_CATEGORY_SELECT);
 			rs = pstmt.executeQuery();
-			arr = createArray(rs);
+			arr = createArrCate(rs);
 		} finally {
 			close();
 		}
 		return arr;
 	} // end selectAllCategory()
+	
+	// searchBook <-- 내용 검색
+	public BookDTO [] searchBook(String sessSearch) throws SQLException {
+		BookDTO [] arr = null;
+		
+		try {
+			pstmt = conn.prepareStatement(D.SQL_BOOK_SEARCH);
+			pstmt.setString(1, "%"+sessSearch+"%");
+			rs = pstmt.executeQuery();
+			arr = createArray(rs);
+		} finally {
+			close();
+		}
+		
+		return arr;
+	} // end select()
 	
 	// selectAllBook <-- 전체 읽기
 	public BookDTO [] selectAllBook() throws SQLException {
@@ -153,6 +186,22 @@ public class BookDAO {
 	} // end select()
 	
 	
+	//SQL_BOOK_CATE_PRE_SELECT
+	public BookDTO [] selectCatepre(String sessCatePre) throws SQLException {
+		BookDTO [] arr = null;
+		
+		try {
+			pstmt = conn.prepareStatement(D.SQL_BOOK_CATE_PRE_SELECT);
+			pstmt.setString(1, sessCatePre);
+			rs = pstmt.executeQuery();
+			arr = createArray(rs);
+		} finally {
+			close();
+		}
+		 
+		return arr;
+	} // end select()
+		
 	
 	// 특정 uid 의 글만 SELECT
 		public BookDTO[] selectByBookNum(int num) throws SQLException {
@@ -222,19 +271,19 @@ public class BookDAO {
 	
 	// deleteByBookNum <-- 판매글 삭제
 	// 특정 uid 글 삭제하기
-		public int deleteByBookNum(int num) throws SQLException {
-			int cnt = 0;
-			
-			try {
-				pstmt = conn.prepareStatement(D.SQL_BOOK_DELETE);
-				pstmt.setInt(1, num);
-				cnt = pstmt.executeUpdate();			
-			} finally {
-				close();
-			}
-			
-			return cnt;
-		} // end deleteByUid()
+	public int deleteByBookNum(int num) throws SQLException {
+		int cnt = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(D.SQL_BOOK_DELETE);
+			pstmt.setInt(1, num);
+			cnt = pstmt.executeUpdate();			
+		} finally {
+			close();
+		}
+		
+		return cnt;
+	} // end deleteByUid()
 	
 	
 	

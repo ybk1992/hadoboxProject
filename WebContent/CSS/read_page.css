@@ -22,25 +22,32 @@
 }
 
 
-.info{
-	height: 800px;
-}
 
 .title{
 	font-size: 2.5em;
 }
-.cate{
-	font-size: 1.1em;
+#cate{
+	font-size: 1.2em;
+	border: 1px solid #eaeaed;
 }
 .price{
 	font-size: 1.8em;
+	
 }
 .content{
 	font-size: 1.1em;
+	border: 2px solid blue;
 }
 
+.soldout{
+	font-size:2.3em;
+	color:red;
+}
 
-
+#viewcnt{
+	border: 1px solid #eaeaed;
+	font-size:0.8em;
+}
 /* 액션 */
 
 a:hover {

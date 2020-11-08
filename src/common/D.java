@@ -69,15 +69,27 @@ public class D {
 	public static final String SQL_BOOK_CATEGORY_SELECT = 
 			"SELECT * FROM CATEGORY";
 
+	public static final String SQL_BOOK_CATE_PRE_SELECT = 
+			"SELECT C.CATE_NAME, C.CATE_PRE, B.* " + 
+					"FROM CATEGORY C, BOOKLIST B " + 
+					"WHERE C.CATE_NUM = B.BOOK_CATE AND C.CATE_PRE = ? ORDER BY BOOK_REGDATE DESC";
+	
+	
 	//select category 특정 num 카테고리 정보
 	public static final String SQL_BOOK_CATEGORY_SELECT_BY_NUM = 
 			"SELECT * FROM CATEGORY WHERE CATE_NUM=?";
+	
+	//search 내용 검색
+	public static final String SQL_BOOK_SEARCH = 
+			"SELECT C.CATE_NAME, C.CATE_PRE, B.* " + 
+					"FROM CATEGORY C, BOOKLIST B " + 
+					"WHERE C.CATE_NUM = B.BOOK_CATE AND B.BOOK_TITLE LIKE ? ORDER BY BOOK_REGDATE DESC";
 	
 	//select 전체 글
 	public static final String SQL_BOOK_SELECT = 
 			"SELECT C.CATE_NAME, C.CATE_PRE, B.* " + 
 					"FROM CATEGORY C, BOOKLIST B " + 
-					"WHERE C.CATE_NUM = B.BOOK_CATE";
+					"WHERE C.CATE_NUM = B.BOOK_CATE ORDER BY BOOK_REGDATE DESC";
 
 	//update book_viewcnt 선택 글 읽기+조회수 증가
 	public static final String SQL_BOOK_INC_VIEWCNT = 

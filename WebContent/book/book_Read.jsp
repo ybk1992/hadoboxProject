@@ -3,10 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<%
-	String LoginID = (String)session.getAttribute("mem_id");
-%>
-
 <c:choose>
 	<c:when test="${empty book_List || fn:length(book_List) == 0 }">
 		<script>
@@ -40,38 +36,13 @@
 </head>
 <body>
  <!-- 페이지 상단 navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="#">해도북스</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">메인으로
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">중고책팔기</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">자유 게시판</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#"><%=LoginID%>님 환영합니다.</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+ <jsp:include page="../header.jsp"></jsp:include>
 
+<c:set var="status" value="${book_List[0].book_status }" />
 
 	<table border="1">
 		<tr>
-			<th>번호</th>
+			<th>번호${mem_userid}</th>
 			<th>제목</th>
 			<th>작성자</th>
 			<th>이름</th>
@@ -98,9 +69,6 @@
 			<td>${book_List[0].book_cate_name }</td>				
 			<td>${book_List[0].book_cate_pre }</td>				
 			<td>${book_List[0].book_image }</td>	
-			
-			<c:set var="status" value="" />
-			
 			<c:choose>
 			    <c:when test="${book_List[0].book_status eq '0'}">
 			        <c:set var="status" value="판매완료"/>
@@ -109,13 +77,13 @@
 			        <c:set var="status" value="판매중"/>
 			    </c:when>
 			</c:choose>
-
-			<td>${status}</td>
+			<td>${status}</td>	
 		</tr>
 
 	</table>
 	
 	
+
 <div class="container" id="content">
     <div class="row">
         <div class="col-md-5">
@@ -123,34 +91,50 @@
         </div>
         
         <div class="col-md-6 info">
-        	<div class="row title">
-        		<p>${book_List[0].book_title }</p>
+        	<div class="row">
+        		 <div class="col-md-12 title">${book_List[0].book_title }</div>
         	</div>
-        	<div class="row cate">
-        		<p>${book_List[0].book_cate_name } > ${book_List[0].book_cate_pre }</p>
+        	<div class="row">
+        		<div class="col-md-8" id="cate">${book_List[0].book_cate_name } > ${book_List[0].book_cate_pre }</div>
+        		<div class="col-md-4" id="viewcnt">조회수  ${book_List[0].book_viewcnt }</div>
         	</div>
-        	<div class="row price">
-        		<p>${book_List[0].book_price } 원</p>
+        	<div class="row">
+        		<div class="col-md-12 price">${book_List[0].book_price } 원</div>
         	</div>
-        	<div class="row content">
-        		<p>${book_List[0].book_content }</p>
+        	<div class="row">
+        		<div class="col-md-12 content">${book_List[0].book_content }</div>
         	</div>
         		
         </div>
     </div>
-    <div class="row seller">
-        <div class="col-md-11">
-        	<p>판매자		${book_List[0].book_sellid }</p>
+    <div class="row">
+        <div class="col-md-11 seller">
+        	<p style="text-align:left; ">판매자		${book_List[0].book_sellid }</p>
         </div>
     </div>
-    <div class="row doComment">
-        <div class="col-md-9"></div>
-        <div class="col-md-2"></div>
-    </div>
-    <div class="row viewComment">
-        <div class="col-md-2"></div>
-        <div class="col-md-9"></div>
-    </div>
+    
+	<c:choose>
+	    <c:when test="${book_List[0].book_status eq '0'}">
+	        <c:set var="status" value="판매완료"/>
+	        <div class="row soldout">
+		        <div class="col-md-12">${status}</div>
+		    </div>
+	    </c:when>
+	    <c:when test="${book_List[0].book_status eq '1'}">
+	    	<c:if test="${memLogin==true}">
+		        <c:set var="status" value="판매중"/>
+			    <div class="row doComment">
+			        <div class="col-md-9"><input type="text" class="form-control" placeholder="댓글을 입력해주세요."></div>
+			        <div class="col-md-2"><button type="button" class="btn btn-dark">댓글쓰기</button></div>
+			    </div>
+			    <div class="row viewComment">
+			        <div class="col-md-2">아이디</div>
+			        <div class="col-md-9" style="text-align:left">댓글내용</div>
+			    </div>
+		    </c:if>
+	    </c:when>
+	</c:choose>
+			
 </div>
   
   <!-- Footer -->

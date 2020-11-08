@@ -17,13 +17,25 @@ public class BookDTO {
 	private String book_image;	// 이미지경로
 	private String book_status;	// 판매여부
 	
+	private int cate_num;		// 책카테고리
+	
+	private String cate_name; //카테고리 명
+	private String cate_pre; //세부 카테고리 명
+	
 	
 	public BookDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	
+	public BookDTO(int cate_num, String cate_name, String cate_pre) {
+		super();
+		this.cate_num = cate_num;
+		this.cate_name = cate_name;
+		this.cate_pre = cate_pre;
+		System.out.printf("BookDTO(%d, %s, %s) 객체 생성 ", 
+				cate_num, cate_name, cate_pre);
+	}
 	
 	public BookDTO(int book_num, String book_sellid, String book_name, int book_price, String book_regdate,
 			String book_content, int book_viewcnt, String book_title, int book_cate, String book_cate_name, String book_cate_pre, String book_image, String book_status) {
@@ -41,7 +53,7 @@ public class BookDTO {
 		this.book_cate_pre = book_cate_pre;
 		this.book_image = book_image;
 		this.book_status = book_status;
-		System.out.printf("BookDTO(%d, %s, %s, %d, %s, %s, %d, %s, %d, %s, %s, %s, %s) 객체 생성", 
+		System.out.printf("\nBookDTO(%d, %s, %s, %d, %s, %s, %d, %s, %d, %s, %s, %s, %s) 객체 생성", 
 				book_num, book_sellid, book_name, book_price, book_regdate, 
 				book_content, book_viewcnt, book_title, book_cate, book_cate_name, book_cate_pre, book_image, book_status);
 	}
@@ -150,6 +162,42 @@ public class BookDTO {
 		return String.format("BookDTO] %d : %s : %s : %d : %s : %s : %d : %s : %d : %s : %d", 
 				book_num, book_sellid, book_name, book_price, book_regdate, 
 				book_content, book_viewcnt, book_title, book_cate, book_image, book_status);
+	}
+
+
+
+	public int getCate_num() {
+		return cate_num;
+	}
+
+
+
+	public void setCate_num(int cate) {
+		this.cate_num = cate;
+	}
+
+
+
+	public String getCate_name() {
+		return cate_name;
+	}
+
+
+
+	public void setCate_name(String cate_name) {
+		this.cate_name = cate_name;
+	}
+
+
+
+	public String getCate_pre() {
+		return cate_pre;
+	}
+
+
+
+	public void setCate_pre(String cate_pre) {
+		this.cate_pre = cate_pre;
 	}
 	
 	
