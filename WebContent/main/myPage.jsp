@@ -106,8 +106,7 @@ function modifyImg(){
   <p>Resize this responsive page to see the effect!</p> 
 </div>
 <jsp:include page="../header.jsp"></jsp:include>
-
-
+<img src= "C:\tomcat_h\apache-tomcat-9.0.38\wtpwebapps\hadoboxProject\upload\sq.jpg">
 <form name="frm" action="myPageOk.do" method="post" onsubmit="return chkSubmit()">
 아이디:<br>
 <input type="text" name="mem_userid" id="mem_userid" value="${MyInfo[0].mem_userid}" disabled/><br>

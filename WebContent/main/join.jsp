@@ -148,7 +148,7 @@ function chkSubmit(){
 <br><br>
   <h2 >회원가입</h2>
        
-<form name="frm" action="joinOk.do" method="post" onsubmit="return chkSubmit()">
+<form name="frm" action="joinOk.do" method="post" onsubmit="return chkSubmit()" enctype="Multipart/form-data">
 아이디:<br>
 <input type="text" name="mem_userid" id="mem_userid">
 <input type="button" class="btn-primary box" onclick="idCheckFunc()" value="중복확인"><br>
@@ -175,7 +175,7 @@ function chkSubmit(){
 상세 주소:<br>
 <input type="text" name="mem_address2" id="sample4_detailAddress"/><br>
 이미지:<br>
-<input type="text" name="mem_image"/><br>
+<input type="file" name="mem_image"/><br>
 
 <br><br>
 <input type="submit" value="등록"/>
