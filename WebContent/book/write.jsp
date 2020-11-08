@@ -319,6 +319,7 @@ $(function(){
 </form>
 <br>
 <button type="button" onclick="location.href='list.do'">목록으로</button>
+<script src="JS/write.js" type="text/javascript"></script>
 </body>
 
 

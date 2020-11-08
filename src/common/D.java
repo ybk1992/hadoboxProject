@@ -23,9 +23,25 @@ public class D {
 	public static final String SQL_MEMBERS_SELECT_BY_MEM_USERID =
 			"SELECT mem_userid, mem_password, mem_status FROM MEMBERS WHERE mem_userid= ?";
 	
-	//select 아이디 중복 체크
+	//select 아이디 비번 찾기
+	public static final String SQL_MEMBERS_SELECT_BY_MEM_EMAIL =
+			"SELECT mem_username, mem_email, mem_userid, mem_password FROM MEMBERS WHERE mem_email= ?";
+	
+	//select 아이디 중복 체크 //회원정보 수정
 	public static final String SQL_MEMBERS_SELECT_BY_MEM_USERID_CHK =
 			"SELECT * FROM MEMBERS WHERE mem_userid= ?";
+	
+	//select 메일 중복 체크 //회원정보 수정
+	public static final String SQL_MEMBERS_SELECT_BY_MEM_EMAIL_CHK =
+			"SELECT * FROM MEMBERS WHERE mem_email= ?";
+
+	//회원 정보 수정
+	public static final String SQL_MEMBERS_UPDATE =
+			"UPDATE MEMBERS SET mem_password = ?, mem_phone = ?, mem_email = ?, mem_zipcode = ?, mem_address1 = ?, mem_address2 = ?, mem_image = ? WHERE mem_userid = ?";
+	
+	//회원 정보 수정
+	public static final String SQL_MEMBERS_UPDATE_PASSWORD =
+			"UPDATE MEMBERS SET mem_password = ? WHERE mem_userid = ?";
 	
 
 	
@@ -59,7 +75,7 @@ public class D {
 	public static final String SQL_WRITE_UPDATE =
 			"UPDATE test_write SET wr_subject = ?, wr_content = ? WHERE wr_uid = ?";
 	
-	//insert 책 등록 <-- 글번호, 판매자, 책이름, 책가격, 작성일, 내용, 조회수, 책주소, 카테고리, 판매여부, 이미지경로
+	//insert 책 등록 <-- 글번호, 판매자, 책이름, 책가격, 작성일, 내용, 조회수, 글제목, 카테고리, 판매여부, 이미지경로
 	public static final String SQL_BOOK_INSERT = 
 			"INSERT INTO BOOKLIST (BOOK_NUM, BOOK_SELLID, BOOK_NAME, BOOK_PRICE, BOOK_REGDATE, " + 
 			"BOOK_CONTENT, BOOK_VIEWCNT, BOOK_TITLE, BOOK_CATE, BOOK_STATUS, BOOK_IMAGE)" + 
@@ -90,6 +106,10 @@ public class D {
 			"SELECT C.CATE_NAME, C.CATE_PRE, B.* " + 
 					"FROM CATEGORY C, BOOKLIST B " + 
 					"WHERE C.CATE_NUM = B.BOOK_CATE ORDER BY BOOK_REGDATE DESC";
+	
+	//select 전체 글 내림차순정리
+	public static final String SQL_BOOK_SELECT_DESC = 
+				"SELECT * FROM BOOKLIST ORDER BY BOOK_NUM DESC";
 
 	//update book_viewcnt 선택 글 읽기+조회수 증가
 	public static final String SQL_BOOK_INC_VIEWCNT = 

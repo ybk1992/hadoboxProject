@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+    
 <!DOCTYPE html>
 <html>
 
@@ -16,39 +20,10 @@
 <script>
 // form validation 
 
-function idCheckFunc(){
-        $.ajax({
-            type:"POST",
-            url:"idOk.do",
-            data:{
-                "mem_userid": $('#mem_userid').val()
-            },
-            success:function(data){
-                if($.trim(data) == "YES"){
-                    //alert('사용가능');
-                    $('#idchk').html('<b style="font-size:18px;color:blue">중복되지 않는 아이디입니다.</b>');
-                }else if($.trim(data) == "NOEMPTY"){
-                    //alert('사용불가');
-                    $('#idchk').html('<b style="font-size:18px;color:red">공백을 포함할 수 없습니다.</b>');
-                
-                }
-                else{
-                    //alert('사용불가');
-                    $('#idchk').html('<b style="font-size:18px;color:red">이미 사용 중인 아이디 입니다.</b>');
-                }
-            }
-        });    
-
-}
-
-
 function chkSubmit(){
 	frm = document.forms['frm'];
-	
-	var mem_userid = frm["mem_userid"].value.trim();
 	var mem_password = frm["mem_password"].value.trim();
 	var mem_password1 = frm['mem_password1'].value.trim();
-	var mem_username = frm['mem_username'].value.trim();
 	var mem_phone = frm['mem_phone'].value.trim();
 	var mem_email = frm['mem_email'].value.trim();
 	var mem_zipcode = frm['mem_zipcode'].value.trim();
@@ -58,31 +33,13 @@ function chkSubmit(){
 	
 
 	var expPwText = /^.*(?=^.{4,20}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&*()+=]).*$/;
-	var expNameText = /[가-힣]+$/;
 	var expHpText = /^\d{3}-\d{3,4}-\d{4}$/;
 	var expEmailText = /^[A-Za-z0-9\.\-]+@[A-Za-z0-9\.\-]+\.[A-Za-z0-9\.\-]+$/;
     
-	if(mem_userid == ""){
-		alert("아이디 란은 반드시 입력해야 합니다.");
-		frm["mem_userid"].focus();
-		return false;
-	}
-	 
-    
-	if($("#idchk").text() != "중복되지 않는 아이디입니다."){
-		alert("아이디 중복 확인을 해주세요.");
-		return false;
-	}
-	 
 
-	if(mem_password == ""){
-		alert("비밀번호 란은 반드시 작성해야 합니다") ;
-		frm["mem_password"].focus();
-		return false;
-	}
 	
     if(expPwText.test(mem_password) == false){
-        alert('비밀번호 형식을 확인하세요.');
+        alert('비밀번호를 확인하세요.');
 		frm["mem_password"].focus();
         return false;
     }
@@ -93,28 +50,53 @@ function chkSubmit(){
         return false;
     }
     
-    if(expNameText.test(mem_username) == false){
-        alert('이름 형식을 확인하세요.');
-		frm["mem_username"].focus();
 
-        return false;
-    }
-    
     if(expEmailText.test(mem_email) == false){
-        alert('이메일 형식을 확인하세요.');
+        alert('이메일을 확인하세요.');
 		frm["mem_email"].focus();
         return false;
     }
     
     //폰 입력했다면,
     if(expHpText.test(mem_phone) == false && mem_phone != ""){
-        alert('휴대폰 번호 형식을 확인하세요.');
+        alert('휴대폰 번호 형식을 확인하세요. 010-1234-5678');
 		frm["mem_phone"].focus();
 
         return false;
     }
 	
 	return true;			
+}
+
+function modifyPw(){
+    $('#mem_password').val('');
+    $('#mem_password1').val('');
+
+	frm["mem_password"].focus();
+    $('#pwchk').html('<b style="font-size:13px;color:red">수정 후 하단의 저장 버튼을 눌러주세요</b>');
+ 
+}
+
+function modifyPhone(){
+    $('#mem_phone').val('');
+
+	frm["mem_phone"].focus();
+    $('#phonechk').html('<b style="font-size:13px;color:red">수정 후 하단의 저장 버튼을 눌러주세요</b>');
+ 
+}
+function modifyEmail(){
+    $('#mem_email').val('');
+	frm["mem_email"].focus();
+    $('#emailchk').html('<b style="font-size:13px;color:red">수정 후 하단의 저장 버튼을 눌러주세요</b>');
+ 
+}
+
+function modifyImg(){
+    $('#mem_image').val('');
+
+	frm["mem_image"].focus();
+    $('#imgchk').html('<b style="font-size:13px;color:red">수정 후 하단의 저장 버튼을 눌러주세요</b>');
+ 
 }
 
 </script>
@@ -124,40 +106,48 @@ function chkSubmit(){
   <p>Resize this responsive page to see the effect!</p> 
 </div>
 <jsp:include page="../header.jsp"></jsp:include>
-
-
-<br><br>
-  <h2>마이페이지</h2>
-       
+<img src= "C:\tomcat_h\apache-tomcat-9.0.38\wtpwebapps\hadoboxProject\upload\sq.jpg">
 <form name="frm" action="myPageOk.do" method="post" onsubmit="return chkSubmit()">
 아이디:<br>
-<input type="text" name="mem_userid" id="mem_userid">
-<span id="idchk"></span><br>
-비밀번호:<br>
-<input type="password" name="mem_password"/><br>
-비밀번호 확인:<br>
-<input type="password" name="mem_password1"/>
-<input type="button" class="btn-primary box" onclick="idCheckFunc()" value="중복확인"><br>
-
+<input type="text" name="mem_userid" id="mem_userid" value="${MyInfo[0].mem_userid}" disabled/><br>
 이름:<br>
-<input type="text" name="mem_username"/><br>
+<input type="text" name="mem_username" value="${MyInfo[0].mem_username}" disabled/><br>
+
+비밀번호:<br>
+<input type="password" name="mem_password" id="mem_password" value="${MyInfo[0].mem_password}"/><br>
+비밀번호 확인:<br>
+<input type="password" name="mem_password1" id="mem_password1"value="${MyInfo[0].mem_password}"/>
+<input type="button" class="btn-primary box" onclick="modifyPw()" value="수정"><br>
+<span id="pwchk"></span><br>
+
 핸드폰 번호:<br>
-<input type="text" name="mem_phone"/><br>
+<input type="text" name="mem_phone" id="mem_phone" value="${MyInfo[0].mem_phone}"/>
+<input type="button" class="btn-primary box" onclick="modifyPhone()" value="수정"><br>
+<span id="phonechk"></span><br>
+
 이메일:<br>
-<input type="text" name="mem_email"/><br>
+<input type="text" name="mem_email" id="mem_email" value="${MyInfo[0].mem_email}"/>
+<input type="button" class="btn-primary box" onclick="modifyEmail()" value="수정"><br>
+<span id="emailchk"></span><br>
+
 우편번호:<br>
-<input type="text" name="mem_zipcode" id="sample4_postcode"/>
+<input type="text" name="mem_zipcode" id="mem_zipcode"  value="${MyInfo[0].mem_zipcode}"/>
 <input type="button" class="btn-primary box" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
 
 주소:<br>
-<input type="text" name="mem_address1" id="sample4_roadAddress" /><br>
+<input type="text" name="mem_address1" id="mem_address1"  value="${MyInfo[0].mem_address1}"/><br>
 상세 주소:<br>
-<input type="text" name="mem_address2" id="sample4_detailAddress"/><br>
+<input type="text" name="mem_address2" id="mem_address2"  value="${MyInfo[0].mem_address2}"/><br>
+<span id="adchk"></span><br>
+
 이미지:<br>
-<input type="text" name="mem_image"/><br>
+<input type="text" name="mem_image" id="mem_image"  value="${MyInfo[0].mem_image}"/>
+<input type="button" class="btn-primary box" onclick="modifyImg()" value="수정"><br>
+<span id="imgchk"></span><br>
+
 
 <br><br>
-<input type="submit" value="등록"/>
+<input type="submit" value="저장"/>
 </form>
 
    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -234,12 +224,15 @@ function chkSubmit(){
 
                             // 우편번호와 주소 정보를 해당 필드에 넣는다.
 
-                            document.getElementById('sample4_postcode').value = data.zonecode; //5자리 새우편번호 사용
+                            document.getElementById('mem_zipcode').value = data.zonecode; //5자리 새우편번호 사용
 
-                            document.getElementById('sample4_roadAddress').value = fullRoadAddr;
+                            document.getElementById('mem_address1').value = fullRoadAddr;
+                            $('#mem_address2').val('');
+
+                            document.getElementById("mem_address2").focus();
                             
-                            document.getElementById("sample4_detailAddress").focus();
 
+                            $('#adchk').html('<b style="font-size:13px;color:red">수정 후 하단의 저장 버튼을 눌러주세요</b>');
 
                         }
 
@@ -262,8 +255,6 @@ function chkSubmit(){
         }
 
     </script>
-
-
  
 
 <jsp:include page="../footer.jsp"></jsp:include>

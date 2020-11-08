@@ -140,6 +140,46 @@ public class BookDAO {
 		
 	} // end createArray()
 	
+	// createArray <-- ResultSet --> DTO 배열로 리턴
+		public BookDTO [] createArrayDesc(ResultSet rs) throws SQLException {
+			BookDTO [] arr = null;  // DTO 배열로 리턴
+			ArrayList<BookDTO> list = new ArrayList<BookDTO>();
+			
+			while(rs.next()) {
+				int num = rs.getInt("book_num");
+				String sellid = rs.getString("book_sellid");
+				String name = rs.getString("book_name");
+				int price = rs.getInt("book_price");
+				String content = rs.getString("book_content");
+				int viewcnt = rs.getInt("book_viewcnt");
+				String title = rs.getString("book_title");
+				int cate = rs.getInt("book_cate");
+				String status = rs.getString("book_status");
+				String image = rs.getString("book_image");
+				Date d = rs.getDate("book_regdate");
+				Time t = rs.getTime("book_regdate");
+				String regdate = "";
+				if(content == null) content = "";
+				if(d != null) {
+					regdate = new SimpleDateFormat("yyyy-MM-dd").format(d) + " "
+							+ new SimpleDateFormat("hh:mm:ss").format(t);
+				}
+				
+			
+				
+				BookDTO dto = new BookDTO(num, sellid, name, price, regdate, content, 
+						viewcnt, title, cate, "", "", image, status);
+				dto.setBook_regdate(regdate);
+				list.add(dto);
+			} // end while
+			
+			arr = new BookDTO[list.size()];  // 리스트에 담긴 DTO 의 개수만큼의 배열 생성 
+			list.toArray(arr);  // 리스트 -> 배열
+				
+			return arr;
+			
+		} // end createArray()
+	
 	//selectAllCategory
 	public BookDTO [] selectAllCategory() throws SQLException {
 		BookDTO [] arr = null;
@@ -184,6 +224,21 @@ public class BookDAO {
 		 
 		return arr;
 	} // end select()
+	
+	// selectAllBookDesc <-- 전체 내림차순 읽기
+		public BookDTO [] selectAllBookDesc() throws SQLException {
+			BookDTO [] arr = null;
+			
+			try {
+				pstmt = conn.prepareStatement(D.SQL_BOOK_SELECT_DESC);
+				rs = pstmt.executeQuery();
+				arr = createArrayDesc(rs);
+			} finally {
+				close();
+			}
+			 
+			return arr;
+		} // end select()
 	
 	
 	//SQL_BOOK_CATE_PRE_SELECT

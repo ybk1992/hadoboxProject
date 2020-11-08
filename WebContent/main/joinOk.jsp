@@ -13,7 +13,7 @@
 <% } else { %>
 	<script>
 		alert("회원가입 성공! 환영합니다");
-		location.href = "main.jsp";
+		location.href = "login.do";
 	</script>
 <% } %>
 

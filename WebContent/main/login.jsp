@@ -60,6 +60,9 @@ function chkSubmit(){
 
 <input type="submit" value="등록"/>
 </form>
-  
+<button type="button" onclick="location.href='findPassword.do';">아이디 비밀번호 찾기</button>
+
+<jsp:include page="../footer.jsp"></jsp:include>
+
 </body>
 </html>

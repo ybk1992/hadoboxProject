@@ -3,21 +3,20 @@
     
     <%  // Controller 로부터 결과 데이터 받음.
 	int cnt = (Integer)request.getAttribute("result");
+
+    String str = "";
+
+
 %>
 
-<% if(cnt == 0){ %>
-	<script>
-		alert("수정실패 !!!");
-		history.back();
-	</script>
-<% } else { %>
-	<script>
-		alert("수정 성공!");
-		history.back();
-	</script>
-<% } %>
+<% if(cnt == 1){
+	str="NO";
+	 out.print(str);
+		
+} else { 
+	str="YES";
+	 out.print(str);
+	
+} %>
 
 
-
-
-    

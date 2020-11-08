@@ -1,6 +1,5 @@
 package com.command.member;
 
-import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,7 +28,7 @@ public class LoginCommand implements Command {
 			try {
 				cnt = dao.select(mem_userid, mem_password);
 
-				//세션에 아이디 저장하기
+				//세션에 회원 정보 저장하기
 				session.setAttribute("mem_userid", mem_userid);
 				session.setAttribute("memLogin", true);
 				

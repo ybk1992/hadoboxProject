@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,14 +14,15 @@
 	$(function(){
 		$("#findBtn").click(function(){
 			$.ajax({
-				url : "findPwOk.do",
+				url : "sendMail.do",
 				type : "POST",
 				data : {
-					id : $("#id").val(),
-					email : $("#email").val()
+					mem_userid : $("#mem_userid").val(),
+					mem_email : $("#mem_email").val(),
 				},
 				success : function(result) {
-					alert(result);
+					alert("메일로 임시 비밀번호를 발송하였습니다.");
+					location.href="login.do";
 				},
 			})
 		});
@@ -34,16 +38,15 @@
 			</div>
 			<div>
 				<p>
-					<label>ID</label>
-					<input class="w3-input" type="text" id="id" name="id" required>
+					<label>${MyIdPw[0].mem_username}님 아이디 </label>
+					<input class="w3-input" type="text" id="mem_userid" name="mem_userid" value="${MyIdPw[0].mem_userid}" disabled>
 				</p>
 				<p>
-					<label>Email</label>
-					<input class="w3-input" type="text" id="email" name="email" required>
+					<label>비밀번호를 잊으셨나요? 버튼클릭 시 이메일로 임시 비밀번호를 보내드립니다.</label>
 				</p>
 				<p class="w3-center">
-					<button type="button" id=findBtn class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round">find</button>
-					<button type="button" onclick="history.go(-1);" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-margin-bottom w3-round">Cancel</button>
+				    <input class="w3-input" type="text" id="mem_email" name="mem_email" value="${MyIdPw[0].mem_email}" disabled>
+					<button type="button" id=findBtn class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round">위의 메일로 임시비밀번호 받기</button>
 				</p>
 			</div>
 		</div>
