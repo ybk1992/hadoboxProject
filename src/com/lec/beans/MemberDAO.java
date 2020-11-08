@@ -262,7 +262,22 @@ public int updatePassword(String mem_password, String mem_userid) throws SQLExce
 	} // end try		
 	
 	return cnt;
-} // end updateMyinfo()
+} // end updatePassword()
+
+public int updateStatus(String mem_userid) throws SQLException{
+	int cnt = 0;
+	
+	try {
+		pstmt = conn.prepareStatement(D.SQL_MEMBERS_UPDATE_STATUS);
+		pstmt.setString(1, mem_userid);
+		
+		cnt = pstmt.executeUpdate();
+	} finally {
+		close();
+	} // end try		
+	
+	return cnt;
+} // end updateStatus
 
 }
 

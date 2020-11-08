@@ -140,7 +140,7 @@ function chkSubmit(){
 <body>
 <div class="text-center" style="margin-bottom:0">
   <h1>해도북스</h1>
-  <p>Resize this responsive page to see the effect!</p> 
+  <p>중고책을 찾아보세요</p> 
 </div>
 <jsp:include page="../header.jsp"></jsp:include>
 

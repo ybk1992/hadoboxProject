@@ -35,7 +35,7 @@ function chkSubmit(){
 <%--공통--------------------------------------------------------------------------%>
 <div class="text-center" style="margin-bottom:0">
   <h1>해도북스</h1>
-  <p>Resize this responsive page to see the effect!</p> 
+  <p>중고책 거래 사이트</p> 
 </div>
 <jsp:include page="../header.jsp"></jsp:include>
 
@@ -44,8 +44,8 @@ function chkSubmit(){
 
     <!-- Jumbotron Header -->
     <header class="jumbotron my-4">
-      <h1 class="display-3">A Warm Welcome!</h1>
-      <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
+      <h1 class="display-3">Welcome!</h1>
+      <p class="lead">중고책을 찾아보세요</p>
        <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
           <form name="frm" action="book_List.do" method="post" onsubmit="return chkSubmit()">
             <div class="form-row">

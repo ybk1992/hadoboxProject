@@ -15,11 +15,54 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </head>
 
 <script>
 // form validation 
+function delete_check(){
+		var answer;
+		answer = confirm("탈퇴 하시겠습니까?");
+		//확인을 선택한 경우 자바스크립트를 호출할 때 같이 넘어온 url이라는 변수에 들어있는 주소로 페이지 이동
+		if(answer == true){
+			
+	        $.ajax({
+	            type:"POST",
+	            url:"delete.do",
+	            data:{
+	                "mem_userid": $('#mem_userid').val()
+	            },
+	            success:function(data){
+	            	
+	            	
 
+	            }
+	        });    
+}
+}
+
+function mailCheckFunc(){
+        $.ajax({
+            type:"POST",
+            url:"mailOk.do",
+            data:{
+                "mem_email": $('#mem_email').val()
+            },
+            success:function(data){
+                if($.trim(data) == "YES"){
+                    //alert('사용가능');
+                    $('#emailchk').html('<b style="font-size:13px;color:blue">중복되지 않는 메일입니다.</b>');
+                }else{
+                    //alert('사용불가');
+                    $('#emailchk').html('<b style="font-size:13px;color:red">이미 사용 중인 메일입니다.</b>');
+                }
+            }
+        });    
+
+}
 function chkSubmit(){
 	frm = document.forms['frm'];
 	var mem_password = frm["mem_password"].value.trim();
@@ -103,54 +146,70 @@ function modifyImg(){
 <body>
 <div class="text-center" style="margin-bottom:0">
   <h1>해도북스</h1>
-  <p>Resize this responsive page to see the effect!</p> 
+  <p>중고책을 찾아보세요</p> 
 </div>
 <jsp:include page="../header.jsp"></jsp:include>
-<img src= "C:\tomcat_h\apache-tomcat-9.0.38\wtpwebapps\hadoboxProject\upload\sq.jpg">
-<form name="frm" action="myPageOk.do" method="post" onsubmit="return chkSubmit()">
-아이디:<br>
-<input type="text" name="mem_userid" id="mem_userid" value="${MyInfo[0].mem_userid}" disabled/><br>
-이름:<br>
-<input type="text" name="mem_username" value="${MyInfo[0].mem_username}" disabled/><br>
 
-비밀번호:<br>
-<input type="password" name="mem_password" id="mem_password" value="${MyInfo[0].mem_password}"/><br>
-비밀번호 확인:<br>
-<input type="password" name="mem_password1" id="mem_password1"value="${MyInfo[0].mem_password}"/>
-<input type="button" class="btn-primary box" onclick="modifyPw()" value="수정"><br>
-<span id="pwchk"></span><br>
+<div class="container">
+<br>
+  <h2>마이페이지</h2>
+  <b style="font-size:14px;color:green">내 정보를 수정하세요___________</b>
+  <form name="frm" action="myPageOk.do" class="was-validated" method="post" onsubmit="return chkSubmit()">
+    <div class="form-group">
+      <label for="mem_userid">아이디 :</label>
+      <input type="text" class="form-control" id="mem_userid" name="mem_userid" value="${MyInfo[0].mem_userid}" disabled>
+      <label for="mem_username">이름 :</label>
+      <input type="text" class="form-control" id="mem_username" name="mem_username" value="${MyInfo[0].mem_username}" disabled>
+    </div>
+    <div class="form-group">
+      <label for="mem_password">비밀번호 :</label>
+      <input type="password" class="form-control" id="mem_password" name="mem_password" value="${MyInfo[0].mem_password}">
+      <label for="mem_password">비밀번호 확인 :</label>
+      <input type="password" class="form-control" id="mem_password1" name="mem_password1" value="${MyInfo[0].mem_password}">
+      <input type="button" class="btn btn-success" onclick="modifyPw()" value="수정"><br>
+      <span id="pwchk"></span><br>
+    </div>
+    <div class="form-group">
+      <label for="mem_phone">핸드폰 번호 :</label>
+      <input type="text" class="form-control" id="mem_phone" name="mem_phone" value="${MyInfo[0].mem_phone}">
+      <input type="button" class="btn btn-success" onclick="modifyPhone()" value="수정"><br>
+      <span id="phonechk"></span><br>
+    </div>  
+      
+    <div class="form-group">
+      <label for="mem_email">이메일 :</label>
+      <input type="text" class="form-control" id="mem_email" name="mem_email" value="${MyInfo[0].mem_email}">
+      
+      <input type="button" class="btn btn-success" onclick="modifyEmail()" value="수정">
+      <input type="button" class="btn btn-success" onclick="mailCheckFunc()" value="중복 검사"><br>
+      <span id="emailchk"></span><br>
+    </div>    
+    <div class="form-group">
+      <label for= "mem_zipcode">우편 번호 :</label>
+      <input type="text" class="form-control" id="mem_zipcode" name="mem_zipcode" value="${MyInfo[0].mem_zipcode}">
+      <input type="button" class="btn btn-success" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+      <label for="mem_phone">주소 :</label>      
+      <input type="text" class="form-control" id="mem_address1" name="mem_address1" value="${MyInfo[0].mem_address1}">
+      <label for="mem_phone">상제 주소 :</label>      
+      <input type="text" class="form-control" id="mem_address2" name="mem_address2" value="${MyInfo[0].mem_address2}">
+      <span id="adchk"></span><br>
+    </div>    
+    <div class="form-group">
+      <label for="mem_image">이미지 :</label>
+      <input type="file" class="form-control" id="mem_image" name="mem_image" value="${MyInfo[0].mem_image}"><br>
+      <span id="imgchk"></span>
+    </div> 
+    <button type="submit" class="btn btn-primary">저장</button>
+  </form>
+  <br>
+  <b style="font-size:14px;color:red">탈퇴를 원하시면 탈퇴하기 버튼을 눌러주세요.___________</b>
+  <input type="button" class="btn btn-danger" value="탈퇴하기" onclick="delete_check()"><br>
 
-핸드폰 번호:<br>
-<input type="text" name="mem_phone" id="mem_phone" value="${MyInfo[0].mem_phone}"/>
-<input type="button" class="btn-primary box" onclick="modifyPhone()" value="수정"><br>
-<span id="phonechk"></span><br>
+</div>
+<br>
+<br>
 
-이메일:<br>
-<input type="text" name="mem_email" id="mem_email" value="${MyInfo[0].mem_email}"/>
-<input type="button" class="btn-primary box" onclick="modifyEmail()" value="수정"><br>
-<span id="emailchk"></span><br>
-
-우편번호:<br>
-<input type="text" name="mem_zipcode" id="mem_zipcode"  value="${MyInfo[0].mem_zipcode}"/>
-<input type="button" class="btn-primary box" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-
-주소:<br>
-<input type="text" name="mem_address1" id="mem_address1"  value="${MyInfo[0].mem_address1}"/><br>
-상세 주소:<br>
-<input type="text" name="mem_address2" id="mem_address2"  value="${MyInfo[0].mem_address2}"/><br>
-<span id="adchk"></span><br>
-
-이미지:<br>
-<input type="text" name="mem_image" id="mem_image"  value="${MyInfo[0].mem_image}"/>
-<input type="button" class="btn-primary box" onclick="modifyImg()" value="수정"><br>
-<span id="imgchk"></span><br>
-
-
-<br><br>
-<input type="submit" value="저장"/>
-</form>
-
-   <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
     <script>
 

@@ -22,6 +22,7 @@ import com.command.member.MailCheckCommand;
 import com.command.member.MailCommand;
 import com.command.member.UpdateInfoCommand;
 import com.command.member.UpdateMyInfoCommand;
+import com.command.member.UpdateStatus;
 import com.command.write.Command;
 import com.command.write.DeleteCommand;
 import com.command.write.FileUploadCommand;
@@ -140,6 +141,12 @@ public class DoController extends HttpServlet {
 		    	  command = new UpdateInfoCommand();   
 		    	  command.execute(request, response);   
 		    	  viewPage = "main/myPageOk.jsp";   
+		    	  break;
+		    	  
+		      case "/delete.do":   
+		    	  command = new UpdateStatus();   
+		    	  command.execute(request, response);   
+		    	  viewPage = "main/delete.jsp";   
 		    	  break;
 
 			

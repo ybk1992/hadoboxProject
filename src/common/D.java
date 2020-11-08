@@ -43,7 +43,10 @@ public class D {
 	public static final String SQL_MEMBERS_UPDATE_PASSWORD =
 			"UPDATE MEMBERS SET mem_password = ? WHERE mem_userid = ?";
 	
-
+	//회원 정보 수정 //탈퇴하기  mem_status = 0으로
+	public static final String SQL_MEMBERS_UPDATE_STATUS =
+			"UPDATE MEMBERS SET mem_status = 0 WHERE mem_userid = ?";
+	
 	
 	// 게시글 관련 쿼리문
 	public static final String SQL_COUNT_ALL = "SELECT COUNT(*) FROM test_write"; 
