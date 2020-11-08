@@ -32,7 +32,7 @@
 	<option value="0">하위 카테고리</option>
 </select><br>
 글 제목:
-<input type="text" name="subject" placeholder="글 제목을 입력해주세요."/><br>
+<input type="text" name="title" placeholder="글 제목을 입력해주세요."/><br>
 책 제목:
 <input type="text" name="search" placeholder="책 제목을 입력하고 검색해주세요."/><button type="button" onclick="bookSearch()">검색</button>
 <select name="book" id="book">
@@ -40,7 +40,7 @@
 </select>
 <button type="button" id="imgbut" onclick="imageShow()">책 이미지 보기</button><br>
 판매가:
-<input type="text" id="price" name="price2" placeholder="판매가격을 입력해주세요." style = "text-align:right"/>원<br>
+<input type="text" id="price" name="price" placeholder="판매가격을 입력해주세요." style = "text-align:right"/>원<br>
 내용:<br>
 <textarea name="content" id="editor1"></textarea>
 <script>

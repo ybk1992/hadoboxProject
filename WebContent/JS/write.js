@@ -1,12 +1,12 @@
-var image, title, price;
+var image, name;
 var chk = false, cate = "0", gory = "0";
 var id;
 
 // 글 제목, 책 정보, 책 판매 가격, 카테고리 필수
 function chkSubmit(){
 	frm = document.forms['frm'];
-	var subject = frm["subject"].value.trim();
-	var priceChk = frm["price2"].value.trim();
+	var title = frm["title"].value.trim();
+	var price = frm["price"].value.trim();
 
 	if(chk == false){
 		alert("책 정보는 반드시 입력해야 합니다.");
@@ -14,15 +14,15 @@ function chkSubmit(){
 		return false;
 	}
 	
-	if(subject == ""){
+	if(title == ""){
 		alert("글 제목은 반드시 작성해야 합니다");
-		frm["subject"].focus();
+		frm["title"].focus();
 		return false;
 	}
 	
-	if(priceChk == ""){
+	if(price == ""){
 		alert("판매가는 반드시 작성해야 합니다");
-		frm["price2"].focus();
+		frm["price"].focus();
 		return false;
 	}
 	
@@ -39,8 +39,7 @@ function chkSubmit(){
 	}
 
 	submitPost({'sellid': "apple123",
-		'price': price,
-		'title': title,
+		'name' : name,
 		'image': image});
 	
 	return true;	
@@ -84,11 +83,6 @@ function isEmpty(value){
 	}else {
 		return false;
 	}
-}
-
-// 돈 3자리마다 ,표시
-function currencyFormatter(amount){
-	return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g,',');
 }
 
 function onlyNumberFunc(t){
@@ -227,20 +221,10 @@ $(function(){
 						"도서 판매가 : <strong>"+msg.documents[0].sale_price+"</strong><br>"+
 						"도서 판매 상태 정보 : <strong>"+msg.documents[0].status+"</strong><br>");
 				image = msg.documents[0].thumbnail;
-				title = msg.documents[0].title;
+				name = msg.documents[0].title;
 				$("#imgbut").show();
 			});
 	})
-	
-	$('#price').on('blur', function(){
-		var val = $('#price').val();
-		price = val;
-		console.log(price);
-		if(!isEmpty(val)){
-			val = currencyFormatter(val);
-			$('#price').val(val);
-		}
-	});
 	
 	$(document).ready(function(){
 	      $("#imgbut").hide();

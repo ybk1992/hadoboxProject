@@ -5,7 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
     
 <c:choose>
-	<c:when test="${empty list || fn:length(list) == 0 }">
+	<c:when test="${empty book_List || fn:length(book_List) == 0 }">
 		<script>
 			alert("해당 정보가 삭제되거나 없습니다");
 			history.back();
@@ -19,7 +19,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>수정-${list[0].subject }</title>
+<title>수정-${book_List[0].book_title }</title>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="ckeditor/ckeditor.js"></script>
 </head>
@@ -36,27 +36,31 @@ function chkSubmit(){
     }
     return true;
 } // end chkSubmit()
+
+function imageShow(){
+	var win = window.open("", "PopupWin", "width=260,height=320");
+	win.document.write("<img style='width:250px;height:300px;' src='${book_List[0].book_image}'/>");
+}
 </script>
 
 <body>
 <h2>수정</h2>
 <form name="frm" action="updateOk.do" method="post" onsubmit="return chkSubmit()">
-<input type="hidden" name="uid" value="${list[0].book_num }"/>
+<input type="hidden" name="uid" value="${book_List[0].book_num }"/>
 <select name="cate" id="cate">
-	<option>${list[0].book_cate_name }</option>
+	<option>${book_List[0].book_cate_name }</option>
 </select>
 <select name="gory" id="gory">
-	<option>${list[0].book_cate_pre }</option>
+	<option>${book_List[0].book_cate_pre }</option>
 </select><br>
 글 제목:
-<input type="text" name="subject" value="${list[0].book_title }"/><br>
-책 제목:
-<input type="text" name="search" value="${list[0].book_name }"/>
+<input type="text" name="subject" value="${book_List[0].book_title }"/><br>
+책 제목: ${book_List[0].book_name }
 <button type="button" id="imgbut" onclick="imageShow()">책 이미지 보기</button><br>
 판매가:
-<input type="text" id="price" name="price2" value="${list[0].book_price }" style = "text-align:right"/>원<br>
+<input type="text" id="price" name="price2" value="${book_List[0].book_price }" style = "text-align:right"/>원<br>
 내용:<br>
-<textarea name="content" id="editor1">${list[0].content }</textarea>
+<textarea name="content" id="editor1">${book_List[0].book_content }</textarea>
 <script>
 	CKEDITOR.replace('editor1', {
 		allowedContent: true,   // HTML 태그 자동삭제 방지 설정

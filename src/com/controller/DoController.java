@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.command.book.BookListCommand;
 import com.command.book.BookListDescCommand;
+import com.command.book.BookSelectCommand;
 import com.command.book.BookViewCommand;
 import com.command.book.BookWriteCommand;
 import com.command.member.FindIdPwCommand;
@@ -164,7 +165,7 @@ public class DoController extends HttpServlet {
 			viewPage = "book/view.jsp";
 			break;
 		case "/update.do":
-			command = new SelectCommand();
+			command = new BookSelectCommand();
 			command.execute(request, response);
 			viewPage = "book/update.jsp";
 			break;

@@ -144,7 +144,7 @@
         </div>
     </div>
     <div class="row doComment">
-        <div class="col-md-9"></div>
+        <div class="col-md-9"><button onclick="location.href='update.do?book_num=${book_List[0].book_num}'">수정하기</button></div>
         <div class="col-md-2"></div>
     </div>
     <div class="row viewComment">
@@ -152,6 +152,7 @@
         <div class="col-md-9"></div>
     </div>
 </div>
+
   
   <!-- Footer -->
   <footer class="py-5 bg-dark">
