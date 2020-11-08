@@ -52,8 +52,10 @@
 	<c:choose>	
 		<c:when test="${empty book_List || fn:length(book_List) == 0 }"> 
 			</c:when>
-	
+			
 			<c:otherwise> 
+				<script>
+				</script>
 				<c:forEach var="dto" items="${book_List }" end="3">
 			      <div class="col-lg-3 col-md-6 mb-4">
 			        <div class="card h-100">

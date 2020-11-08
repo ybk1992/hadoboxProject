@@ -94,6 +94,10 @@ public class D {
 			"SELECT C.CATE_NAME, C.CATE_PRE, B.* " + 
 					"FROM CATEGORY C, BOOKLIST B " + 
 					"WHERE C.CATE_NUM = B.BOOK_CATE";
+	
+	//select 전체 글 내림차순정리
+	public static final String SQL_BOOK_SELECT_DESC = 
+				"SELECT * FROM BOOKLIST ORDER BY BOOK_NUM DESC";
 
 	//update book_viewcnt 선택 글 읽기+조회수 증가
 	public static final String SQL_BOOK_INC_VIEWCNT = 

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.command.book.BookListCommand;
+import com.command.book.BookListDescCommand;
 import com.command.book.BookViewCommand;
 import com.command.book.BookWriteCommand;
 import com.command.member.FindIdPwCommand;
@@ -70,7 +71,7 @@ public class DoController extends HttpServlet {
 		// 결과를 보낼 view 를 결정
 		switch(com) {		      
 		      case "/main.do":
-		    	 command = new BookListCommand();
+		    	 command = new BookListDescCommand();
 				 command.execute(request, response);
 		         viewPage = "main/main.jsp";
 		         break;	
