@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.lec.beans.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
     
@@ -19,7 +20,8 @@
 <head>
 <meta charset="UTF-8">
 <title>수정-${list[0].subject }</title>
-<script src="ckeditor/ckeditor.js"/>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="ckeditor/ckeditor.js"></script>
 </head>
 <script>
 function chkSubmit(){
@@ -39,10 +41,20 @@ function chkSubmit(){
 <body>
 <h2>수정</h2>
 <form name="frm" action="updateOk.do" method="post" onsubmit="return chkSubmit()">
-<input type="hidden" name="uid" value="${list[0].uid }"/>
-작성자: ${list[0].name }<br> <%-- 작성자 이름은 변경 불가 --%>
-제목:
-<input type="text" name="subject" value="${list[0].subject }"/><br>
+<input type="hidden" name="uid" value="${list[0].book_num }"/>
+<select name="cate" id="cate">
+	<option>${list[0].book_cate_name }</option>
+</select>
+<select name="gory" id="gory">
+	<option>${list[0].book_cate_pre }</option>
+</select><br>
+글 제목:
+<input type="text" name="subject" value="${list[0].book_title }"/><br>
+책 제목:
+<input type="text" name="search" value="${list[0].book_name }"/>
+<button type="button" id="imgbut" onclick="imageShow()">책 이미지 보기</button><br>
+판매가:
+<input type="text" id="price" name="price2" value="${list[0].book_price }" style = "text-align:right"/>원<br>
 내용:<br>
 <textarea name="content" id="editor1">${list[0].content }</textarea>
 <script>
