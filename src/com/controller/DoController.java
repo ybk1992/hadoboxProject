@@ -70,6 +70,8 @@ public class DoController extends HttpServlet {
 		// 결과를 보낼 view 를 결정
 		switch(com) {		      
 		      case "/main.do":
+		    	 command = new BookListCommand();
+				 command.execute(request, response);
 		         viewPage = "main/main.jsp";
 		         break;	
 		         
