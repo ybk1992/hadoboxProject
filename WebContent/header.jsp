@@ -11,7 +11,7 @@
                 <a class="nav-link" href="${contextPath}/main.do" >메인</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="${contextPath}/book_List.do">중고책장터</a>
+                <a class="nav-link" href="${contextPath}/book_List.do?list=all">중고책장터</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">자유게시판</a>

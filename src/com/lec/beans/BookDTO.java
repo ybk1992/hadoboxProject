@@ -17,13 +17,17 @@ public class BookDTO {
 	private String book_image;	// 이미지경로
 	private String book_status;	// 판매여부
 	
-	
 	public BookDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	
+	public BookDTO(int book_cate, String book_cate_name, String book_cate_pre) {
+		super();
+		this.book_cate = book_cate;
+		this.book_cate_name = book_cate_name;
+		this.book_cate_pre = book_cate_pre;
+	}
 	
 	public BookDTO(int book_num, String book_sellid, String book_name, int book_price, String book_regdate,
 			String book_content, int book_viewcnt, String book_title, int book_cate, String book_cate_name, String book_cate_pre, String book_image, String book_status) {
