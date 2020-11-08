@@ -301,19 +301,16 @@ public class BookDAO {
 	
 	
 	// updateBook 등록 글 수정 <-- 책이름, 책가격, 책내용, 책이미지, 책카테고리, 판매여부
-	public int updateBook(int num, String name, String price, String content, String image, int cate, String status) throws SQLException{
+	public int updateBook(String price, String content, String title, int cate, String status) throws SQLException{
 		int cnt = 0;
 		
 		try {
 			pstmt = conn.prepareStatement(D.SQL_BOOK_UPDATE);
-			pstmt.setString(1, name);
-			pstmt.setString(2, price);
-			pstmt.setString(3, content);
-			pstmt.setString(4, image);
-			pstmt.setInt(5, cate);
-			pstmt.setString(6, name);
-			pstmt.setString(7, status);
-			pstmt.setInt(8, num);
+			pstmt.setString(1, price);
+			pstmt.setString(2, content);
+			pstmt.setString(3, title);
+			pstmt.setInt(4, cate);
+			pstmt.setString(5, status);
 			cnt = pstmt.executeUpdate();
 		} finally {
 			close();

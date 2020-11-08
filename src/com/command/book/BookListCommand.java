@@ -34,10 +34,7 @@ public class BookListCommand implements Command  {
 				request.setAttribute("book_cate_pre", cate_pre);
 			}
 			if(search != null) {
-				System.out.println("뭔댐 ㄴㅇㅁㄴㅇ");
-				System.out.println("검색어 : [ "+search+" ]///////////////////");
 				searchBook = dao4.searchBook(search);
-				System.out.println("검색어 : [ "+search+" ]///"+searchBook[0].getBook_num());
 				request.setAttribute("searchWord", searchBook);
 			}
 			

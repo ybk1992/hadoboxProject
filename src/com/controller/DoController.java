@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.command.book.BookListCommand;
 import com.command.book.BookListDescCommand;
 import com.command.book.BookSelectCommand;
+import com.command.book.BookUpdateCommand;
 import com.command.book.BookViewCommand;
 import com.command.book.BookWriteCommand;
 import com.command.member.FindIdPwCommand;
@@ -25,8 +26,6 @@ import com.command.write.Command;
 import com.command.write.DeleteCommand;
 import com.command.write.FileUploadCommand;
 import com.command.write.ListCommand;
-import com.command.write.SelectCommand;
-import com.command.write.UpdateCommand;
 import com.command.write.ViewCommand;
 import com.command.write.WriteCommand;
 
@@ -170,7 +169,7 @@ public class DoController extends HttpServlet {
 			viewPage = "book/update.jsp";
 			break;
 		case "/updateOk.do":
-			command = new UpdateCommand();
+			command = new BookUpdateCommand();
 			command.execute(request, response);
 			viewPage = "book/updateOk.jsp";
 			break;

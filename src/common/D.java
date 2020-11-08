@@ -120,10 +120,10 @@ public class D {
 					"FROM CATEGORY C, BOOKLIST B " + 
 					"WHERE C.CATE_NUM = B.BOOK_CATE AND BOOK_NUM=?";
 	
-	//update 글 수정 / 책이름, 책가격, 작성일, 내용, 책주소, 카테고리, 판매여부, 이미지경로
+	//update 글 수정 / 책가격, 내용, 글 제목, 카테고리, 판매여부
 	public static final String SQL_BOOK_UPDATE = 
-			"UPDATE BOOKLIST SET BOOK_NAME = ?, BOOK_PRICE = ?, BOOK_REGDATE = ?, BOOK_CONTENT = ?, " + 
-			"BOOK_TITLE = ?, BOOK_CATE = ?, BOOK_STATUS = ?, BOOK_IMAGE = ?";
+			"UPDATE BOOKLIST SET BOOK_PRICE = ?, BOOK_CONTENT = ?, " + 
+			"BOOK_TITLE = ?, BOOK_CATE = ?, BOOK_STATUS = ?";
 	//delete 글 삭제
 	public static final String SQL_BOOK_DELETE = 
 			"DELETE FROM BOOKLIST WHERE BOOK_NUM = ?";
