@@ -75,7 +75,7 @@ public class D {
 	public static final String SQL_WRITE_UPDATE =
 			"UPDATE test_write SET wr_subject = ?, wr_content = ? WHERE wr_uid = ?";
 	
-	//insert 책 등록 <-- 글번호, 판매자, 책이름, 책가격, 작성일, 내용, 조회수, 책주소, 카테고리, 판매여부, 이미지경로
+	//insert 책 등록 <-- 글번호, 판매자, 책이름, 책가격, 작성일, 내용, 조회수, 글제목, 카테고리, 판매여부, 이미지경로
 	public static final String SQL_BOOK_INSERT = 
 			"INSERT INTO BOOKLIST (BOOK_NUM, BOOK_SELLID, BOOK_NAME, BOOK_PRICE, BOOK_REGDATE, " + 
 			"BOOK_CONTENT, BOOK_VIEWCNT, BOOK_TITLE, BOOK_CATE, BOOK_STATUS, BOOK_IMAGE)" + 

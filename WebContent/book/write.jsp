@@ -11,40 +11,17 @@
 </head>
 
 <script>
-<<<<<<< HEAD
-// content 용량 문제
-var image;
-=======
-var image, id;
->>>>>>> branch 'master' of https://github.com/ybk1992/hadoboxProject.git
+var image, title, price;
 var chk = false, cate = "0", gory = "0";
-<<<<<<< HEAD
-var id = (String)session.getAttribute("id");
-=======
+var id;
 
-//var id = (String)session.getAttribute("id");
->>>>>>> branch 'master' of https://github.com/ybk1992/hadoboxProject.git
-//form validation 
-<<<<<<< HEAD
 // 글 제목, 책 정보, 책 판매 가격, 카테고리 필수
-=======
-// 글 제목, 책 정보, 책 판매 가격, 카테고리 필수
->>>>>>> branch 'master' of https://github.com/ybk1992/hadoboxProject.git
 function chkSubmit(){
 	frm = document.forms['frm'];
-<<<<<<< HEAD
-	
-=======
-	
->>>>>>> branch 'master' of https://github.com/ybk1992/hadoboxProject.git
-	var name = frm["subject"].value.trim();
-	var price = frm["price"].value.trim();
+	var subject = frm["subject"].value.trim();
+	var priceChk = frm["price2"].value.trim();
 	var content = CKEDITOR.instances.editor1.getData();
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> branch 'master' of https://github.com/ybk1992/hadoboxProject.git
 	if(chk == false){
 		alert("책 정보는 반드시 입력해야 합니다.");
 		frm["search"].focus();
@@ -53,17 +30,13 @@ function chkSubmit(){
 	
 	if(subject == ""){
 		alert("글 제목은 반드시 작성해야 합니다");
-<<<<<<< HEAD
-		frm["sunject"].focus();
-=======
 		frm["subject"].focus();
->>>>>>> branch 'master' of https://github.com/ybk1992/hadoboxProject.git
 		return false;
 	}
 	
-	if(price == ""){
+	if(priceChk == ""){
 		alert("판매가는 반드시 작성해야 합니다");
-		frm["price"].focus();
+		frm["price2"].focus();
 		return false;
 	}
 	
@@ -80,24 +53,15 @@ function chkSubmit(){
 	}
 
 	submitPost({'sellid': id,
-		'name': name,
 		'price': price,
 		'content': content,
-<<<<<<< HEAD
-		'cate': gory,
+		'title': title,
 		'image': image});
-=======
-		'image': image});
->>>>>>> branch 'master' of https://github.com/ybk1992/hadoboxProject.git
 	
 	return true;	
 		
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'master' of https://github.com/ybk1992/hadoboxProject.git
 //submit 할때 parameter 값 능동적 주입
 function submitPost(params){
 	var form = document.forms['frm'];
@@ -278,27 +242,26 @@ $(function(){
 						"도서 판매가 : <strong>"+msg.documents[0].sale_price+"</strong><br>"+
 						"도서 판매 상태 정보 : <strong>"+msg.documents[0].status+"</strong><br>");
 				image = msg.documents[0].thumbnail;
+				title = msg.documents[0].title;
 				$("#imgbut").show();
 			});
 	})
 	
 	$('#price').on('blur', function(){
 		var val = $('#price').val();
+		price = val;
+		console.log(price);
 		if(!isEmpty(val)){
 			val = currencyFormatter(val);
 			$('#price').val(val);
 		}
 	});
-<<<<<<< HEAD
-=======
 	
 	$(document).ready(function(){
 	      $("#imgbut").hide();
-
 	})
 
 
->>>>>>> branch 'master' of https://github.com/ybk1992/hadoboxProject.git
 })
 
 </script>
@@ -331,11 +294,7 @@ $(function(){
 </select>
 <button type="button" id="imgbut" onclick="imageShow()">책 이미지 보기</button><br>
 판매가:
-<<<<<<< HEAD
-<input type="text" id="price" name="price" placeholder="판매가격을 입력해주세요." style = "text-align:right"/>원<br>
-=======
 <input type="text" id="price" name="price2" placeholder="판매가격을 입력해주세요." style = "text-align:right"/>원<br>
->>>>>>> branch 'master' of https://github.com/ybk1992/hadoboxProject.git
 내용:<br>
 <textarea name="content" id="editor1"></textarea>
 <script>
