@@ -3,17 +3,17 @@
     
     <%  // Controller 로부터 결과 데이터 받음.
 	int cnt = (Integer)request.getAttribute("result");
+
     String str = "";
+
+
 %>
 
 <% if(cnt == 1){
 	str="NO";
 	 out.print(str);
 		
-} else if(cnt == -1) { 
-	str="NOEMPTY";
-	 out.print(str);
-}else { 
+} else { 
 	str="YES";
 	 out.print(str);
 	

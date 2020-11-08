@@ -85,6 +85,31 @@ public class MemberDAO {
 	      
 	      return cnt;
 	   }	
+	
+//아이디 비밀번호 찾기!
+	public int selectIdPw(String mem_username, String mem_email){
+		int cnt = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(D.SQL_MEMBERS_SELECT_BY_MEM_EMAIL);
+			pstmt.setString(1, mem_email);
+			rs = pstmt.executeQuery();
+			if (rs.next()) { //로그인
+				if (mem_username.equals(rs.getString("mem_username")) && mem_email.equals(rs.getString("mem_email"))){
+					cnt = 1;
+				} else {
+					System.out.println("비번틀림");
+				}
+				System.out.println(cnt);
+			}
+		} catch (SQLException e) {
+			System.out.println("login실패");
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return cnt;
+	}	
 
 
 //아이디 중복체크
@@ -96,6 +121,24 @@ public int chkId(String mem_userid){
 		pstmt.setString(1, mem_userid);
 		cnt = pstmt.executeUpdate();
 
+	} catch (SQLException e) {
+		System.out.println("login실패");
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	return cnt;
+}
+
+//메일 중복체크
+public int chkMail(String mem_email){
+	int cnt = 0;
+	
+	try {
+		pstmt = conn.prepareStatement(D.SQL_MEMBERS_SELECT_BY_MEM_EMAIL_CHK);
+		pstmt.setString(1, mem_email);
+		cnt = pstmt.executeUpdate();
+		
 	} catch (SQLException e) {
 		System.out.println("login실패");
 		// TODO Auto-generated catch block
@@ -163,9 +206,25 @@ public MemberDTO[] selectMyInfo(String mem_userid) throws SQLException {
 	return arr;
 } // end selectMyInfo()
 
+// 특정 mem_email 의 정보만 SELECT
+public MemberDTO[] selectMyIdPw(String mem_email) throws SQLException {
+	MemberDTO [] arr = null;
+	
+	try {
+		pstmt = conn.prepareStatement(D.SQL_MEMBERS_SELECT_BY_MEM_EMAIL_CHK);
+		pstmt.setString(1, mem_email);
+		rs = pstmt.executeQuery();
+		arr = createArray(rs);
+	} finally {
+		close();
+	} // end try
+	
+	return arr;
+} // end selectMyIdPw()
 
 
 
+//내 정보 수정하기
 public int updateMyinfo(String mem_password, String mem_phone, String mem_email, String mem_zipcode, String mem_address1, String mem_address2, String mem_image, String mem_userid) throws SQLException{
 	int cnt = 0;
 	
@@ -179,6 +238,24 @@ public int updateMyinfo(String mem_password, String mem_phone, String mem_email,
 		pstmt.setString(6, mem_address2);
 		pstmt.setString(7, mem_image);
 		pstmt.setString(8, mem_userid);
+		cnt = pstmt.executeUpdate();
+	} finally {
+		close();
+	} // end try		
+	
+	return cnt;
+} // end updateMyinfo()
+
+
+
+public int updatePassword(String mem_password, String mem_userid) throws SQLException{
+	int cnt = 0;
+	
+	try {
+		pstmt = conn.prepareStatement(D.SQL_MEMBERS_UPDATE_PASSWORD);
+		pstmt.setString(1, mem_password);
+		pstmt.setString(2, mem_userid);
+
 		cnt = pstmt.executeUpdate();
 	} finally {
 		close();

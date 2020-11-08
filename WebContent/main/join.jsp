@@ -40,6 +40,25 @@ function idCheckFunc(){
         });    
 
 }
+function mailCheckFunc(){
+        $.ajax({
+            type:"POST",
+            url:"mailOk.do",
+            data:{
+                "mem_email": $('#mem_email').val()
+            },
+            success:function(data){
+                if($.trim(data) == "YES"){
+                    //alert('사용가능');
+                    $('#mchk').html('<b style="font-size:18px;color:blue">중복되지 않는 메일입니다.</b>');
+                }else{
+                    //alert('사용불가');
+                    $('#mchk').html('<b style="font-size:18px;color:red">이미 사용 중인 메일입니다.</b>');
+                }
+            }
+        });    
+
+}
 
 
 function chkSubmit(){
@@ -143,7 +162,10 @@ function chkSubmit(){
 핸드폰 번호:<br>
 <input type="text" name="mem_phone"/><br>
 이메일:<br>
-<input type="text" name="mem_email"/><br>
+<input type="text" name="mem_email" id="mem_email"/>
+<input type="button" class="btn-primary box" onclick="mailCheckFunc()" value="중복확인"><br>
+<span id="mchk"></span><br>
+
 우편번호:<br>
 <input type="text" name="mem_zipcode" id="sample4_postcode"/>
 <input type="button" class="btn-primary box" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>

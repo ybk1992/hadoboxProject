@@ -11,16 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 import com.command.book.BookListCommand;
 import com.command.book.BookViewCommand;
 import com.command.book.BookWriteCommand;
-import com.command.member.FindPwCommand;
+import com.command.member.FindIdPwCommand;
 import com.command.member.IdCheckCommand;
 import com.command.member.JoinCommand;
 import com.command.member.LoginCommand;
-<<<<<<< HEAD
+import com.command.member.MailCheckCommand;
+import com.command.member.MailCommand;
 import com.command.member.UpdateInfoCommand;
 import com.command.member.UpdateMyInfoCommand;
-=======
-
->>>>>>> branch 'master' of https://github.com/ybk1992/hadoboxProject.git
 import com.command.write.Command;
 import com.command.write.DeleteCommand;
 import com.command.write.FileUploadCommand;
@@ -91,6 +89,12 @@ public class DoController extends HttpServlet {
 		         viewPage = "main/idOk.jsp";
 		         break;
 		         
+		      case "/mailOk.do":
+		    	  command = new MailCheckCommand();
+		    	  command.execute(request, response);
+		    	  viewPage = "main/mailOk.jsp";
+		    	  break;
+		    	  
 		      case "/login.do":
 		         viewPage = "main/login.jsp";
 		         break;
@@ -104,16 +108,23 @@ public class DoController extends HttpServlet {
 		      case "/logout.do":
 			     viewPage = "main/logout.jsp";
 			     break;
-			     
+			   
+
 		      case "/findPassword.do":  
 		    	  viewPage = "main/findPassword.jsp";   
 		    	  break;
 			           
-		      case "/findPwOk.do":   
-		    	  command = new FindPwCommand();   
+		      case "/sendIdPw.do":   
+		    	  command = new FindIdPwCommand();   
 		    	  command.execute(request, response);   
-		    	  viewPage = "main/findPwOk.jsp";   
+		    	  viewPage = "main/findPassword2.jsp";   
 		    	  break;
+		    	  
+		      case "/sendMail.do":
+			         command = new MailCommand();
+			         command.execute(request, response);
+			         viewPage = "main/sendMail.jsp";
+			         break;
 		    	  
 
 		      case "/myPage.do":   
