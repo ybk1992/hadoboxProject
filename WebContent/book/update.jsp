@@ -20,10 +20,28 @@
 <head>
 <meta charset="UTF-8">
 <title>수정-${book_List[0].book_title }</title>
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="ckeditor/ckeditor.js"></script>
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
+  </script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+  </script>
 </head>
 <script>
+var arr = new Array();
+<c:forEach items="${cate_List}" var="item">
+	arr.push({val:"${item.book_cate}"
+		,cate: "${item.book_cate_name}"
+		,gory: "${item.book_cate_pre}"
+		});
+</c:forEach>
+var cateChk = "${book_List[0].book_cate_name }";
+var goryChk = "${book_List[0].book_cate_pre }";
+
 function chkSubmit(){
 	frm = document.forms["frm"];
 	
@@ -78,20 +96,57 @@ function onlyNumberFunc(t){
 }
 
 window.onload = function(){
-	onlyNumberFunc(document.getElementById("price"))
+	
+	onlyNumberFunc(document.getElementById("price"));
+	
+	for(var i=0; i<arr.length-1; i++){
+		if(arr[i].cate != arr[i+1].cate){
+			if(arr[i].cate == cateChk)
+				$("select#cate").append("<option value='"+arr[i].cate+"' selected>"+arr[i].cate+"</option>");
+			else
+				$("select#cate").append("<option value='"+arr[i].cate+"'>"+arr[i].cate+"</option>");
+		}	
+	}
+	$("select#cate").append("<option value='"+arr[arr.length-1].cate+"'>"+arr[arr.length-1].cate+"</option>");
+	
+	$("select#gory").empty();
+	$("select#gory").append("<option value='0'>하위 카테고리</option>");
+	for(var i=0; i<arr.length; i++){
+		if(cateChk == arr[i].cate){
+			if(arr[i].gory == goryChk)
+				$("select#gory").append("<option value='"+arr[i].val+"' selected>"+arr[i].gory+"</option>");
+			else
+				$("select#gory").append("<option value='"+arr[i].val+"'>"+arr[i].gory+"</option>");
+		}
+	}
+	
 }
-</script>
 
+
+$(function(){	
+	$('select#cate').change(function(){
+		cate = this.value;
+		$("select#gory").empty();
+		$("select#gory").append("<option value='0'>하위 카테고리</option>");
+		for(var i=0; i<arr.length; i++){
+			if(cate == arr[i].cate){
+				$("select#gory").append("<option value='"+arr[i].val+"'>"+arr[i].gory+"</option>");
+			}
+		}
+		
+	})
+});
+</script>
+<jsp:include page="../header.jsp"></jsp:include>
 <body>
 <h2>판매글 수정하기</h2>
 <form name="frm" action="updateOk.do" method="post" onsubmit="return chkSubmit()">
 <input type="hidden" name="uid" value="${book_List[0].book_num }"/>
-<h3><input type="radio" name="status" value="0">판매중</h3><h3><input type="radio" name="status" value="1">판매완료</h3>
+<h3><input type="radio" name="status" value="1">판매중</h3><h3><input type="radio" name="status" value="0">판매완료</h3>
 <select name="cate" id="cate">
-	<option>${book_List[0].book_cate_name }</option>
+<option value="0">상위 카테고리</option>
 </select>
 <select name="gory" id="gory">
-	<option value="${book_List[0].book_cate }">${book_List[0].book_cate_pre }</option>
 </select><br>
 글 제목:
 <input type="text" name="title" value="${book_List[0].book_title }"/><br>

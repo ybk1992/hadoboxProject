@@ -44,11 +44,9 @@
 					<input class="w3-input" type="text" id="mem_email" name="mem_email" required>
 				</p>
 				<p class="w3-center">
-					<button type="button" id=findBtn class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round">find</button>
-					<button type="button" onclick="history.go(-1);" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-margin-bottom w3-round">Cancel</button>
-				
+				<input type="submit" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round" value="등록"/>
+
 				</p>
-				<input type="submit" value="등록"/>
 				
 				</form>
 			</div>

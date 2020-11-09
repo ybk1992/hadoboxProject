@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="com.lec.beans.*" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -9,27 +10,46 @@
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="ckeditor/ckeditor.js"></script>
 </head>
-
-
-
+<script>
+var arr = new Array();
+<c:forEach items="${cate_List}" var="item">
+	arr.push({val:"${item.book_cate}"
+		,cate: "${item.book_cate_name}"
+		,gory: "${item.book_cate_pre}"
+		});
+</c:forEach>
+$(function(){
+	$('select#cate').change(function(){
+		cate = this.value;
+		$("select#gory").empty();
+		$("select#gory").append("<option value='0'>하위 카테고리</option>");
+		for(var i=0; i<arr.length; i++){
+			if(cate == arr[i].cate){
+				$("select#gory").append("<option value='"+arr[i].val+"'>"+arr[i].gory+"</option>");
+			}
+		}
+		
+	})
+});
+</script>
 <body>
 <h2>책 판매글 작성</h2>
 <%-- 글 내용이 많을수 있기 때문에 POST 방식 사용 --%>
 <form name="frm" action="writeOk.do" method="post" onsubmit="return chkSubmit()">
 <select name="cate" id="cate">
 	<option value="0">상위 카테고리</option>
-	<option value="1">교육</option>
-	<option value="2">시험</option>
-	<option value="3">만화</option>
-	<option value="4">소설</option>
-	<option value="5">예술</option>
-	<option value="6">여행</option>
-	<option value="7">유아</option>
-	<option value="8">역사</option>
-	<option value="9">IT</option>
+	<option value="교육">교육</option>
+	<option value="시험">시험</option>
+	<option value="만화">만화</option>
+	<option value="소설">소설</option>
+	<option value="예술">예술</option>
+	<option value="여행">여행</option>
+	<option value="유아">유아</option>
+	<option value="역사">역사</option>
+	<option value="IT">IT</option>
 </select>
 <select name="gory" id="gory">
-	<option value="0">하위 카테고리</option>
+	<option value='0'>하위 카테고리</option>
 </select><br>
 글 제목:
 <input type="text" name="title" placeholder="글 제목을 입력해주세요."/><br>

@@ -64,10 +64,22 @@ UNION ALL SELECT 904, 'IT', '오피스' FROM DUAL
 UNION ALL SELECT 905, 'IT', '기타' FROM DUAL;
 
 --insert 책 등록 <-- 글번호, 판매자, 책이름, 책가격, 작성일, 내용, 조회수, 책주소, 카테고리, 판매여부, 이미지경로
+--AN_NUM, AN_WRITENUM, AN_CONTENT, AN_REGDATE, AN_ID
+INSERT INTO BOOK_ANSWER VALUES (BOOK_ANSWER_SEQ.NEXTVAL, 16, '첫 글의 댓글입니다', SYSDATE, 'melon123');
+INSERT INTO BOOK_ANSWER VALUES (BOOK_ANSWER_SEQ.NEXTVAL, 16, '두번째 댓글', SYSDATE, 'melon123');
+INSERT INTO BOOK_ANSWER VALUES (BOOK_ANSWER_SEQ.NEXTVAL, 16, '세번째 댓글', SYSDATE, 'lemon123');
+INSERT INTO BOOK_ANSWER VALUES (BOOK_ANSWER_SEQ.NEXTVAL, 16, '네번째 댓글', SYSDATE, 'apple123');
+
+INSERT INTO BOOK_ANSWER VALUES (BOOK_ANSWER_SEQ.NEXTVAL, 20, '첫 글의 댓글입니다', SYSDATE, 'melon123');
+INSERT INTO BOOK_ANSWER VALUES (BOOK_ANSWER_SEQ.NEXTVAL, 20, '두번째 댓글', SYSDATE, 'melon123');
+INSERT INTO BOOK_ANSWER VALUES (BOOK_ANSWER_SEQ.NEXTVAL, 20, '세번째 댓글', SYSDATE, 'lemon123');
+INSERT INTO BOOK_ANSWER VALUES (BOOK_ANSWER_SEQ.NEXTVAL, 20, '네번째 댓글', SYSDATE, 'apple123');
+
+DELETE FROM BOOK_ANSWER WHERE AN_ID = 'melon123' AND AN_NUM = '2';
 
 
 
-INSERT INTO BOOKLIST VALUES (BOOKLIST_SEQ.NEXTVAL, 'apple123', '귀멸의 칼날', 3000, SYSDATE, '직거래 원합니다1', 0, '글제목1', 301, '1', 'https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F1523954%3Ftimestamp%3D20200418132612');
+INSERT INTO BOOKLIST VALUES (BOOKLIST_SEQ.NEXTVAL, 'apple123', '귀멸의 칼날', 3000, SYSDATE, '직거래 원합니다1', 0, '호호호', 301, '1', 'https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F1523954%3Ftimestamp%3D20200418132612');
 INSERT INTO BOOKLIST VALUES (BOOKLIST_SEQ.NEXTVAL, 'apple123', '점멸의 칼날', 3000, SYSDATE, '직거래 원합니다2', 0, '글제목2', 302, '1', 'https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F1523954%3Ftimestamp%3D20200418132612');
 INSERT INTO BOOKLIST VALUES (BOOKLIST_SEQ.NEXTVAL, 'apple123', '입멸의 칼날', 3000, SYSDATE, '직거래 원합니다3', 0, '글제목3', 303, '1', 'https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F1523954%3Ftimestamp%3D20200418132612');
 INSERT INTO BOOKLIST VALUES (BOOKLIST_SEQ.NEXTVAL, 'apple123', '눈멸의 칼날', 3000, SYSDATE, '직거래 원합니다4', 0, '글제목4', 304, '1', 'https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F1523954%3Ftimestamp%3D20200418132612');
@@ -90,26 +102,35 @@ INSERT INTO BOOKLIST VALUES (BOOKLIST_SEQ.NEXTVAL, 'apple123', '모멸의 칼날
 
 
 
+INSERT INTO BOOK_ANSWER VALUES (BOOK_ANSWER_SEQ.NEXTVAL, 20, '네번째 댓글', SYSDATE, 'apple123');
 
+DELETE FROM BOOK_ANSWER WHERE AN_ID = 'melon123' AND AN_NUM = '2';
 --select 전체 글
---SELECT * FROM CATEGORY;
-SELECT * FROM BOOKLIST;
---SELECT * FROM MEMBERS;
+SELECT * FROM BOOK_ANSWER ORDER BY AN_REGDATE DESC;
+SELECT * FROM BOOK_ANSWER WHERE AN_WRITENUM = '16' ORDER BY AN_REGDATE DESC;
+SELECT * FROM BOOK_ANSWER WHERE AN_WRITENUM = '20' ORDER BY AN_REGDATE DESC;
+SELECT * FROM CATEGORY;
+SELECT * FROM BOOKLIST ORDER BY BOOK_REGDATE DESC;
+SELECT * FROM MEMBERS;
+SELECT * FROM FREEWRITE;
 --select book_num 선택 글 읽기
 --SELECT * FROM BOOKLIST WHERE BOOK_NUM=1;
 
---SELECT C.CATE_NAME, C.CATE_PRE, B.*
---FROM CATEGORY C, BOOKLIST B 
---WHERE C.CATE_NUM = B.BOOK_CATE AND BOOK_NUM=2;
+SELECT C.CATE_NAME, C.CATE_PRE, B.*
+FROM CATEGORY C, BOOKLIST B 
+WHERE C.CATE_NUM = B.BOOK_CATE;
 --
 ----CATEGORY
 --SELECT * FROM CATEGORY ORDER BY CATE_NUM DESC;
 --SELECT * FROM CATEGORY WHERE CATE_NUM=201;
 ---- 카테 조인
---SELECT C.CATE_NAME, C.CATE_PRE, B.*
---FROM CATEGORY C, BOOKLIST B 
---WHERE C.CATE_NUM = B.BOOK_CATE;
+SELECT C.CATE_NAME, C.CATE_PRE, B.*
+FROM CATEGORY C, BOOKLIST B 
+WHERE C.CATE_NUM = B.BOOK_CATE AND C.CATE_PRE = '미스테리' ORDER BY BOOK_REGDATE DESC;
 
+SELECT C.CATE_NAME, C.CATE_PRE, B.*
+FROM CATEGORY C, BOOKLIST B 
+WHERE C.CATE_NUM = B.BOOK_CATE AND B.BOOK_NAME LIKE '%점멸%' ORDER BY BOOK_REGDATE DESC;
 
 
 --SELECT * FROM CATEGORY C, BOOKLIST B
@@ -126,4 +147,60 @@ SELECT * FROM BOOKLIST;
 --DELETE FROM HD04A WHERE BOOK_NUM = ?;
 
 --UPDATE BOOKLIST SET BOOK_VIEWCNT = BOOK_VIEWCNT + 1 WHERE BOOK_NUM = 1;
+
+
+
+
+
+
+
+------------------------
+
+
+/* Drop Tables */
+
+DROP TABLE freewrite CASCADE CONSTRAINTS;
+
+
+/* Create Tables */
+
+CREATE TABLE freewrite
+(
+   wr_uid number NOT NULL,
+   wr_subject varchar2(200) NOT NULL,
+   wr_content clob,
+   wr_name varchar2(40) NOT NULL,
+   wr_viewcnt number DEFAULT 0,
+   wr_regdate date DEFAULT SYSDATE,
+   PRIMARY KEY (wr_uid)
+);
+
+-- 시퀀스 작성
+CREATE SEQUENCE freewrite_SEQ;
+
+-- 기본데이터 작성
+INSERT INTO freewrite VALUES
+(freewrite_SEQ.nextval, '첫째글:방가요', '안녕하세요', '김희철', 0, '2017-03-02');
+INSERT INTO freewrite VALUES
+(freewrite_SEQ.nextval, '둘째글:헤헤헤','1111', '김수길', 0, '2017-03-02');
+INSERT INTO freewrite VALUES
+(freewrite_SEQ.nextval, '세째글:힘내세요', '7394', '최진덕' , 0, '2017-08-12');
+INSERT INTO freewrite VALUES
+(freewrite_SEQ.nextval, '네째글: ... ', '9090', '이혜원', 0, '2018-02-09');
+INSERT INTO freewrite VALUES
+(freewrite_SEQ.nextval, '다섯째글: 게시판', '7531', '박수찬', 0, sysdate);
+
+
+SELECT * FROM freewrite ORDER BY wr_uid DESC;
+
+-- 기존의 테이블 x2배로 늘리기 : 기존 레코드 그대로 복사해서 INSERT
+INSERT INTO freewrite (wr_uid, wr_subject, wr_content, wr_name, wr_viewcnt)
+SELECT freewrite_seq.nextval, wr_subject, wr_content, wr_name, wr_viewcnt FROM freewrite;
+
+
+
+
+
+
+
 	

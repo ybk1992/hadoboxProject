@@ -28,7 +28,7 @@ public class BookWriteCommand implements Command {
 				 sellid.trim().length() > 0 && name.trim().length() > 0 && content.trim().length() > 0 && 
 				 image.trim().length() > 0) {
 			try {
-				cnt = dao.insert(sellid, name, price, content, 0, title, gory, "0", image);
+				cnt = dao.insert(sellid, name, price, content, 0, title, gory, "1", image);
 			} catch(SQLException e) {
 				e.printStackTrace();
 			}

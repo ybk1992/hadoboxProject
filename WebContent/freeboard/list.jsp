@@ -37,25 +37,24 @@
 	int cnt = 0;  // executeUpdate(), DML 결과
 	
 	
-	   
+  
 %>
 
 <%!
-	
+
 	
 	// 페이징 관련 세팅 값들
 	// cnt <- 글 목록 전체 개수
 	int writePages = 10;  // 한 [페이징] 에 몇개의 '페이지' 를 표현할 것인가?
-	int pageRows = 5;   // 한 '페이지' 에 몇개의 글을 리스트 할 것인가?
+	int pageRows = 10;   // 한 '페이지' 에 몇개의 글을 리스트 할 것인가?
 	int totalPage = 0;   // 총 몇 '페이지' 분량인가?
 %>
 
 <%
 	try{
 		Class.forName(D.DRIVER);
-		conn = DriverManager.getConnection(D.URL, D.USERID, D.USERPW);
-		
-		pstmt = conn.prepareStatement(D.SQL_COUNT_ALL);			
+		conn = DriverManager.getConnection(D.URL, D.USERID, D.USERPW);		
+		pstmt = conn.prepareStatement(D.SQL_COUNT_ALL);	
 		rs = pstmt.executeQuery();
 		
 		if(rs.next())
@@ -80,46 +79,106 @@
 <head>
 <meta charset="UTF-8">
 <title>글 목록 <%= curPage %>페이지</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-<style>
-table {width: 500px;}
-table, th, td {
-	border: 1px solid black;
-	border-collapse: collapse;
-}
-</style>
-<!-- 페이징 -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="../CSS/listFreeboard.css"/>
+
+<link href="../CSS/listFreeboard.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- 페이징 -->
 <script src="https://kit.fontawesome.com/bb29575d31.js"></script>
-
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<style type="text/css">
+	#footer_logo {
+	width: 210px;
+	height: 100px;
+	}
+</style>
 </head>
+
 <body>
 
-		
+<jsp:include page="../header.jsp"></jsp:include>
+
+<div class="wrapper">
 <div class = "serch">	
 		<h2>자유게시판</h2>
-		<select id = "what">
-			<option value = "title">제목</option>
-			<option value = "who">작성자</option>
+		
+		<form name="myform1">
+		<select name="first" id = "what">
+			<option>종류</option>
+			<option value = "title" id="title">제목</option>
+			<option value = "who" id="who">작성자</option>
 		</select>
-		<input type="text" id="serchText">
-		<button id="serchFinal">검색</button>
+		<input name="txt" type="text" id="serchText" placeholder="검색">
+		
+		</form>
+		
 </div>
+
+<script>
+
+
+
+
+$("#title"). click(function(){
+	$(document).ready(function(){
+		
+
+		$("#serchText").keyup(function(){
+			var k = $(this).val();
+			
+			$("#ts > tbody > tr").hide();
+			var temp = $("#ts > tbody > tr > td:nth-child(5n+2):contains('" + k + "')");
+			
+			$(temp).parent().show();
+			
+			
+			
+		})
+	})
+})
+
+$("#who"). click(function(){
+	$(document).ready(function(){
+		
+
+		$("#serchText").keyup(function(){
+			var k = $(this).val();
+			
+			$("#ts > tbody > tr").hide();
+			var temp = $("#ts > tbody > tr > td:nth-child(5n+3):contains('" + k + "')");
+			
+			$(temp).parent().show();
+			
+			
+			
+		})
+	})
+})
+
+
+
+
+</script>
+
 <div class = "box">	
-<h4>총 <%= cnt %>개</h4> <!-- 전체 글 개수 -->
-		<table>
+
+		<table class="table table1" id="ts">
+		 <thead class="thead-dark">
 			<tr>
 
 				<th>번호</th>
 				<th>제목</th>
 				<th>작성자</th>
+				<th>조회수</th>
+				<th>작성일</th>
 				
 			</tr>
+			</thead>
 <%
 	while(rs.next()){
+		out.println("<tbody>");
 		out.print("<tr>");
 		int rnum = rs.getInt("rnum");  // rownum 을 가져온다
 		
@@ -137,16 +196,25 @@ table, th, td {
 		
 		
 		out.println("<td>" + uid + "</td>");
-		out.println("<td><a href='view.jsp?uid=" + uid + "&page=" + curPage + "'>" + subject + "</a></td>");
-		out.println("<td>" + name + "</td>");		
+		out.println("<td><a href='view.do?uid=" + uid + "&page=" + curPage + "'>" + subject + "</a></td>");
+		out.println("<td>" + name + "</td>");
+		out.println("<td>" + viewcnt + "</td>");
+		out.println("<td>" + regdate + "</td>");		
 		out.print("</tr>");
+		out.println("</tbody>");
+		
+		
+		
 	}
 %>		
 		</table>
 
 		<br>
-		<button onclick="location.href = 'write.jsp'">신규등록</button>
+		<button class="btn btn-primary" onclick="location.href = 'write.jsp'">신규등록</button>
 		</div>
+		
+		
+		
 
 
 <%	
@@ -175,16 +243,20 @@ table, th, td {
 	<jsp:param value="<%= curPage %>" name="curPage"/>	
 </jsp:include>
 </div>
+</div>
 
- <footer class="py-5 bg-dark">
+
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
     <div class="container">
 
       <p class="m-0 text-center text-white">
-        <img src="../image/logo-white.png" alt="logo" id="footer_logo">
+        <img src="image/logo-white.png" alt="logo" id="footer_logo">
         Copyright &copy; 2020. (주)해도북스 컴퍼니. All right reserved.</p>
     </div>
     <!-- /.container -->
-  </footer>
+
 
 
 </body>

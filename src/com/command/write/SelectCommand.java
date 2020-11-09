@@ -8,22 +8,22 @@ import javax.servlet.http.HttpServletResponse;
 import com.lec.beans.WriteDAO;
 import com.lec.beans.WriteDTO;
 
-public class ListCommand implements Command {
+public class SelectCommand implements Command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		WriteDAO dao = new WriteDAO();  // DAO 객체 생성
+		WriteDAO dao = new WriteDAO();
 		WriteDTO [] arr = null;
 		
+		int uid = Integer.parseInt(request.getParameter("uid"));
+		
 		try {
-			arr = dao.select();  // 트랜잭션 수행
-			
-			// "list" 란  name 으로 request 에 arr 을 저장
-			// request 가 컨트롤러에 전달될것이다.
-			request.setAttribute("freelist", arr);
-			
-		} catch (SQLException e) {
+			arr = dao.selectByUid(uid);  // 읽어오기
+			request.setAttribute("list", arr);
+		} catch(SQLException e) {
 			e.printStackTrace();
 		}
+
 	}
+
 }

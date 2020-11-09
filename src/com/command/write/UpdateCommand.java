@@ -7,46 +7,28 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.lec.beans.WriteDAO;
 
-public class WriteCommand implements Command {
+public class UpdateCommand implements Command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		int cnt = 0;
 		WriteDAO dao = new WriteDAO();
 		
-		// 입력한 값(parameter) 받아오기
-		String name = request.getParameter("name");
+		// parameter
+		int uid = Integer.parseInt(request.getParameter("uid"));
 		String subject = request.getParameter("subject");
 		String content = request.getParameter("content");
 		
-		// 유효성 체크
-		if(name != null && subject != null &&
-				name.trim().length() > 0 && subject.trim().length() > 0) {
+		if(subject != null && subject.trim().length() > 0) {
 			try {
-				cnt = dao.insert(subject, content, name);
+				cnt = dao.update(uid, subject, content);
 			} catch(SQLException e) {
 				e.printStackTrace();
 			}
-		} // end if
+		}
 		
-		
-		request.setAttribute("result2", cnt);
+		request.setAttribute("result", cnt);
+
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

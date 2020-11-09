@@ -2,7 +2,6 @@
 /* Drop Tables */
 
 DROP TABLE BOOK_ANSWER CASCADE CONSTRAINTS;
-DROP TABLE FREE_ANSWER CASCADE CONSTRAINTS;
 DROP TABLE HD04A.BOOKLIST CASCADE CONSTRAINTS;
 DROP TABLE HD04A.CATEGORY CASCADE CONSTRAINTS;
 DROP TABLE HD04A.FREEWRITE CASCADE CONSTRAINTS;
@@ -26,22 +25,6 @@ CREATE TABLE BOOK_ANSWER
    -- 회원 아이디
    an_id varchar2(20),
    PRIMARY KEY (an_num)
-);
-
-
-CREATE TABLE FREE_ANSWER
-(
-   -- 댓글번호
-   swer_num number NOT NULL,
-   -- 글번호
-   swer_writenum number,
-   -- 내용
-   swer_content varchar2(2000),
-   -- 작성일
-   swer_regdate timestamp,
-   -- 회원 아이디
-   swer_id varchar2(20),
-   PRIMARY KEY (swer_num)
 );
 
 
@@ -86,16 +69,17 @@ CREATE TABLE HD04A.CATEGORY
    CONSTRAINT CATEGORY_PK PRIMARY KEY (CATE_NUM)
 );
 
+/* Create Tables */
 
-CREATE TABLE HD04A.FREEWRITE
+CREATE TABLE freewrite
 (
-   FREE_NUM number NOT NULL,
-   -- 회원아이디
-   FREE_ID number,
-   FREE_NAME varchar2(40) NOT NULL,
-   FREE_CONTENT clob,
-   FREE_VIEWCNT number NOT NULL,
-   CONSTRAINT FREEWRITE_PK PRIMARY KEY (FREE_NUM)
+   wr_uid number NOT NULL,
+   wr_subject varchar2(200) NOT NULL,
+   wr_content clob,
+   wr_name varchar2(40) NOT NULL,
+   wr_viewcnt number DEFAULT 0,
+   wr_regdate date DEFAULT SYSDATE,
+   PRIMARY KEY (wr_uid)
 );
 
 
@@ -145,13 +129,6 @@ ALTER TABLE HD04A.BOOKLIST
 ;
 
 
-ALTER TABLE FREE_ANSWER
-   ADD FOREIGN KEY (swer_writenum)
-   REFERENCES HD04A.FREEWRITE (FREE_NUM)
-   ON DELETE CASCADE
-;
-
-
 ALTER TABLE HD04A.BOOKLIST
    ADD FOREIGN KEY (BOOK_SELLID)
    REFERENCES HD04A.MEMBERS (MEM_USERID)
@@ -159,11 +136,11 @@ ALTER TABLE HD04A.BOOKLIST
 ;
 
 
-ALTER TABLE HD04A.FREEWRITE
-   ADD FOREIGN KEY (FREE_ID)
-   REFERENCES HD04A.MEMBERS (MEM_NUM)
-   ON DELETE CASCADE
-;
+--ALTER TABLE HD04A.FREEWRITE
+--   ADD FOREIGN KEY (FREE_ID)
+--   REFERENCES HD04A.MEMBERS (MEM_NUM)
+--   ON DELETE CASCADE
+--;
 
 -- 시퀀스 삭제
 DROP SEQUENCE BOOK_ANSWER_SEQ;
@@ -212,11 +189,7 @@ COMMENT ON COLUMN BOOK_ANSWER.an_writenum IS '글번호';
 COMMENT ON COLUMN BOOK_ANSWER.an_content IS '내용';
 COMMENT ON COLUMN BOOK_ANSWER.an_regdate IS '작성일';
 COMMENT ON COLUMN BOOK_ANSWER.an_id IS '회원 아이디';
-COMMENT ON COLUMN FREE_ANSWER.swer_num IS '댓글번호';
-COMMENT ON COLUMN FREE_ANSWER.swer_writenum IS '글번호';
-COMMENT ON COLUMN FREE_ANSWER.swer_content IS '내용';
-COMMENT ON COLUMN FREE_ANSWER.swer_regdate IS '작성일';
-COMMENT ON COLUMN FREE_ANSWER.swer_id IS '회원 아이디';
+
 COMMENT ON TABLE HD04A.BOOKLIST IS '등록한 책 글 목록';
 COMMENT ON COLUMN HD04A.BOOKLIST.BOOK_NUM IS '글 번호';
 COMMENT ON COLUMN HD04A.BOOKLIST.BOOK_SELLID IS '회원아이디';
@@ -233,7 +206,6 @@ COMMENT ON TABLE HD04A.CATEGORY IS '책 카테고리';
 COMMENT ON COLUMN HD04A.CATEGORY.CATE_NUM IS '카테고리 고유번호';
 COMMENT ON COLUMN HD04A.CATEGORY.CATE_NAME IS '카테고리 이름';
 COMMENT ON COLUMN HD04A.CATEGORY.CATE_PRE IS '상위 카테고리';
-COMMENT ON COLUMN HD04A.FREEWRITE.FREE_ID IS '회원아이디';
 COMMENT ON TABLE HD04A.MEMBERS IS '회원정보';
 COMMENT ON COLUMN HD04A.MEMBERS.MEM_USERID IS '회원아이디';
 COMMENT ON COLUMN HD04A.MEMBERS.MEM_EMAIL IS '회원이메일';
@@ -332,5 +304,28 @@ INSERT INTO BOOKLIST VALUES (BOOKLIST_SEQ.NEXTVAL, 'apple123', '닭멸의 칼날
 INSERT INTO BOOKLIST VALUES (BOOKLIST_SEQ.NEXTVAL, 'apple123', '박멸의 칼날', 3000, SYSDATE, '직거래 원합니다18', 0, '글제목18', 302, '0', 'https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F1523954%3Ftimestamp%3D20200418132612');
 INSERT INTO BOOKLIST VALUES (BOOKLIST_SEQ.NEXTVAL, 'apple123', '모멸의 칼날', 3000, SYSDATE, '직거래 원합니다19', 0, '글제목19', 301, '0', 'https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F1523954%3Ftimestamp%3D20200418132612');
 INSERT INTO BOOKLIST VALUES (BOOKLIST_SEQ.NEXTVAL, 'apple123', '모멸의 칼날', 3000, SYSDATE, '직거래 원합니다20', 0, '글제목20', 301, '0', 'https://search1.kakaocdn.net/thumb/R120x174.q85/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flbook%2Fimage%2F1523954%3Ftimestamp%3D20200418132612');
+
+-- 기본데이터 작성
+INSERT INTO freewrite VALUES
+(freewrite_SEQ.nextval, '첫째글:방가요', '안녕하세요', '김희철', 0, '2017-03-02');
+INSERT INTO freewrite VALUES
+(freewrite_SEQ.nextval, '둘째글:헤헤헤','1111', '김수길', 0, '2017-03-02');
+INSERT INTO freewrite VALUES
+(freewrite_SEQ.nextval, '세째글:힘내세요', '7394', '최진덕' , 0, '2017-08-12');
+INSERT INTO freewrite VALUES
+(freewrite_SEQ.nextval, '네째글: ... ', '9090', '이혜원', 0, '2018-02-09');
+INSERT INTO freewrite VALUES
+(freewrite_SEQ.nextval, '다섯째글: 게시판', '7531', '박수찬', 0, sysdate);
+
+
+SELECT * FROM freewrite ORDER BY wr_uid DESC;
+
+-- 기존의 테이블 x2배로 늘리기 : 기존 레코드 그대로 복사해서 INSERT
+INSERT INTO freewrite (wr_uid, wr_subject, wr_content, wr_name, wr_viewcnt)
+SELECT freewrite_seq.nextval, wr_subject, wr_content, wr_name, wr_viewcnt FROM freewrite;
+
+SELECT * FROM MEMBERS;
+
+SELECT * FROM BOOKLIST;
 
 

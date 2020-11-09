@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+@import url(font.css);
+
+.wrapper{
+	
+	padding-top: 200px;
+	
+	max-width: 1600px;
+	margin: 0 auto;
+	font-size:150%;
+}
+
+img{
+	width:1600px;
+}
+
+footer{
+	margin-top: 100px;
+}
+
+#footer_logo {
+  width: 210px;
+  height: 100px;
+}
