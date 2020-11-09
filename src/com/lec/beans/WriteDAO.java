@@ -133,6 +133,22 @@ public class WriteDAO {
 	} // end selectByUid()
 	
 		
+	// 특정 name의 글만 SELECT
+	public WriteDTO[] selectByName(String name) throws SQLException {
+		WriteDTO [] arr = null;
+		
+		try {
+			pstmt = conn.prepareStatement(D.SQL_WRITE_SELECT_BY_NAME);
+			pstmt.setString(1, name);
+			rs = pstmt.executeQuery();
+			arr = createArray(rs);
+			System.out.println("dao");
+		} finally {
+			close();
+		} // end try
+		
+		return arr;
+	} // end selectByUid()
 	// 특정 uid 글 내용 읽기, 조회수 증가
 	// viewcnt 도 +1 증가해야 하고, 읽어와야 한다 --> 트랜잭션 처리
 	public WriteDTO [] readByUid(int uid) throws SQLException{

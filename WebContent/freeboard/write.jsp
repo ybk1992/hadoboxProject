@@ -10,10 +10,10 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="../CSS/writeFreeboard.css"/>
+  <link href="../CSS/writeFreeboard.css" rel="stylesheet">
 </head>
-
 <script>
+var id = ${mem_userid};
 // form validation 
 // '작성자(name)' 와 '제목(subject)' 는 필수
 function chkSubmit(){
@@ -61,7 +61,7 @@ String LoginID = (String)session11.getAttribute("mem_userid");
 
 <form name="frm" action="writeOk.do" method="post" onsubmit="return chkSubmit()">
 작성자:
-<input class="form-control search c1" value= "<%= LoginID %>"type="text" name="name"/><br>
+<input class="form-control search c1" value= "<%= LoginID %>"type="text" name="name" disabled/><br>
 제목:
 <input class="form-control search c1" type="text" name="subject"/><br>
 내용:<br>

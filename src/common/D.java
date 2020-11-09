@@ -49,34 +49,37 @@ public class D {
 	
 	
 	// 게시글 관련 쿼리문
-	public static final String SQL_COUNT_ALL = "SELECT COUNT(*) FROM free_write"; 
+	public static final String SQL_COUNT_ALL = "SELECT COUNT(*) FROM freewrite"; 
 
 	// 쿼리: '몇번째(fromRow)' 부터 '몇개(pageRows)' 의 글 select
 	public static final String SQL_SELECT_FROM_ROW = "SELECT * FROM " +
 			"(SELECT ROWNUM AS RNUM, T.* FROM " +
-			"	(SELECT * FROM free_write ORDER BY wr_uid DESC) T) " +
+			"	(SELECT * FROM freewrite ORDER BY wr_uid DESC) T) " +
 			"WHERE RNUM >= ? AND RNUM < ?"
 			;
 	public static final String SQL_WRITE_INSERT = 
-			"INSERT INTO free_write"
+			"INSERT INTO freewrite"
 			+ "(wr_uid, wr_subject, wr_content, wr_name, wr_regdate) "
 			+ "VALUES"
-			+ "(free_write_seq.nextval, ?, ?, ?, SYSDATE)";
+			+ "(freewrite_seq.nextval, ?, ?, ?, SYSDATE)";
 	
 	public static final String SQL_WRITE_SELECT = 
-			"SELECT * FROM free_write ORDER BY wr_uid DESC";
+			"SELECT * FROM freewrite ORDER BY wr_uid DESC";
 	
 	public static final String SQL_WRITE_SELECT_BY_UID =
-			"SELECT * FROM free_write WHERE wr_uid=?";
+			"SELECT * FROM freewrite WHERE wr_uid=?";
+	
+	public static final String SQL_WRITE_SELECT_BY_NAME =
+			"SELECT * FROM freewrite WHERE wr_name=?";
 	
 	public static final String SQL_WRITE_INC_VIEWCNT = 
-			"UPDATE free_write SET wr_viewcnt = wr_viewcnt + 1 WHERE wr_uid = ?";
+			"UPDATE freewrite SET wr_viewcnt = wr_viewcnt + 1 WHERE wr_uid = ?";
 	
 	public static final String SQL_WRITE_DELETE_BY_UID =
-			"DELETE FROM free_write WHERE wr_uid = ?";
+			"DELETE FROM freewrite WHERE wr_uid = ?";
 
 	public static final String SQL_WRITE_UPDATE =
-			"UPDATE free_write SET wr_subject = ?, wr_content = ? WHERE wr_uid = ?";
+			"UPDATE freewrite SET wr_subject = ?, wr_content = ? WHERE wr_uid = ?";
 	
 	//insert 책 등록 <-- 글번호, 판매자, 책이름, 책가격, 작성일, 내용, 조회수, 글제목, 카테고리, 판매여부, 이미지경로
 	public static final String SQL_BOOK_INSERT = 
@@ -101,13 +104,13 @@ public class D {
 		public static final String SQL_BOOK_SEARCH = 
 				"SELECT C.CATE_NAME, C.CATE_PRE, B.* " + 
 						"FROM CATEGORY C, BOOKLIST B " + 
-						"WHERE C.CATE_NUM = B.BOOK_CATE AND B.BOOK_TITLE LIKE ? ORDER BY BOOK_REGDATE DESC";
+						"WHERE C.CATE_NUM = B.BOOK_CATE AND B.BOOK_NAME LIKE ? ORDER BY BOOK_REGDATE DESC";
 	
 	//select 전체 글
 	public static final String SQL_BOOK_SELECT = 
 			"SELECT C.CATE_NAME, C.CATE_PRE, B.* " + 
 					"FROM CATEGORY C, BOOKLIST B " + 
-					"WHERE C.CATE_NUM = B.BOOK_CATE";
+					"WHERE C.CATE_NUM = B.BOOK_CATE ORDER BY BOOK_REGDATE DESC";
 	
 	//select 전체 글 내림차순정리
 	public static final String SQL_BOOK_SELECT_DESC = 
@@ -131,6 +134,13 @@ public class D {
 	public static final String SQL_BOOK_DELETE = 
 			"DELETE FROM BOOKLIST WHERE BOOK_NUM = ?";
 	
+	//댓글
+	public static final String SQL_ANSWER_WRITE = 
+			"INSERT INTO BOOK_ANSWER VALUES (BOOK_ANSWER_SEQ.NEXTVAL, ?, ?, SYSDATE, ?)";
+	public static final String SQL_ANSWER_DELETE = 
+			"DELETE FROM BOOK_ANSWER WHERE AN_ID = ? AND AN_NUM = ?";
+	public static final String SQL_ANSWER_SELECT = 
+			"SELECT * FROM BOOK_ANSWER WHERE AN_WRITENUM = ? ORDER BY AN_REGDATE DESC";
 	
 } // end D
 

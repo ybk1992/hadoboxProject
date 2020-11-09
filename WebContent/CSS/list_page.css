@@ -8,10 +8,7 @@
   height: 130px;
 }
 
-#footer_logo {
-  width: 210px;
-  height: 100px;
-}
+
 
 #content { margin-top: 20px; }
 
@@ -25,7 +22,6 @@
   border: none;
   color: dimgray;
 }
-
 /* 액션 */
 
 a:hover {

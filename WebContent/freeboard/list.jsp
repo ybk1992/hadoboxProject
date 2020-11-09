@@ -79,27 +79,26 @@
 <head>
 <meta charset="UTF-8">
 <title>글 목록 <%= curPage %>페이지</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
+<link href="../CSS/listFreeboard.css" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">  
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src = "serch_listboard.js"></script>
 <!-- 페이징 -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="../CSS/listFreeboard.css"/>
 <script src="https://kit.fontawesome.com/bb29575d31.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
+<style type="text/css">
+	#footer_logo {
+	width: 210px;
+	height: 100px;
+	}
+</style>
 </head>
 
 <body>
 
- <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
-    <div class="container">
-      <a class="navbar-brand" href="#">해도북스</a>
-    </div>
-  </nav>
+<jsp:include page="../header.jsp"></jsp:include>
 
 <div class="wrapper">
 <div class = "serch">	
@@ -245,15 +244,19 @@ $("#who"). click(function(){
 </jsp:include>
 </div>
 </div>
- <footer class="py-5 bg-dark">
+
+
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
     <div class="container">
 
       <p class="m-0 text-center text-white">
-        <img src="../image/logo-white.png" alt="logo" id="footer_logo">
+        <img src="image/logo-white.png" alt="logo" id="footer_logo">
         Copyright &copy; 2020. (주)해도북스 컴퍼니. All right reserved.</p>
     </div>
     <!-- /.container -->
-  </footer>
+
 
 
 </body>

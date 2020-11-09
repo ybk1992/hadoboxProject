@@ -24,7 +24,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="../CSS/writeFreeboard.css"/>
+  <link href="../CSS/writeFreeboard.css" rel="stylesheet">
 </head>
 <script>
 function chkSubmit(){
@@ -69,7 +69,7 @@ function chkSubmit(){
 </form>
 <br>
 <button class="btn btn-primary" onclick="history.back();">이전으로</button>
-<button class="btn btn-primary" onclick="location.href='list.do'">목록보기</button>
+<button class="btn btn-primary" onclick="location.href='list.do?list=all'">목록보기</button>
 <br>
 </div>
  <footer class="py-5 bg-dark">

@@ -1,8 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
- 
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,16 +8,28 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
-
+	$(function(){
+		$("#findBtn").click(function(){
+			$.ajax({
+				url : "sendIdPw.do",
+				type : "POST",
+				data : {
+					mem_username : $("#mem_username").val(),
+					mem_email : $("#mem_email").val()
+				},
+				success : function(result) {
+				},
+			})
+		});
+	})
 </script>
-<title>아이디 찾기</title>
+<title>비밀번호 찾기</title>
 </head>
 <body>
-<br>
 	<div class="w3-content w3-container w3-margin-top">
 		<div class="w3-container w3-card-4">
 			<div class="w3-center w3-large w3-margin-top">
-				<h3>아이디 찾기</h3>
+				<h3>비밀번호 찾기</h3>
 			</div>
 			<div>
 				<form name="frm" action="sendIdPw.do" method="post" >

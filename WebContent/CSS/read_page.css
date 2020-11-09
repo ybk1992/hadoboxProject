@@ -3,11 +3,6 @@
 @import url(font.css);
 
 
-#footer_logo {
-  width: 210px;
-  height: 100px;
-}
-
 
 #content { margin-top: 100px; }
 
@@ -16,31 +11,34 @@
    }
 [class|="col"] {
   background: white;
-  border: 1px solid #eaeaed;
+  
   text-align: center;
   color: black;
-}
-
-
-.info{
-	height: 800px;
 }
 
 .title{
 	font-size: 2.5em;
 }
-.cate{
-	font-size: 1.1em;
+#cate{
+	font-size: 1.2em;
+	
 }
 .price{
 	font-size: 1.8em;
+	
 }
 .content{
 	font-size: 1.1em;
 }
 
+.soldout{
+	font-size:2.3em;
+	color:red;
+}
 
-
+#viewcnt{
+	font-size:0.8em;
+}
 /* 액션 */
 
 a:hover {

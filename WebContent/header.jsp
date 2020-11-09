@@ -13,6 +13,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="${contextPath}/book_List.do?list=all">중고책장터</a>
             </li>
+
         </ul>
     </div>
     

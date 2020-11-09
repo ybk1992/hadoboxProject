@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="com.lec.beans.*" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -50,7 +49,7 @@ $(function(){
 	<option value="IT">IT</option>
 </select>
 <select name="gory" id="gory">
-	<option value="0">하위 카테고리</option>
+	<option value='0'>하위 카테고리</option>
 </select><br>
 글 제목:
 <input type="text" name="title" placeholder="글 제목을 입력해주세요."/><br>
@@ -76,7 +75,7 @@ $(function(){
 <input type="submit" value="등록"/>
 </form>
 <br>
-<button type="button" onclick="location.href='book_List.do?list=all'">목록으로</button>
+<button type="button" onclick="location.href='list.do'">목록으로</button>
 <script src="JS/write.js" type="text/javascript"></script>
 </body>
 

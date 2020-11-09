@@ -4,32 +4,45 @@ import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.command.write.Command;
 import com.lec.beans.AnswerDAO;
-import com.lec.beans.AnswerDTO;
 import com.lec.beans.BookDAO;
-import com.lec.beans.BookDTO;
+import com.lec.beans.WriteDAO;
 
-public class BookViewCommand implements Command{
+public class AnsDeleteCommand implements Command {
+
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		BookDAO dao = new BookDAO();
-		BookDTO [] arr = null;
-		AnswerDAO an_dao = new AnswerDAO();
-		AnswerDTO [] an_arr = null;
+		int cnt = 0;
+		AnswerDAO dao = new AnswerDAO();
 		
 		int num = Integer.parseInt(request.getParameter("book_num").trim());
+		HttpSession session = request.getSession();
+		String loginID = (String)session.getAttribute("mem_userid");
 		
 		try {
-			arr = dao.readByBookNum(num);   // 읽기 + 조회수 증가	
-			request.setAttribute("book_List", arr);
-			
-			an_arr = an_dao.selectAnswer(num);
-			request.setAttribute("ansSelect", an_arr);
+			cnt = dao.deleteByAnswerNum(loginID, num);
 		} catch(SQLException e) {
 			e.printStackTrace();
-		}		
-
+		}
+		
+		request.setAttribute("result", cnt);
 	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

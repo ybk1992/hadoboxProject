@@ -20,7 +20,7 @@ public class ListCommand implements Command {
 			
 			// "list" 란  name 으로 request 에 arr 을 저장
 			// request 가 컨트롤러에 전달될것이다.
-			request.setAttribute("list", arr);
+			request.setAttribute("freelist", arr);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

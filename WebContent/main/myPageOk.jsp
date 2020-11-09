@@ -13,7 +13,7 @@
 <% } else { %>
 	<script>
 		alert("수정 성공!");
-		history.back();
+		location.href = "main.do";
 	</script>
 <% } %>
 

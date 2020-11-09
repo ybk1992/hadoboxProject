@@ -19,11 +19,11 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
     integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-  </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
+  </script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
   </script>
 
 
@@ -83,7 +83,9 @@
 	          <input class="form-control search" id="searchInput" type="text" placeholder="검색어" />  
 	          <button class="btn btn-dark" id="searchBtn" onclick="searchClick()">찾기</button>   <!-- 쿼리스트링으로 input value값 서버단으로 전달 -->
           </ul>
-          <button class="btn btn-light" onclick="location.href='write.do'">중고책등록</button>
+          <c:if test="${memLogin==true}">
+          	<button class="btn btn-light" onclick="location.href='write.do'">중고책등록</button>
+          </c:if>
         </nav>
         
         <div class="row" id="listDiv">
@@ -209,15 +211,7 @@
   <!-- /.container -->
 	
   <!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-
-      <p class="m-0 text-center text-white">
-        <img src="image/logo-white.png" alt="logo" id="footer_logo">
-        Copyright &copy; 2020. (주)해도북스 컴퍼니. All right reserved.${book_cate_pre[0].book_name } ${serach[0].book_name }</p>
-    </div>
-    <!-- /.container -->
-  </footer>
+  <jsp:include page="../footer.jsp"></jsp:include>
 <!-- 
 <a href="https://imgur.com/1TFsO95"><img src="https://i.imgur.com/1TFsO95.png" title="source: imgur.com" /></a>
  -->
