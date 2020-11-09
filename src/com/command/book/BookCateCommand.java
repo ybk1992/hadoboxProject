@@ -21,7 +21,7 @@ public class BookCateCommand implements Command  {
 			
 			// "book_List" 란  name 으로 request 에 arr 을 저장
 			// request 가 컨트롤러에 전달될것이다.
-			request.setAttribute("book_List", arr);
+			request.setAttribute("cate_List", arr);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

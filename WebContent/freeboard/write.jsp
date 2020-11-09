@@ -6,6 +6,11 @@
 <meta charset="UTF-8">
 <title>글 작성</title>
 <script src="../ckeditor/ckeditor.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="../CSS/writeFreeboard.css"/>
 </head>
 
 <script>
@@ -35,15 +40,30 @@ function chkSubmit(){
 
 
 </script>
+<%
+
+// 세션생성
+
+HttpSession session11 = request.getSession();      
+String LoginID = (String)session11.getAttribute("mem_userid");
+
+%>
 
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+    <div class="container">
+      <a class="navbar-brand" href="#">해도북스</a>
+    </div>
+  </nav>
+<div class="wrapper">
 <h2>글작성</h2>
 <%-- 글 내용이 많을수 있기 때문에 POST 방식 사용 --%>
+
 <form name="frm" action="writeOk.do" method="post" onsubmit="return chkSubmit()">
 작성자:
-<input type="text" name="name"/><br>
+<input class="form-control search c1" value= "<%= LoginID %>"type="text" name="name"/><br>
 제목:
-<input type="text" name="subject"/><br>
+<input class="form-control search c1" type="text" name="subject"/><br>
 내용:<br>
 <textarea name="content" id="editor1"></textarea>
 <script>
@@ -55,10 +75,22 @@ function chkSubmit(){
 	});
 </script>
 <br><br>
-<input type="submit" value="등록"/>
+<input class="btn btn-primary" type="submit" value="등록"/>
 </form>
+
 <br>
-<button type="button" onclick="location.href='listFreeboard.do'">목록으로</button>
+<button class="btn btn-primary" type="button" onclick="location.href='list.do'">목록으로</button>
+</div>
+ <footer class="py-5 bg-dark">
+    <div class="container">
+
+      <p class="m-0 text-center text-white">
+        <img src="../image/logo-white.png" alt="logo" id="footer_logo">
+        Copyright &copy; 2020. (주)해도북스 컴퍼니. All right reserved.</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
 </body>
 
 

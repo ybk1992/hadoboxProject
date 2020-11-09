@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.command.book.BookCateCommand;
 import com.command.book.BookListCommand;
 import com.command.book.BookListDescCommand;
 import com.command.book.BookSelectCommand;
@@ -25,8 +26,11 @@ import com.command.member.UpdateMyInfoCommand;
 import com.command.member.UpdateStatus;
 import com.command.write.Command;
 import com.command.write.DeleteCommand;
+import com.command.write.FbViewCommand;
 import com.command.write.FileUploadCommand;
 import com.command.write.ListCommand;
+import com.command.write.SelectCommand;
+import com.command.write.UpdateCommand;
 import com.command.write.ViewCommand;
 import com.command.write.WriteCommand;
 
@@ -150,13 +154,9 @@ public class DoController extends HttpServlet {
 		    	  break;
 
 			
-		case "/list.do":
-			command = new ListCommand();
-			command.execute(request, response);
-			viewPage = "book/list.jsp";
-			break;
-			
 		case "/write.do":
+			command = new BookCateCommand();
+			command.execute(request, response);
 			viewPage = "book/write.jsp";
 			break;
 			
@@ -165,11 +165,7 @@ public class DoController extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "book/writeOk.jsp";
 			break;
-		case "/view.do":
-			command = new BookViewCommand();
-			command.execute(request, response);
-			viewPage = "book/view.jsp";
-			break;
+		
 		case "/update.do":
 			command = new BookSelectCommand();
 			command.execute(request, response);
@@ -204,7 +200,49 @@ public class DoController extends HttpServlet {
 			viewPage = "book/book_Read.jsp";
 			break;
 			
+		case "/freeboard/view.do":
+			command = new FbViewCommand();
+			command.execute(request, response);
+			viewPage = "/freeboard/view.jsp";
+			break;
+		
+		case "/freeboard/update.do":
+			command = new SelectCommand();
+			command.execute(request, response);
+			viewPage = "/freeboard/update.jsp";
+			break;
+			
+		case "/freeboard/updateOk.do":
+			command = new UpdateCommand();
+			command.execute(request, response);
+			viewPage = "/freeboard/updateOk.jsp";
+			break;
+			
+			
+		case "/list.do":
+			command = new ListCommand();
+			command.execute(request, response);
+			viewPage = "/freeboard/list.jsp";
+			break;
+		
+		case "/freeboard/write.do":
+			viewPage = "/freeboard/write.jsp";
+			break;
+			
+		case "/freeboard/writeOk.do":
+			command = new WriteCommand();
+			command.execute(request, response);
+			viewPage = "/freeboard/writeOk.jsp";
+			break;
+			
+		case "/freeboard/deleteOk.do":
+			command = new DeleteCommand();
+			command.execute(request, response);
+			viewPage = "/freeboard/deleteOk.jsp";
+			break;
+			
 		}	
+		
 		
 		
 		// 위에서 결정된 view 에 forward 해줌

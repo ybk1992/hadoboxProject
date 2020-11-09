@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+.wrapper{
+	padding-top:100px;
+	margin: 0 auto;
+	max-width: 1600px;
+}
+
+.c1{
+	width:500px;
+}
+
+footer{
+	margin-top: 100px;
+}
+
+#footer_logo {
+  width: 210px;
+  height: 100px;
+}

@@ -132,7 +132,7 @@ public class WriteDAO {
 		return arr;
 	} // end selectByUid()
 	
-	
+		
 	// 특정 uid 글 내용 읽기, 조회수 증가
 	// viewcnt 도 +1 증가해야 하고, 읽어와야 한다 --> 트랜잭션 처리
 	public WriteDTO [] readByUid(int uid) throws SQLException{

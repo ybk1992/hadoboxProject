@@ -4,7 +4,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <%
-	String LoginID = (String)session.getAttribute("mem_id");
+HttpSession session2 = request.getSession();      
+String LoginID =(String)session2.getAttribute("mem_userid");
 %>
 
 <c:choose>
@@ -40,33 +41,8 @@
 </head>
 <body>
  <!-- 페이지 상단 navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="#">해도북스</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">메인으로
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">중고책팔기</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">자유 게시판</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#"><%=LoginID%>님 환영합니다.</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+<jsp:include page="../header.jsp"></jsp:include>
+
 
 
 	<table border="1">
@@ -155,15 +131,8 @@
 
   
   <!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
+<jsp:include page="../footer.jsp"></jsp:include>
 
-      <p class="m-0 text-center text-white">
-        <img src="image/logo-white.png" alt="logo" id="footer_logo">
-        Copyright &copy; 2020. (주)해도북스 컴퍼니. All right reserved.</p>
-    </div>
-    <!-- /.container -->
-  </footer>
   
 </body>
 </html>

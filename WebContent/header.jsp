@@ -13,9 +13,6 @@
             <li class="nav-item">
                 <a class="nav-link" href="${contextPath}/book_List.do?list=all">중고책장터</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">자유게시판</a>
-            </li>
         </ul>
     </div>
     
@@ -30,6 +27,9 @@
         <ul class="navbar-nav ml-auto" style="font-size:20px;">
         		   <c:choose>
 		     <c:when test="${memLogin==true}">
+		    <li class="nav-item">
+                <a class="nav-link" href="${contextPath}/freeboard/list.do">자유게시판</a>
+            </li>
 		    <li class="nav-item">
                 <a class="nav-link">${mem_userid}님 환영합니다^^</a>
             </li>

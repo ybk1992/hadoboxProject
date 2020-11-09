@@ -86,14 +86,20 @@ CREATE TABLE HD04A.CATEGORY
 	CONSTRAINT CATEGORY_PK PRIMARY KEY (CATE_NUM)
 );
 
+	public static final String SQL_WRITE_INSERT = 
+			"INSERT INTO free_write"
+			+ "(wr_uid, wr_subject, wr_content, wr_name, wr_regdate) "
+			+ "VALUES"
+			+ "(free_write_seq.nextval, ?, ?, ?, SYSDATE)";
 
-CREATE TABLE HD04A.FREEWRITE
+
+CREATE TABLE free_write
 (
-	FREE_NUM number NOT NULL,
+	wr_uid number NOT NULL,
 	-- 회원아이디
-	FREE_ID number,
-	FREE_NAME varchar2(40) NOT NULL,
-	FREE_CONTENT clob,
+	wr_name,
+	wr_subject varchar2(40) NOT NULL,
+	wr_content clob,
 	FREE_VIEWCNT number NOT NULL,
 	CONSTRAINT FREEWRITE_PK PRIMARY KEY (FREE_NUM)
 );

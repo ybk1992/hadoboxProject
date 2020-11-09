@@ -83,6 +83,8 @@ window.onload = function(){
 </script>
 
 <body>
+<jsp:include page="../header.jsp"></jsp:include>
+<br>
 <h2>판매글 수정하기</h2>
 <form name="frm" action="updateOk.do" method="post" onsubmit="return chkSubmit()">
 <input type="hidden" name="uid" value="${book_List[0].book_num }"/>
