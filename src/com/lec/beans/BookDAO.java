@@ -55,6 +55,7 @@ public class BookDAO {
 			pstmt.setInt(7, cate);
 			pstmt.setString(8, status);
 			pstmt.setString(9, image);
+			System.out.println(sellid+"aa   "+cate);
 			cnt = pstmt.executeUpdate();
 		} finally {
 			close();

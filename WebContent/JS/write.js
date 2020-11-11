@@ -1,7 +1,6 @@
 var image, name;
 var chk = false, cate = "0", gory = "0";
 
-
 // 글 제목, 책 정보, 책 판매 가격, 카테고리 필수
 function chkSubmit(){
 	frm = document.forms['frm'];
@@ -38,7 +37,7 @@ function chkSubmit(){
 		return false;
 	}
 
-	submitPost({'sellid': "apple123",
+	submitPost({'sellid': id,
 		'name' : name,
 		'image': image});
 	

@@ -122,7 +122,6 @@ window.onload = function(){
 	
 }
 
-
 $(function(){	
 	$('select#cate').change(function(){
 		cate = this.value;

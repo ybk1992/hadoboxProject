@@ -11,6 +11,7 @@
 <script src="ckeditor/ckeditor.js"></script>
 </head>
 <script>
+var id = ${mem_userid};
 var arr = new Array();
 <c:forEach items="${cate_List}" var="item">
 	arr.push({val:"${item.book_cate}"

@@ -1,3 +1,4 @@
+
 INSERT INTO MEMBERS VALUES (MEMBERS_SEQ.NEXTVAL, 'apple123', 'a@gmail.com', '123qwe!', 
 '김사과', '010-1111-1111', '17117', '서울 강남구', '역삼동 타임스퀘어',
 SYSDATE, '1', 'C:\\tomcat_h\upload\members\apple.png');
@@ -116,9 +117,9 @@ SELECT * FROM FREEWRITE;
 --select book_num 선택 글 읽기
 --SELECT * FROM BOOKLIST WHERE BOOK_NUM=1;
 
-SELECT C.CATE_NAME, C.CATE_PRE, B.*
-FROM CATEGORY C, BOOKLIST B 
-WHERE C.CATE_NUM = B.BOOK_CATE;
+--SELECT C.CATE_NAME, C.CATE_PRE, B.*
+--FROM CATEGORY C, BOOKLIST B 
+--WHERE C.CATE_NUM = B.BOOK_CATE AND BOOK_NUM=2;
 --
 ----CATEGORY
 --SELECT * FROM CATEGORY ORDER BY CATE_NUM DESC;
@@ -196,11 +197,3 @@ SELECT * FROM freewrite ORDER BY wr_uid DESC;
 -- 기존의 테이블 x2배로 늘리기 : 기존 레코드 그대로 복사해서 INSERT
 INSERT INTO freewrite (wr_uid, wr_subject, wr_content, wr_name, wr_viewcnt)
 SELECT freewrite_seq.nextval, wr_subject, wr_content, wr_name, wr_viewcnt FROM freewrite;
-
-
-
-
-
-
-
-	

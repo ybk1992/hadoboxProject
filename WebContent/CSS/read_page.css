@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @charset "UTF-8";
 
 @import url(font.css);
@@ -45,3 +46,52 @@ a:hover {
 	text-decoration: none;
 }
 
+=======
+@charset "UTF-8";
+
+@import url(font.css);
+
+
+
+#content { margin-top: 100px; }
+
+.row {
+     margin-bottom: 20px;
+   }
+[class|="col"] {
+  background: white;
+  
+  text-align: center;
+  color: black;
+}
+
+.title{
+	font-size: 2.5em;
+}
+#cate{
+	font-size: 1.2em;
+	
+}
+.price{
+	font-size: 1.8em;
+	
+}
+.content{
+	font-size: 1.1em;
+}
+
+.soldout{
+	font-size:2.3em;
+	color:red;
+}
+
+#viewcnt{
+	font-size:0.8em;
+}
+/* 액션 */
+
+a:hover {
+	text-decoration: none;
+}
+
+>>>>>>> branch 'master' of https://github.com/ybk1992/hadoboxProject.git

@@ -261,19 +261,3 @@ $("#who"). click(function(){
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
