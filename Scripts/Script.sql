@@ -53,7 +53,7 @@ CREATE TABLE HD04A.BOOKLIST
    -- 회원아이디
    BOOK_SELLID varchar2(20) NOT NULL,
    -- 책 이름
-   BOOK_NAME varchar2(50) NOT NULL,
+   BOOK_NAME varchar2(200) NOT NULL,
    -- 책 가격
    BOOK_PRICE number NOT NULL,
    -- 작성한 날짜

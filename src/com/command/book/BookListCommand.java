@@ -30,14 +30,12 @@ public class BookListCommand implements Command  {
 			String search = request.getParameter("search");
 
 			if(cp != null) {
-				System.out.println("NULL아니지 "+cp);
 				cate_pre = dao3.selectCatepre(cp);
 				request.setAttribute("book_cate_pre", cate_pre);
 			}
 			if(search != null) {
-				System.out.println("검색어 : [ "+search+" ]");
 				searchBook = dao4.searchBook(search);
-				request.setAttribute("search", searchBook);
+				request.setAttribute("searchWord", searchBook);
 			}
 			
 			arr = dao.selectAllBook();  // 트랜잭션 수행

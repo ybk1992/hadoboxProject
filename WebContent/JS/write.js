@@ -1,12 +1,12 @@
-var image, title, price;
+var image, name;
 var chk = false, cate = "0", gory = "0";
-var id;
+
 
 // 글 제목, 책 정보, 책 판매 가격, 카테고리 필수
 function chkSubmit(){
 	frm = document.forms['frm'];
-	var subject = frm["subject"].value.trim();
-	var priceChk = frm["price2"].value.trim();
+	var title = frm["title"].value.trim();
+	var price = frm["price"].value.trim();
 
 	if(chk == false){
 		alert("책 정보는 반드시 입력해야 합니다.");
@@ -14,15 +14,15 @@ function chkSubmit(){
 		return false;
 	}
 	
-	if(subject == ""){
+	if(title == ""){
 		alert("글 제목은 반드시 작성해야 합니다");
-		frm["subject"].focus();
+		frm["title"].focus();
 		return false;
 	}
 	
-	if(priceChk == ""){
+	if(price == ""){
 		alert("판매가는 반드시 작성해야 합니다");
-		frm["price2"].focus();
+		frm["price"].focus();
 		return false;
 	}
 	
@@ -39,8 +39,7 @@ function chkSubmit(){
 	}
 
 	submitPost({'sellid': "apple123",
-		'price': price,
-		'title': title,
+		'name' : name,
 		'image': image});
 	
 	return true;	
@@ -86,11 +85,6 @@ function isEmpty(value){
 	}
 }
 
-// 돈 3자리마다 ,표시
-function currencyFormatter(amount){
-	return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g,',');
-}
-
 function onlyNumberFunc(t){
 	var regexp = /[^0-9]/gi;
 	t.onkeyup = function(e){
@@ -110,97 +104,7 @@ window.onload = function(){
 }
 
 $(function(){
-	// 상위 카테고리 선택 시 하위 카테고리 셀렉트 박스 옵션 변경
-	$('select#cate').change(function(){
-		cate = this.value;
-		switch(this.value){
-		case '0':
-			$("select#gory").empty();
-			$("select#gory").append("<option value='0'>하위 카테고리</option>");
-			break;
-		case '1':
-			$("select#gory").empty();
-			$("select#gory").append("<option value='0' selected>하위 카테고리</option>");
-			$("select#gory").append("<option value='101'>대학</option>");
-			$("select#gory").append("<option value='102'>초중고</option>");
-			$("select#gory").append("<option value='103'>외국어</option>");
-			$("select#gory").append("<option value='104'>기타</option>");
-			break;
-		case '2':
-			$("select#gory").empty();
-			$("select#gory").append("<option value='0' selected>하위 카테고리</option>");
-			$("select#gory").append("<option value='201'>공무원</option>");
-			$("select#gory").append("<option value='202'>외국어능력시험</option>");
-			$("select#gory").append("<option value='203'>기타</option>");
-			break;
-		case '3':
-			$("select#gory").empty();
-			$("select#gory").append("<option value='0' selected>하위 카테고리</option>");
-			$("select#gory").append("<option value='301'>소년 만화</option>");
-			$("select#gory").append("<option value='302'>스포츠</option>");
-			$("select#gory").append("<option value='303'>미스테리</option>");
-			$("select#gory").append("<option value='304'>요리</option>");
-			$("select#gory").append("<option value='305'>웹툰</option>");
-			$("select#gory").append("<option value='306'>기타</option>");
-			break;
-		case '4':
-			$("select#gory").empty();
-			$("select#gory").append("<option value='0' selected>하위 카테고리</option>");
-			$("select#gory").append("<option value='401'>판타지</option>");
-			$("select#gory").append("<option value='402'>라이트 노벨</option>");
-			$("select#gory").append("<option value='403'>공상과학</option>");
-			$("select#gory").append("<option value='404'>호러</option>");
-			$("select#gory").append("<option value='405'>무협</option>");
-			$("select#gory").append("<option value='406'>액션</option>");
-			$("select#gory").append("<option value='407'>로맨스</option>");
-			$("select#gory").append("<option value='408'>시</option>");
-			$("select#gory").append("<option value='409'>기타</option>");
-			break;
-		case '5':
-			$("select#gory").empty();
-			$("select#gory").append("<option value='0' selected>하위 카테고리</option>");
-			$("select#gory").append("<option value='501'>미술</option>");
-			$("select#gory").append("<option value='502'>음악</option>");
-			$("select#gory").append("<option value='503'>영화</option>");
-			$("select#gory").append("<option value='504'>건축</option>");
-			$("select#gory").append("<option value='505'>디자인</option>");
-			$("select#gory").append("<option value='506'>기타</option>");
-			break;
-		case '6':
-			$("select#gory").empty();
-			$("select#gory").append("<option value='0' selected>하위 카테고리</option>");
-			$("select#gory").append("<option value='601'>국내 여행</option>");
-			$("select#gory").append("<option value='602'>유럽 여행</option>");
-			$("select#gory").append("<option value='603'>아시아 여행</option>");
-			$("select#gory").append("<option value='604'>아프리카 여행</option>");
-			$("select#gory").append("<option value='605'>아메리카 여행</option>");
-			$("select#gory").append("<option value='606'>기타</option>");
-			break;
-		case '7':
-			$("select#gory").empty();
-			$("select#gory").append("<option value='0' selected>하위 카테고리</option>");
-			$("select#gory").append("<option value='701'>동화책</option>");
-			$("select#gory").append("<option value='702'>유아 학습</option>");
-			$("select#gory").append("<option value='703'>기타</option>");
-			break;
-		case '8':
-			$("select#gory").empty();
-			$("select#gory").append("<option value='0' selected>하위 카테고리</option>");
-			$("select#gory").append("<option value='801'>국내 역사</option>");
-			$("select#gory").append("<option value='802'>해외 역사</option>");
-			$("select#gory").append("<option value='803'>기타</option>");
-			break;
-		case '9':
-			$("select#gory").empty();
-			$("select#gory").append("<option value='0' selected>하위 카테고리</option>");
-			$("select#gory").append("<option value='901'>프로그래밍</option>");
-			$("select#gory").append("<option value='902'>그래픽</option>");
-			$("select#gory").append("<option value='903'>웹디자인</option>");
-			$("select#gory").append("<option value='904'>오피스</option>");
-			$("select#gory").append("<option value='905'>기타</option>");
-			break;
-		}
-	})
+	
 	// 하위 카테고리 선택시 값 저장
 	$('select#gory').change(function(){
 		gory = this.value;
@@ -227,20 +131,10 @@ $(function(){
 						"도서 판매가 : <strong>"+msg.documents[0].sale_price+"</strong><br>"+
 						"도서 판매 상태 정보 : <strong>"+msg.documents[0].status+"</strong><br>");
 				image = msg.documents[0].thumbnail;
-				title = msg.documents[0].title;
+				name = msg.documents[0].title;
 				$("#imgbut").show();
 			});
 	})
-	
-	$('#price').on('blur', function(){
-		var val = $('#price').val();
-		price = val;
-		console.log(price);
-		if(!isEmpty(val)){
-			val = currencyFormatter(val);
-			$('#price').val(val);
-		}
-	});
 	
 	$(document).ready(function(){
 	      $("#imgbut").hide();

@@ -140,47 +140,62 @@ function chkSubmit(){
 <body>
 <div class="text-center" style="margin-bottom:0">
   <h1>해도북스</h1>
-  <p>Resize this responsive page to see the effect!</p> 
+  <p>중고책을 찾아보세요</p> 
 </div>
 <jsp:include page="../header.jsp"></jsp:include>
 
 
-<br><br>
-  <h2 >회원가입</h2>
-       
-<form name="frm" action="joinOk.do" method="post" onsubmit="return chkSubmit()" enctype="Multipart/form-data">
-아이디:<br>
-<input type="text" name="mem_userid" id="mem_userid">
-<input type="button" class="btn-primary box" onclick="idCheckFunc()" value="중복확인"><br>
-<span id="idchk"></span><br>
-비밀번호:<br>
-<input type="password" name="mem_password"/><br>
-비밀번호 확인:<br>
-<input type="password" name="mem_password1"/><br>
-이름:<br>
-<input type="text" name="mem_username"/><br>
-핸드폰 번호:<br>
-<input type="text" name="mem_phone"/><br>
-이메일:<br>
-<input type="text" name="mem_email" id="mem_email"/>
-<input type="button" class="btn-primary box" onclick="mailCheckFunc()" value="중복확인"><br>
-<span id="mchk"></span><br>
-
-우편번호:<br>
-<input type="text" name="mem_zipcode" id="sample4_postcode"/>
-<input type="button" class="btn-primary box" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-
-주소:<br>
-<input type="text" name="mem_address1" id="sample4_roadAddress" /><br>
-상세 주소:<br>
-<input type="text" name="mem_address2" id="sample4_detailAddress"/><br>
-이미지:<br>
-<input type="file" name="mem_image"/><br>
-
-<br><br>
-<input type="submit" value="등록"/>
-</form>
-
+ 
+<div class="container">
+<br>
+  <h2>회원가입</h2>
+  <form name="frm" action="joinOk.do" method="post" onsubmit="return chkSubmit()" enctype="Multipart/form-data">
+      <div class="form-group">
+      <label for="mem_userid">아이디 :</label>
+      <input type="text" class="form-control" id="mem_userid" name="mem_userid"/>
+      <input type="button" class="btn btn-primary box" onclick="idCheckFunc()" value="중복확인"><br>
+	  <span id="idchk"></span>
+    </div>
+    <div class="form-group">
+      <label for="mem_username">이름 :</label>
+      <input type="text" class="form-control" id="mem_username" name="mem_username">
+      <label for="mem_password">비밀번호 :</label>
+      <input type="password" class="form-control" id="mem_password" name="mem_password">
+      <label for="mem_password">비밀번호 확인 :</label>
+      <input type="password" class="form-control" id="mem_password1" name="mem_password1">
+      <span id="pwchk"></span><br>
+    </div>
+    <div class="form-group">
+      <label for="mem_phone">핸드폰 번호 :</label>
+      <input type="text" class="form-control" id="mem_phone" name="mem_phone">
+      <span id="phonechk"></span><br>
+    </div>  
+      
+    <div class="form-group">
+      <label for="mem_email">이메일 :</label>
+      <input type="text" class="form-control" id="mem_email" name="mem_email">
+      
+      <input type="button" class="btn btn-primary" onclick="mailCheckFunc()" value="중복 확인"><br>
+      <span id="mchk"></span><br>
+    </div>    
+    <div class="form-group">
+      <label for= "mem_zipcode">우편 번호 :</label>
+      <input type="text" class="form-control" id="sample4_postcode" name="mem_zipcode">
+      <input type="button" class="btn btn-primary" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+      <label for="mem_phone">주소 :</label>      
+      <input type="text" class="form-control" id="sample4_roadAddress" name="mem_address1">
+      <label for="mem_phone">상제 주소 :</label>      
+      <input type="text" class="form-control" id="sample4_detailAddress" name="mem_address2">
+    </div>    
+    <div class="form-group">
+      <label for="mem_image">이미지 :</label>
+      <input type="file" class="form-control" id="mem_image" name="mem_image"><br>
+    </div> 
+    <button type="submit" class="btn btn-primary">등록</button>
+  </form>
+  <br>
+</div>
+ 
    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
     <script>

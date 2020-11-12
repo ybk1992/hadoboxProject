@@ -8,8 +8,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.command.book.AnsDeleteCommand;
+import com.command.book.AnsWriteCommand;
+import com.command.book.BookCateCommand;
+import com.command.book.BookDeleteCommand;
 import com.command.book.BookListCommand;
 import com.command.book.BookListDescCommand;
+import com.command.book.BookSelectCommand;
+import com.command.book.BookUpdateCommand;
 import com.command.book.BookViewCommand;
 import com.command.book.BookWriteCommand;
 import com.command.member.FindIdPwCommand;
@@ -20,8 +26,10 @@ import com.command.member.MailCheckCommand;
 import com.command.member.MailCommand;
 import com.command.member.UpdateInfoCommand;
 import com.command.member.UpdateMyInfoCommand;
+import com.command.member.UpdateStatus;
 import com.command.write.Command;
 import com.command.write.DeleteCommand;
+import com.command.write.FbViewCommand;
 import com.command.write.FileUploadCommand;
 import com.command.write.ListCommand;
 import com.command.write.SelectCommand;
@@ -70,86 +78,93 @@ public class DoController extends HttpServlet {
 		// 컨트롤러는 커맨드에 따라 로직 수행
 		// 결과를 보낼 view 를 결정
 		switch(com) {		      
-		      case "/main.do":
-		    	 command = new BookListDescCommand();
-				 command.execute(request, response);
-		         viewPage = "main/main.jsp";
-		         break;	
-		         
-		      case "/join.do":
-		         viewPage = "main/join.jsp";
-		         break;
-		         
-		      case "/joinOk.do":
-		         command = new JoinCommand();
+		case "/main.do":
+	    	 command = new BookListDescCommand();
+			 command.execute(request, response);
+	         viewPage = "main/main.jsp";
+	         break;	
+	         
+	      case "/join.do":
+	         viewPage = "main/join.jsp";
+	         break;
+	         
+	      case "/joinOk.do":
+	         command = new JoinCommand();
+	         command.execute(request, response);
+	         viewPage = "main/joinOk.jsp";
+	         break;
+	         
+	      case "/idOk.do":
+	         command = new IdCheckCommand();
+	         command.execute(request, response);
+	         viewPage = "main/idOk.jsp";
+	         break;
+	         
+	      case "/mailOk.do":
+	    	  command = new MailCheckCommand();
+	    	  command.execute(request, response);
+	    	  viewPage = "main/mailOk.jsp";
+	    	  break;
+	    	  
+	      case "/login.do":
+	         viewPage = "main/login.jsp";
+	         break;
+	         
+	      case "/loginOk.do":
+	         command = new LoginCommand();
+	         command.execute(request, response);
+	         viewPage = "main/loginOk.jsp";
+	         break;
+	         	      
+	      case "/logout.do":
+		     viewPage = "main/logout.jsp";
+		     break;
+		   
+	
+	      case "/findPassword.do":  
+	    	  viewPage = "main/findPassword.jsp";   
+	    	  break;
+		           
+	      case "/sendIdPw.do":   
+	    	  command = new FindIdPwCommand();   
+	    	  command.execute(request, response);   
+	    	  viewPage = "main/findPassword2.jsp";   
+	    	  break;
+	    	  
+	      case "/sendMail.do":
+		         command = new MailCommand();
 		         command.execute(request, response);
-		         viewPage = "main/joinOk.jsp";
+		         viewPage = "main/sendMail.jsp";
 		         break;
-		         
-		      case "/idOk.do":
-		         command = new IdCheckCommand();
-		         command.execute(request, response);
-		         viewPage = "main/idOk.jsp";
-		         break;
-		         
-		      case "/mailOk.do":
-		    	  command = new MailCheckCommand();
-		    	  command.execute(request, response);
-		    	  viewPage = "main/mailOk.jsp";
-		    	  break;
-		    	  
-		      case "/login.do":
-		         viewPage = "main/login.jsp";
-		         break;
-		         
-		      case "/loginOk.do":
-		         command = new LoginCommand();
-		         command.execute(request, response);
-		         viewPage = "main/loginOk.jsp";
-		         break;
-		         	      
-		      case "/logout.do":
-			     viewPage = "main/logout.jsp";
-			     break;
-			   
+	    	  
 
-		      case "/findPassword.do":  
-		    	  viewPage = "main/findPassword.jsp";   
-		    	  break;
-			           
-		      case "/sendIdPw.do":   
-		    	  command = new FindIdPwCommand();   
-		    	  command.execute(request, response);   
-		    	  viewPage = "main/findPassword2.jsp";   
-		    	  break;
-		    	  
-		      case "/sendMail.do":
-			         command = new MailCommand();
-			         command.execute(request, response);
-			         viewPage = "main/sendMail.jsp";
-			         break;
-		    	  
-
-		      case "/myPage.do":   
-		    	  command = new UpdateMyInfoCommand();   
-		    	  command.execute(request, response);   
-		    	  viewPage = "main/myPage.jsp";   
-		    	  break;
-		    	  
-		      case "/myPageOk.do":   
-		    	  command = new UpdateInfoCommand();   
-		    	  command.execute(request, response);   
-		    	  viewPage = "main/myPageOk.jsp";   
-		    	  break;
-
-			
-		case "/list.do":
-			command = new ListCommand();
-			command.execute(request, response);
-			viewPage = "book/list.jsp";
-			break;
+	      case "/myPage.do":   
+	    	  command = new UpdateMyInfoCommand();   
+	    	  command.execute(request, response);   
+	    	  viewPage = "main/myPage.jsp";   
+	    	  break;
+	    	  
+	      case "/myPageOk.do":   
+	    	  command = new UpdateInfoCommand();   
+	    	  command.execute(request, response);   
+	    	  viewPage = "main/myPageOk.jsp";   
+	    	  break;
+	    	  
+	      case "/delete.do":   
+	    	  command = new UpdateStatus();   
+	    	  command.execute(request, response);   
+	    	  viewPage = "main/delete.jsp";   
+	    	  break;
+	    	  
+	      case "/bookDelete.do":   
+	    	  command = new BookDeleteCommand();   
+	    	  command.execute(request, response);   
+	    	  viewPage = "book/delete.jsp";   
+	    	  break;
 			
 		case "/write.do":
+			command = new BookCateCommand();   
+	    	command.execute(request, response);
 			viewPage = "book/write.jsp";
 			break;
 			
@@ -164,12 +179,12 @@ public class DoController extends HttpServlet {
 			viewPage = "book/view.jsp";
 			break;
 		case "/update.do":
-			command = new SelectCommand();
+			command = new BookSelectCommand();
 			command.execute(request, response);
 			viewPage = "book/update.jsp";
 			break;
 		case "/updateOk.do":
-			command = new UpdateCommand();
+			command = new BookUpdateCommand();
 			command.execute(request, response);
 			viewPage = "book/updateOk.jsp";
 			break;
@@ -197,6 +212,54 @@ public class DoController extends HttpServlet {
 			viewPage = "book/book_Read.jsp";
 			break;
 			
+		case "/writeAnswerOk.do":
+			command = new AnsWriteCommand();
+			command.execute(request, response);
+			viewPage = "book/writeAnswerOk.jsp";
+			break;
+		case "/deleteAnswerOk.do":
+			command = new AnsDeleteCommand();
+			command.execute(request, response);
+			viewPage = "book/deleteAnswerOk.jsp";
+			break;
+		case "/freeboard/view.do":
+			command = new FbViewCommand();
+			command.execute(request, response);
+			viewPage = "/freeboard/view.jsp";
+			break;
+		
+		case "/freeboard/update.do":
+			command = new SelectCommand();
+			command.execute(request, response);
+			viewPage = "/freeboard/update.jsp";
+			break;
+			
+		case "/freeboard/updateOk.do":
+			command = new UpdateCommand();
+			command.execute(request, response);
+			viewPage = "/freeboard/updateOk.jsp";
+			break;
+			
+			
+		case "/freeboard/list.do":
+			viewPage = "/freeboard/list.jsp";
+			break;
+		
+		case "/freeboard/write.do":
+			viewPage = "/freeboard/write.jsp";
+			break;
+			
+		case "/freeboard/writeOk.do":
+			command = new WriteCommand();
+			command.execute(request, response);
+			viewPage = "/freeboard/writeOk.jsp";
+			break;
+			
+		case "/freeboard/deleteOk.do":
+			command = new DeleteCommand();
+			command.execute(request, response);
+			viewPage = "/freeboard/deleteOk.jsp";
+			break;
 		}	
 		
 		
@@ -211,3 +274,4 @@ public class DoController extends HttpServlet {
 	
 
 }
+

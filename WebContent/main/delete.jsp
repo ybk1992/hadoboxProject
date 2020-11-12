@@ -7,13 +7,13 @@
 
 <% if(cnt == 0){ %>
 	<script>
-		alert("수정실패 !!!");
+		alert("탈퇴실패 !!!");
 		history.back();
 	</script>
 <% } else { %>
 	<script>
-		alert("수정 성공!");
-		location.href = "main.do";
+		alert("탈퇴되었습니다!");
+		location.href = "main.do";	
 	</script>
 <% } %>
 

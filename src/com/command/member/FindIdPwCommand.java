@@ -37,25 +37,21 @@ public class FindIdPwCommand implements Command {
 
 				
 			} catch (Exception e) {
-				e.printStackTrace();			}
+				e.printStackTrace();	
+				
+				
+			}
 		} // end if
 			
-		if(cnt == 1) {
+	
 		request.setAttribute("MyIdPw", arr);
 		request.setAttribute("result", cnt);
 		System.out.println("힝");
-		}
+		
 
 	}
 
 }
-
-
-
-
-
-
-
 
 
 
